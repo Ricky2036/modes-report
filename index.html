@@ -131,6 +131,32 @@
   .chips.three div{padding:14px 10px;text-align:left;font-size:13px}
   .chips.three div span{font-size:10.5px;margin-top:3px}
 
+
+  /* 自动开启条件清单 */
+  .cond-h{margin-top:36px;font-size:12.5px;font-weight:670;color:var(--ink);
+    display:flex;align-items:baseline;gap:10px}
+  .cond-h span{font-size:11.5px;color:var(--faint);font-weight:500}
+  .conds{margin-top:12px}
+  .conds > div{display:flex;gap:12px;padding:9px 0;border-top:1px solid var(--line);font-size:12.4px;line-height:1.75}
+  .conds b{flex:0 0 88px;font-weight:660;color:var(--ink)}
+  .conds span{color:var(--sub)}
+
+  /* 动作分类标签 */
+  .cat-tags{display:flex;flex-wrap:wrap;gap:7px}
+  .cat-tags span{font-size:12px;color:#3a3a44;background:#fff;border:1px solid var(--line);
+    border-radius:8px;padding:5px 10px;white-space:nowrap}
+  .cat-tags b{color:var(--config);font-weight:690;margin-left:3px;font-size:11px}
+
+  /* 附表：动作全表 */
+  .acts-tbl{width:100%;border-collapse:collapse;font-size:12.8px;margin-top:26px}
+  .acts-tbl th{font-size:11.5px;letter-spacing:.06em;color:var(--faint);font-weight:650;
+    text-align:left;padding:0 16px 12px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+  .acts-tbl td{padding:11px 16px 11px 0;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.72}
+  .acts-tbl td:first-child{white-space:nowrap;font-weight:660;color:var(--ink);padding-right:30px}
+  .acts-tbl td.n{white-space:nowrap;color:var(--config);font-weight:690;padding-right:30px}
+  .acts-tbl td:last-child{color:var(--sub)}
+  .apx-note{margin-top:16px;font-size:12px;color:var(--faint);line-height:1.85}
+
   /* 系统动作清单 */
   .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;align-items:stretch}
   .act-card{background:var(--soft);border-radius:14px;padding:16px 18px 14px}
@@ -325,7 +351,7 @@
   .caplist p{font-size:12.5px;color:var(--sub);margin-top:5px;line-height:1.65}
 
   /* chips grid */
-  .vcenter{display:flex;flex-direction:column;justify-content:center;height:100%}
+  .vcenter{display:flex;flex-direction:column;justify-content:flex-start;height:100%}
   .chips{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-top:22px}
   .chips div{padding:15px 8px}
   .chips div{border:1px solid #e2e2ea;border-radius:10px;padding:11px 6px;text-align:center;
@@ -826,7 +852,7 @@
       <div class="mcol t">
         <div class="mcol-h"><b>激活方式</b><span>什么时候自己打开</span></div>
         <div class="mcell"><div class="mnum">04</div><div><b>手动开关</b><p>磁贴点一下，详情页也有大按钮</p></div></div>
-        <div class="mcell"><div class="mnum">05</div><div><b>条件触发</b><p>时间、地点、蓝牙、打开某个应用</p></div></div>
+        <div class="mcell"><div class="mnum">05</div><div><b>条件触发</b><p>8 类 28 个条件，含情境与设备</p></div></div>
         <div class="mcell"><div class="mnum">06</div><div><b>自动退出</b><p>设倒计时，到点自己关</p></div></div>
       </div>
 
@@ -834,7 +860,7 @@
         <div class="mcol-h"><b>配置能力</b><span>打开之后改变什么</span></div>
         <div class="mcell"><div class="mnum">07</div><div><b>通知与应用</b><p>谁能发通知，哪些应用可用</p></div></div>
         <div class="mcell"><div class="mnum">08</div><div><b>屏幕外观</b><p>换壁纸与时钟，退出自动还原</p></div></div>
-        <div class="mcell"><div class="mnum">09</div><div><b>系统动作</b><p>九类系统设置批量调节</p></div></div>
+        <div class="mcell"><div class="mnum">09</div><div><b>系统动作</b><p>23 类 115 项系统设置批量调节</p></div></div>
       </div>
     </div>
   </div>
@@ -869,31 +895,57 @@
       </div>
     </div>
   </div>
+    <div class="cond-h">自动开启的全部条件 <span>8 类 / 28 个</span></div>
+    <div class="conds">
+        <div><b>情境</b><span>醒来时间 · 睡前 · 睡眠 · 驾驶 · 出国旅行</span></div>
+        <div><b>时间</b><span>时间段</span></div>
+        <div><b>地点</b><span>地点</span></div>
+        <div><b>连接</b><span>WLAN 网络 · WLAN 信号强度 · WLAN · 蓝牙设备 · 飞行模式 · 移动数据 · 移动热点</span></div>
+        <div><b>已连接的设备</b><span>Samsung DeX · Smart View · 多重控制 · 连接至 Windows</span></div>
+        <div><b>设备</b><span>有线耳机 · 充电状态 · 电量 · 省电模式 · 声音模式 · 黑暗模式</span></div>
+        <div><b>事件</b><span>正在玩游戏 · 正在播放媒体</span></div>
+        <div><b>呼叫</b><span>来电响铃期间 · 通话期间</span></div>
+    </div>
+
 
   <div class="sub">
     <div class="sec-h">
       <span class="sec-tag t-config">4.3 · 配置</span>
       <div>
         <h3>把系统设置整个搬进来</h3>
-        <p>九大类、43 项系统动作，模式开启时批量改，关闭时全部还原。这一段的宽度是两家差距最直观的地方，完整清单见文末附表。</p>
+        <p>23 类、115 项系统动作，模式开启时批量改，关闭时全部还原。这一段的宽度是两家差距最直观的地方，完整清单见文末附表。</p>
       </div>
     </div>
 
     <div class="cap-body">
       <div class="vcenter">
-        <div class="chips three">
-          <div>连接与网络<span>WLAN、蓝牙、NFC</span></div>
-          <div>屏幕与显示<span>亮度、深色、刷新率</span></div>
-          <div>声音与振动<span>音量、振动、杜比</span></div>
-          <div>通知与提醒<span>播报、闪光提醒</span></div>
-          <div>壁纸与锁屏<span>壁纸、时钟、息屏</span></div>
-          <div>电池与性能<span>省电、保护电池</span></div>
-          <div>系统与维护<span>清理后台、同步</span></div>
-          <div>操作与防误触<span>侧屏、单手模式</span></div>
-          <div>工具联动<span>闹钟、音乐、拒接</span></div>
+        <div class="cat-tags">
+          <span>连接 <b>13</b></span>
+          <span>已连接的设备 <b>5</b></span>
+          <span>声音和振动 <b>11</b></span>
+          <span>通知 <b>1</b></span>
+          <span>显示 <b>14</b></span>
+          <span>壁纸 <b>1</b></span>
+          <span>锁定屏幕和息屏提醒 <b>3</b></span>
+          <span>位置 <b>1</b></span>
+          <span>账号与备份 <b>1</b></span>
+          <span>电池 <b>4</b></span>
+          <span>智能管理器 <b>2</b></span>
+          <span>三星键盘 <b>5</b></span>
+          <span>辅助功能 <b>11</b></span>
+          <span>效果 <b>3</b></span>
+          <span>功能 <b>10</b></span>
+          <span>应用程序 <b>2</b></span>
+          <span>Bixby <b>1</b></span>
+          <span>日历 <b>3</b></span>
+          <span>时钟 <b>7</b></span>
+          <span>相册 <b>5</b></span>
+          <span>游戏助推器 <b>3</b></span>
+          <span>即时简报 <b>2</b></span>
+          <span>电话 <b>7</b></span>
         </div>
         <div class="chips-legend">
-          <span><i class="a"></i>九类系统动作，每一类下还有 3–7 个可选开关</span>
+          <span><i class="a"></i>23 类系统动作，共 115 个可选项；另有「其他应用程序」按已安装应用展开</span>
         </div>
       </div>
       <div class="panel">
@@ -948,12 +1000,12 @@
           <tr>
             <td>激活</td>
             <td>智能启用 + 时间、位置、打开 App；手动开关</td>
-            <td>时间、地点、蓝牙、打开应用；支持倒计时自动退出</td>
+            <td>8 类 28 个条件（含情境、设备、事件）；支持倒计时自动退出</td>
           </tr>
           <tr>
             <td>配置范围</td>
             <td>通知名单、三个系统页面、10 项过滤条件</td>
-            <td>通知与应用、壁纸与时钟、九类 43 项系统动作</td>
+            <td>通知与应用、壁纸与时钟、23 类 115 项系统动作</td>
           </tr>
           <tr>
             <td>使用门槛</td>
@@ -1059,211 +1111,43 @@
     <span class="chap-n">A</span>
     <div>
       <h2>附表 · One UI 系统动作全表</h2>
-      <p>模式能调用的全部系统能力，43 项，按九类归档。这也是它与 iOS 差距最实在的一段。</p>
+      <p>模式能调用的全部系统能力，115 项，按 23 类归档。这也是它与 iOS 差距最实在的一段。</p>
     </div>
   </div>
 
-  <div class="acts">
-      <div class="act-card">
-        <h5>连接与网络<span>7 项</span></h5>
-        <div class="act-row">
-          <div class="act-top"><b>无线网络 (WLAN)</b><i>开 / 关</i></div>
-          <p>到家自动开启连接，离家自动关闭省电</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>蓝牙</b><i>开 / 关</i></div>
-          <p>上车自动连车载，睡眠断开所有蓝牙外设</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>飞行模式</b><i>开 / 关</i></div>
-          <p>登机或深度防打扰时彻底阻断射频信号</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>移动数据</b><i>开 / 关</i></div>
-          <p>连稳定无线网络或流量紧张时关闭蜂窝</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>移动热点</b><i>开 / 关</i></div>
-          <p>外出办公检测到笔记本时自动开热点</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>近场通信 (NFC)</b><i>开 / 关</i></div>
-          <p>通勤刷地铁卡开，回到室内自动关</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>快速共享</b><i>仅联系人 / 关</i></div>
-          <p>需要传文件时开启，平时关闭防骚扰</p>
-        </div>
-      </div>
-      <div class="act-card">
-        <h5>屏幕与显示<span>7 项</span></h5>
-        <div class="act-row">
-          <div class="act-top"><b>屏幕亮度</b><i>0%~100% 滑块</i></div>
-          <p>晚上自动调暗，户外阳光下自动拉满</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>自动调节亮度</b><i>开 / 关</i></div>
-          <p>看书看视频时锁定固定亮度避免晃眼</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>深色模式</b><i>开 / 关</i></div>
-          <p>晚上全系统切换深色背景，减少光线刺激</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>护眼模式</b><i>开 / 色温调节</i></div>
-          <p>过滤屏幕蓝光，夜间长时间看屏不累眼</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>自动息屏时间</b><i>15秒 ~ 10分钟</i></div>
-          <p>阅读时延长至10分钟，离开时15秒息屏</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>屏幕刷新率</b><i>自适应 / 60Hz</i></div>
-          <p>电量低时强制切换到标准60Hz节省功耗</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>屏幕旋转</b><i>自动 / 纵向锁定</i></div>
-          <p>躺在床上看手机锁定竖屏，防误翻转</p>
-        </div>
-      </div>
-      <div class="act-card">
-        <h5>声音与振动<span>5 项</span></h5>
-        <div class="act-row">
-          <div class="act-top"><b>声音模式</b><i>声音 / 振动 / 静音</i></div>
-          <p>进入影院或会议自动静音，出来恢复响铃</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>媒体音量</b><i>0%~100% 独立</i></div>
-          <p>学习模式单独保留视频声音，铃声通知静音</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>铃声与通知音量</b><i>0%~100% 独立</i></div>
-          <p>安静工位调低铃声音量，避免惊扰同事</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>振动强度</b><i>强 / 中 / 弱 / 关</i></div>
-          <p>放桌面上开会调弱振动，防桌面嗡嗡响</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>杜比全景声</b><i>电影 / 音乐 / 自动</i></div>
-          <p>看电影戴耳机时开启空间环绕音效</p>
-        </div>
-      </div>
-      <div class="act-card">
-        <h5>通知与提醒<span>4 项</span></h5>
-        <div class="act-row">
-          <div class="act-top"><b>朗读通知</b><i>开 / 仅念发件人</i></div>
-          <p>开车或跑步戴耳机时，不用掏手机就能听消息</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>通知提示音</b><i>切换内置声音</i></div>
-          <p>工作期间换成轻柔短促的水滴声</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>相机闪光灯通知</b><i>开 / 关</i></div>
-          <p>静音环境下手机扣在桌上，有电话背面闪烁</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>屏幕闪烁通知</b><i>开 / 关</i></div>
-          <p>收到消息时屏幕四周温和闪光提示</p>
-        </div>
-      </div>
-      <div class="act-card">
-        <h5>壁纸与锁屏<span>5 项</span></h5>
-        <div class="act-row">
-          <div class="act-top"><b>锁定屏幕壁纸</b><i>换指定壁纸</i></div>
-          <p>上班换极简深灰壁纸，退出自动换回个人照</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>主屏幕壁纸</b><i>换指定壁纸</i></div>
-          <p>与当前模式的主题和心情保持一致</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>息屏提醒 (AOD)</b><i>始终 / 轻触 / 关闭</i></div>
-          <p>睡眠模式彻底关闭息屏显示，屋里全黑好入睡</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>时钟样式</b><i>数字 / 表盘 / 大字</i></div>
-          <p>模式中自动换成大字体或简洁时钟样式</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>锁屏快捷方式</b><i>替换底部两个图标</i></div>
-          <p>工作模式把左下角换成便签，右下角换录音机</p>
-        </div>
-      </div>
-      <div class="act-card">
-        <h5>电池与性能<span>4 项</span></h5>
-        <div class="act-row">
-          <div class="act-top"><b>省电模式</b><i>开 / 关</i></div>
-          <p>自动降频CPU、限制后台，大幅延长待机</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>保护电池</b><i>充到80%停 / 自适应</i></div>
-          <p>通宵插充电器或车载常充时保护电池健康</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>无线反向充电</b><i>开 / 关</i></div>
-          <p>手机放固定支架时，自动给背后的耳机补电</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>性能配置文件</b><i>标准 / 轻度降温</i></div>
-          <p>日常待机限制高频发热，保持机身凉爽</p>
-        </div>
-      </div>
-      <div class="act-card">
-        <h5>系统与维护<span>3 项</span></h5>
-        <div class="act-row">
-          <div class="act-top"><b>自动清理运行内存</b><i>立即执行</i></div>
-          <p>进入游戏或重度任务前清理后台多余垃圾</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>限制后台应用</b><i>深度休眠</i></div>
-          <p>非工作或非白名单应用全部深度休眠不耗电</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>自动同步个人数据</b><i>开 / 暂停</i></div>
-          <p>流量受限或省电状态下暂停云端大文件同步</p>
-        </div>
-      </div>
-      <div class="act-card">
-        <h5>操作与防误触<span>4 项</span></h5>
-        <div class="act-row">
-          <div class="act-top"><b>侧屏幕面板</b><i>开 / 关</i></div>
-          <p>打游戏或画图时关闭侧边栏，防止手指误触</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>单手操作模式</b><i>开 / 关</i></div>
-          <p>走路通勤时画面缩小，一只手就能按到全屏</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>高对比度文字</b><i>开 / 关</i></div>
-          <p>户外大太阳底下增强文字边缘，看字不费力</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>移除过渡动画</b><i>开 / 关</i></div>
-          <p>关闭全系统切换动效，点击瞬间秒开页面</p>
-        </div>
-      </div>
-      <div class="act-card">
-        <h5>自带工具联动<span>4 项</span></h5>
-        <div class="act-row">
-          <div class="act-top"><b>闹钟与计时器</b><i>开启或设倒计时</i></div>
-          <p>开启专注模式自动启动20分钟番茄钟</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>音乐播放</b><i>播放 / 暂停</i></div>
-          <p>进入运动模式自动播放音乐歌单</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>自动拒接电话</b><i>拒接并回短信</i></div>
-          <p>开车时来电自动挂断并回复短信告知在驾驶</p>
-        </div>
-        <div class="act-row">
-          <div class="act-top"><b>游戏助推器</b><i>锁定手势 / 防误触</i></div>
-          <p>游戏模式屏蔽底部导航手势与消息弹窗</p>
-        </div>
-      </div>
+  <div class="tbl">
+      <table class="acts-tbl">
+        <thead>
+          <tr><th style="width:1%">分类</th><th style="width:1%">数量</th><th>可调用的系统动作</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>连接</td><td class="n">13</td><td>WLAN · 显示 WLAN 二维码 · 蓝牙 · 连接至蓝牙设备 · 断开与蓝牙设备的连接 · 音乐分享 · NFC · 飞行模式 · 移动数据 · 流量节省 · 移动热点 · 连接至 VPN · 断开与 VPN 的连接</td></tr>
+          <tr><td>已连接的设备</td><td class="n">5</td><td>多重控制 · Samsung DeX (无线显示器) · 跨设备接打电话和收发短信 · 连接至 Windows · S 互传</td></tr>
+          <tr><td>声音和振动</td><td class="n">11</td><td>拨号按键音 · 三星键盘声音 · 三星键盘振动 · 杜比全景声 · 单独播放应用程序声音 · 均衡器 · 音量标准化 · 铃响时振动 · 人工智能语音助手音量 · 通话音量 · 铃声</td></tr>
+          <tr><td>通知</td><td class="n">1</td><td>显示自定义通知</td></tr>
+          <tr><td>显示</td><td class="n">14</td><td>亮度 · 屏幕刷新率 · 黑暗模式开启时壁纸变暗 · 字体风格 · 字体大小 · 屏幕缩放 · 屏幕分辨率 · 自动息屏 · 屏幕方向 · 侧屏幕面板 · 自动调节亮度 · 触摸灵敏度 · 自适应色调 · 防误触保护</td></tr>
+          <tr><td>壁纸</td><td class="n">1</td><td>黑暗模式开启时壁纸变暗</td></tr>
+          <tr><td>锁定屏幕和息屏提醒</td><td class="n">3</td><td>息屏提醒 · 保持手机解锁 · 使用生物识别解锁</td></tr>
+          <tr><td>位置</td><td class="n">1</td><td>位置</td></tr>
+          <tr><td>账号与备份</td><td class="n">1</td><td>自动同步数据</td></tr>
+          <tr><td>电池</td><td class="n">4</td><td>省电模式 · 加速充电 · 无线加速充电 · 电池保护</td></tr>
+          <tr><td>智能管理器</td><td class="n">2</td><td>性能配置 · 优化手机</td></tr>
+          <tr><td>三星键盘</td><td class="n">5</td><td>三星键盘语音输入 · 语言和类型 · 模式 · 高对比度键盘 · 清除剪贴板</td></tr>
+          <tr><td>辅助功能</td><td class="n">11</td><td>放大环境音 · 悬浮菜单 · 静音所有声音 · 单声道音频 · 相机闪光灯通知 · 屏幕闪光灯通知 · 左/右声音平衡 · 极暗 · 颜色反转 · 颜色修正 · 颜色过滤器</td></tr>
+          <tr><td>效果</td><td class="n">3</td><td>蜂鸣一次 · 振动一次 · 侧屏闪光效果一次</td></tr>
+          <tr><td>功能</td><td class="n">10</td><td>进入网站 · 手电筒 · 导航按钮操作 · 视频亮度 · 使用画笔按钮打开浮窗指令 · 读出文本 · 使用扬声器接听 · 截屏 · 录制屏幕 · 拒绝来电并发送快速信息</td></tr>
+          <tr><td>应用程序</td><td class="n">2</td><td>关闭应用程序 · 打开一键分屏</td></tr>
+          <tr><td>Bixby</td><td class="n">1</td><td>问 Bixby</td></tr>
+          <tr><td>日历</td><td class="n">3</td><td>打开日历 · 添加事件 · 搜索日历</td></tr>
+          <tr><td>时钟</td><td class="n">7</td><td>开启闹钟 · 关闭闹钟 · 启动定时器 · 打开时钟 · 添加闹钟 · 设置定时器 · 启动秒表</td></tr>
+          <tr><td>相册</td><td class="n">5</td><td>显示图片 · 打开相册 · 搜索相册 · 最近 · 收藏</td></tr>
+          <tr><td>游戏助推器</td><td class="n">3</td><td>游戏期间禁用侧屏幕面板 · 游戏期间禁用 Bixby · 游戏期间禁用自动调节亮度</td></tr>
+          <tr><td>即时简报</td><td class="n">2</td><td>打开即时简报 · 播放语音简报</td></tr>
+          <tr><td>电话</td><td class="n">7</td><td>拒绝来电并发送快速信息 · 使用扬声器接听 · 来电筛选 · 打开电话 · 未接来电 · 搜索 · 新建联系人</td></tr>
+        </tbody>
+      </table>
     </div>
+    <p class="apx-note">另有「其他应用程序」一类，按手机已安装的应用展开（实测 44 项，如打开相册、QQ 音乐、哔哩哔哩等），数量随安装变化，不计入上表。</p>
 </section>
 
 <footer>
