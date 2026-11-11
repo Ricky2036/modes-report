@@ -115,7 +115,7 @@
   .chips.three div span{font-size:10.5px;margin-top:3px}
 
   /* 系统动作清单 */
-  .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;align-items:start}
+  .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px;align-items:start}
   .act-card{background:var(--soft);border-radius:14px;padding:16px 18px 14px}
   .act-card h5{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
     font-size:12.5px;font-weight:680;letter-spacing:-.01em;color:var(--ink);
@@ -386,6 +386,7 @@
       <a href="#oneui">One UI 思路</a>
       <a href="#compare">横向对比</a>
       <a href="#action">实施建议</a>
+      <a href="#appendix">附表</a>
     </div>
   </div>
 </nav>
@@ -856,18 +857,195 @@
       <span class="sec-tag t-config">4.3 · 配置</span>
       <div>
         <h3>把系统设置整个搬进来</h3>
-        <p>九大类、43 项系统动作，模式开启时批量改，关闭时全部还原。这一段的宽度，是两家差距最直观的地方。</p>
+        <p>九大类、43 项系统动作，模式开启时批量改，关闭时全部还原。这一段的宽度是两家差距最直观的地方，完整清单见文末附表。</p>
       </div>
     </div>
 
-    <div class="cfg-shots">
-      <div class="pair">
-        <img src="assets/samsung_all_actions_categories.png" alt="全部操作分类列表">
-        <img src="assets/samsung_action_option_picker.png" alt="底部弹出的参数选择卡片">
+    <div class="cap-body">
+      <div class="vcenter">
+        <div class="chips three">
+          <div>连接与网络<span>WLAN、蓝牙、NFC</span></div>
+          <div>屏幕与显示<span>亮度、深色、刷新率</span></div>
+          <div>声音与振动<span>音量、振动、杜比</span></div>
+          <div>通知与提醒<span>播报、闪光提醒</span></div>
+          <div>壁纸与锁屏<span>壁纸、时钟、息屏</span></div>
+          <div>电池与性能<span>省电、保护电池</span></div>
+          <div>系统与维护<span>清理后台、同步</span></div>
+          <div>操作与防误触<span>侧屏、单手模式</span></div>
+          <div>工具联动<span>闹钟、音乐、拒接</span></div>
+        </div>
+        <div class="chips-legend">
+          <span><i class="a"></i>九类系统动作，每一类下还有 3–7 个可选开关</span>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="pair">
+          <img src="assets/samsung_all_actions_categories.png" alt="全部操作分类列表">
+          <img src="assets/samsung_action_option_picker.png" alt="底部弹出的参数选择卡片">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </section>
+
+<section id="compare" class="wrap">
+  <div class="chap">
+    <span class="chap-n">05</span>
+    <div>
+      <h2>横向对比</h2>
+      <p>两边都能用，但替用户做的决定不一样多。</p>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sec-h">
+      <span class="sec-tag t-config">5.1 · 逐项对照</span>
+      <div>
+        <h3>六个维度上的差异</h3>
+        <p>前三行是做法，后三行是代价。</p>
       </div>
     </div>
 
-    <div class="acts">
+    <div class="tbl">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th style="width:16%">维度</th>
+            <th style="width:42%">iOS 专注模式</th>
+            <th>One UI 模式与日常程序</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>核心模型</td>
+            <td>选一个场景，系统配好一套参数</td>
+            <td>定一个条件，逐项勾选要执行的动作</td>
+          </tr>
+          <tr>
+            <td>入口</td>
+            <td>控制中心长按展开全部模式，底部新建</td>
+            <td>控制中心磁贴长按进「详细信息」，或从设置进入</td>
+          </tr>
+          <tr>
+            <td>激活</td>
+            <td>智能启用 + 时间、位置、打开 App；手动开关</td>
+            <td>时间、地点、蓝牙、打开应用；支持倒计时自动退出</td>
+          </tr>
+          <tr>
+            <td>配置范围</td>
+            <td>通知名单、三个系统页面、10 项过滤条件</td>
+            <td>通知与应用、壁纸与时钟、九类 43 项系统动作</td>
+          </tr>
+          <tr>
+            <td>使用门槛</td>
+            <td>低：预设直接用，每组改一项就能跑</td>
+            <td>高：要会搭规则，动作得一个个选</td>
+          </tr>
+          <tr>
+            <td>典型失败</td>
+            <td>名单空着，等于全部静音</td>
+            <td>规则搭得太复杂，建完就忘了用</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="sub">
+    <div class="sec-h">
+      <span class="sec-tag t-config">5.2 · 结论</span>
+      <div>
+        <h3>不是功能多少，是复杂度放在谁那边</h3>
+        <p>一个把复杂度收进系统，一个把复杂度摊给用户。</p>
+      </div>
+    </div>
+
+    <div class="models">
+      <div class="model">
+        <b>iOS：做减法</b>
+        <p>用户只需要回答「现在是什么场景」，剩下的参数由系统预置。代价是上限固定 —— 想改系统级设置，只能靠 10 项过滤条件挑几样。</p>
+        <div class="m-flow"><span>选场景</span><i>→</i><span>系统配好一套</span><i>→</i><span>可微调</span></div>
+      </div>
+      <div class="model">
+        <b>One UI：做加法</b>
+        <p>用户需要回答「什么条件触发、执行哪些动作」，每一步都要自己勾。代价是门槛高 —— 不会搭的人，模式建了也不会用起来。</p>
+        <div class="m-flow"><span>定条件</span><i>→</i><span>勾动作</span><i>→</i><span>到点自动退</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="action" class="wrap">
+  <div class="chap">
+    <span class="chap-n">06</span>
+    <div>
+      <h2>实施建议</h2>
+      <p>两个样本给了两套解法，落到我们身上，还是这三个方向。</p>
+    </div>
+  </div>
+
+  <div class="tbl dir-tbl">
+    <table class="dir-table">
+      <thead>
+        <tr>
+          <th style="width:1%">方向</th>
+          <th style="width:22%">一句话判断</th>
+          <th>重点要做的</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td>构建入口</td>
+            <td class="dt-say">让模式出现在手边，而不是藏在设置里</td>
+            <td>
+              <ul>
+                <li>切换入口放进控制中心，一次点按完成，不进设置</li>
+                <li>新建压到三步：选场景、起名字、选通知名单</li>
+                <li>预置几套场景模板，第一次用不必从零配</li>
+                <li>删掉的模式要能找回</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>激活能力</td>
+            <td class="dt-say">从「记得开」变成「帮你开」</td>
+            <td>
+              <ul>
+                <li>优先做智能启用：按位置和使用习惯判断，减少配置负担</li>
+                <li>时间、位置、打开某个 App 三类条件齐备，可叠加也可单条关</li>
+                <li>补上蓝牙、网络这类设备条件，上车连上车载就开</li>
+                <li>手动开启时给个时长，到点自动退出</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>系统控制</td>
+            <td class="dt-say">不只是静音通知，设备行为要真的变</td>
+            <td>
+              <ul>
+                <li>通知名单给默认模板，别让用户面对一张空白名单</li>
+                <li>支持更换锁屏与主屏幕页面，把场景外的 App 移出视线</li>
+                <li>App 联动：日历、邮件、信息只显示该场景需要的那部分</li>
+                <li>系统联动：深色、静音、低电量、屏幕常亮</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="appendix" class="wrap">
+  <div class="chap">
+    <span class="chap-n">A</span>
+    <div>
+      <h2>附表 · One UI 系统动作全表</h2>
+      <p>模式能调用的全部系统能力，43 项，按九类归档。这也是它与 iOS 差距最实在的一段。</p>
+    </div>
+  </div>
+
+  <div class="acts">
       <div class="act-card">
         <h5>连接与网络<span>7 项</span></h5>
         <div class="act-row">
@@ -1068,155 +1246,6 @@
         </div>
       </div>
     </div>
-  </div>
-
-  </section>
-
-<section id="compare" class="wrap">
-  <div class="chap">
-    <span class="chap-n">05</span>
-    <div>
-      <h2>横向对比</h2>
-      <p>两边都能用，但替用户做的决定不一样多。</p>
-    </div>
-  </div>
-
-  <div class="sub">
-    <div class="sec-h">
-      <span class="sec-tag t-config">5.1 · 逐项对照</span>
-      <div>
-        <h3>六个维度上的差异</h3>
-        <p>前三行是做法，后三行是代价。</p>
-      </div>
-    </div>
-
-    <div class="tbl">
-      <table class="cmp">
-        <thead>
-          <tr>
-            <th style="width:16%">维度</th>
-            <th style="width:42%">iOS 专注模式</th>
-            <th>One UI 模式与日常程序</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>核心模型</td>
-            <td>选一个场景，系统配好一套参数</td>
-            <td>定一个条件，逐项勾选要执行的动作</td>
-          </tr>
-          <tr>
-            <td>入口</td>
-            <td>控制中心长按展开全部模式，底部新建</td>
-            <td>控制中心磁贴长按进「详细信息」，或从设置进入</td>
-          </tr>
-          <tr>
-            <td>激活</td>
-            <td>智能启用 + 时间、位置、打开 App；手动开关</td>
-            <td>时间、地点、蓝牙、打开应用；支持倒计时自动退出</td>
-          </tr>
-          <tr>
-            <td>配置范围</td>
-            <td>通知名单、三个系统页面、10 项过滤条件</td>
-            <td>通知与应用、壁纸与时钟、九类 43 项系统动作</td>
-          </tr>
-          <tr>
-            <td>使用门槛</td>
-            <td>低：预设直接用，每组改一项就能跑</td>
-            <td>高：要会搭规则，动作得一个个选</td>
-          </tr>
-          <tr>
-            <td>典型失败</td>
-            <td>名单空着，等于全部静音</td>
-            <td>规则搭得太复杂，建完就忘了用</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <div class="sub">
-    <div class="sec-h">
-      <span class="sec-tag t-config">5.2 · 结论</span>
-      <div>
-        <h3>不是功能多少，是复杂度放在谁那边</h3>
-        <p>一个把复杂度收进系统，一个把复杂度摊给用户。</p>
-      </div>
-    </div>
-
-    <div class="models">
-      <div class="model">
-        <b>iOS：做减法</b>
-        <p>用户只需要回答「现在是什么场景」，剩下的参数由系统预置。代价是上限固定 —— 想改系统级设置，只能靠 10 项过滤条件挑几样。</p>
-        <div class="m-flow"><span>选场景</span><i>→</i><span>系统配好一套</span><i>→</i><span>可微调</span></div>
-      </div>
-      <div class="model">
-        <b>One UI：做加法</b>
-        <p>用户需要回答「什么条件触发、执行哪些动作」，每一步都要自己勾。代价是门槛高 —— 不会搭的人，模式建了也不会用起来。</p>
-        <div class="m-flow"><span>定条件</span><i>→</i><span>勾动作</span><i>→</i><span>到点自动退</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="action" class="wrap">
-  <div class="chap">
-    <span class="chap-n">06</span>
-    <div>
-      <h2>实施建议</h2>
-      <p>两个样本给了两套解法，落到我们身上，还是这三个方向。</p>
-    </div>
-  </div>
-
-  <div class="tbl dir-tbl">
-    <table class="dir-table">
-      <thead>
-        <tr>
-          <th style="width:1%">方向</th>
-          <th style="width:22%">一句话判断</th>
-          <th>重点要做的</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr>
-            <td>构建入口</td>
-            <td class="dt-say">让模式出现在手边，而不是藏在设置里</td>
-            <td>
-              <ul>
-                <li>切换入口放进控制中心，一次点按完成，不进设置</li>
-                <li>新建压到三步：选场景、起名字、选通知名单</li>
-                <li>预置几套场景模板，第一次用不必从零配</li>
-                <li>删掉的模式要能找回</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td>激活能力</td>
-            <td class="dt-say">从「记得开」变成「帮你开」</td>
-            <td>
-              <ul>
-                <li>优先做智能启用：按位置和使用习惯判断，减少配置负担</li>
-                <li>时间、位置、打开某个 App 三类条件齐备，可叠加也可单条关</li>
-                <li>补上蓝牙、网络这类设备条件，上车连上车载就开</li>
-                <li>手动开启时给个时长，到点自动退出</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td>系统控制</td>
-            <td class="dt-say">不只是静音通知，设备行为要真的变</td>
-            <td>
-              <ul>
-                <li>通知名单给默认模板，别让用户面对一张空白名单</li>
-                <li>支持更换锁屏与主屏幕页面，把场景外的 App 移出视线</li>
-                <li>App 联动：日历、邮件、信息只显示该场景需要的那部分</li>
-                <li>系统联动：深色、静音、低电量、屏幕常亮</li>
-              </ul>
-            </td>
-          </tr>
-        </tbody>
-    </table>
-  </div>
 </section>
 
 <footer>
