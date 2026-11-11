@@ -81,6 +81,23 @@
   .mcell b{display:block;font-size:14.5px;font-weight:640;letter-spacing:-.01em}
   .mcell p{font-size:12.5px;color:var(--sub);line-height:1.55;margin-top:3px}
 
+
+  /* 图片放大查看 */
+  .shot img,.pair img{cursor:zoom-in;transition:transform .18s ease, box-shadow .18s ease}
+  .shot img:hover,.pair img:hover{transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(16,16,24,.65)}
+  .lb{position:fixed;inset:0;z-index:300;display:none;place-items:center;padding:44px 24px 30px;
+    background:rgba(10,10,14,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .lb.on{display:grid}
+  .lb-img{max-width:min(92vw,560px);max-height:84vh;border-radius:14px;display:block;
+    box-shadow:0 40px 90px -40px rgba(0,0,0,.9);cursor:default}
+  .lb-cap{margin-top:16px;font-size:12.5px;color:rgba(255,255,255,.66);text-align:center;letter-spacing:.01em}
+  .lb-x{position:absolute;top:20px;right:24px;width:38px;height:38px;border-radius:50%;border:0;
+    background:rgba(255,255,255,.14);color:#fff;font-size:19px;line-height:1;cursor:pointer;
+    display:grid;place-items:center;transition:background .15s}
+  .lb-x:hover{background:rgba(255,255,255,.24)}
+  .lb-tip{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:11.5px;
+    color:rgba(255,255,255,.38)}
+
   /* chapter head */
   .chap{display:flex;gap:22px;align-items:flex-start;padding-bottom:6px}
   .chap-n{flex:0 0 auto;font-size:50px;font-weight:700;letter-spacing:-.05em;line-height:.96;
@@ -356,6 +373,7 @@
     .epigraph .quote-line p{font-size:16px}
     .epigraph .quote-line p::before{left:16px;top:12px;font-size:36px}
     .models{grid-template-columns:1fr}
+    .lb-tip{display:none}
     .acts{grid-template-columns:1fr}
     .dir{grid-template-columns:1fr;gap:14px;padding:24px 0}
     .dir-table{min-width:760px}
@@ -1255,5 +1273,33 @@
   </div>
 </footer>
 
+
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="截图放大">
+  <button class="lb-x" id="lbClose" aria-label="关闭">✕</button>
+  <img class="lb-img" id="lbImg" alt="">
+  <p class="lb-cap" id="lbCap"></p>
+  <p class="lb-tip">点击空白处或按 Esc 关闭</p>
+</div>
+
+<script>
+(function(){
+  var lb=document.getElementById('lightbox'),
+      img=document.getElementById('lbImg'),
+      cap=document.getElementById('lbCap');
+  function open(src,text){
+    img.src=src; img.alt=text||''; cap.textContent=text||'';
+    lb.classList.add('on'); document.body.style.overflow='hidden';
+  }
+  function close(){
+    lb.classList.remove('on'); img.src=''; document.body.style.overflow='';
+  }
+  document.querySelectorAll('.shot img,.pair img').forEach(function(el){
+    el.addEventListener('click',function(){ open(el.getAttribute('src'), el.getAttribute('alt')||''); });
+  });
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
 </body>
 </html>
