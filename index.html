@@ -143,11 +143,10 @@
 
 
   /* 建议清单 */
-  .sug{margin-top:10px}
-  .sug > div{display:grid;grid-template-columns:104px 1fr;gap:18px;align-items:baseline;
-    padding:10px 0;border-top:1px solid var(--line)}
-  .sug b{font-size:12.6px;font-weight:660;color:var(--ink)}
-  .sug span{font-size:12.4px;color:var(--sub);line-height:1.72}
+  .sug{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+  .sug > div{background:#fff;border:1px solid var(--line);border-radius:11px;padding:14px 16px}
+  .sug b{display:block;font-size:11px;font-weight:660;letter-spacing:.06em;color:var(--faint);margin-bottom:7px}
+  .sug span{display:block;font-size:12.3px;color:#3a3a44;line-height:1.72}
   .sug span.none{color:var(--faint)}
   .sug i{display:inline-block;font-style:normal;font-size:10px;color:#a9661f;
     background:rgba(201,120,31,.11);border-radius:5px;padding:1px 6px;margin-left:8px;vertical-align:1px}
@@ -429,7 +428,7 @@
     .acts-cats{grid-template-columns:repeat(2,1fr)}
     .chips-legend{flex-direction:column;gap:8px}
     .conds{grid-template-columns:repeat(2,1fr)}
-    .sug > div{grid-template-columns:1fr;gap:3px}
+    .sug{grid-template-columns:1fr}
     .acts{column-count:1}
     .dir{grid-template-columns:1fr;gap:14px;padding:24px 0}
     .dir-table{min-width:760px}
@@ -928,7 +927,8 @@
       <div><b>驾驶</b><span>蓝牙设备</span></div>
       <div><b>运动</b><span>应用程序打开 · 时间段<i>含列表外项</i></span></div>
       <div><b>自定义</b><span>应用程序打开 · 蓝牙设备 · 时间段<i>含列表外项</i></span></div>
-      <div><b>放松 · 工作</b><span class="none">未配置，没有推荐条件</span></div>
+      <div><b>放松</b><span>时间段 · 应用程序打开<i>含列表外项</i></span></div>
+      <div><b>工作</b><span>时间段 · 应用程序打开<i>含列表外项</i></span></div>
     </div>
 
     <div class="cond-h">自动开启的全部条件 <span>8 类 / 28 个</span></div>
@@ -962,7 +962,8 @@
       <div><b>驾驶</b><span>打开应用程序或执行应用程序操作 · 媒体音量 · 读出通知 · 语音唤醒设置</span></div>
       <div><b>运动</b><span>播放音乐 · 媒体音量 · 声音模式和音量</span></div>
       <div><b>自定义</b><span>灰阶 · 黑暗模式 · 打开应用程序或执行应用程序操作 · 媒体音量 · 播放音乐 · 读出通知 · 语音唤醒设置<i>灰阶不在全量内</i></span></div>
-      <div><b>放松 · 工作</b><span class="none">未配置，没有推荐操作</span></div>
+      <div><b>放松</b><span>声音模式和音量 · 省电模式 · 护眼模式</span></div>
+      <div><b>工作</b><span>声音模式和音量 · 省电模式 · 打开应用程序或执行应用程序操作</span></div>
     </div>
 
     <div class="cond-h">可调用的全部操作 <span>23 类 / 115 项</span></div>
