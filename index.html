@@ -125,8 +125,7 @@
     font-size:11.5px;color:var(--faint);letter-spacing:.02em}
 
   /* 九类系统动作 */
-  .cfg-shots{margin-top:24px;display:grid;place-items:center}
-  .cfg-shots .pair img{width:222px}
+  #oneui .cap-body .pair img{width:152px}
   .chips.three{grid-template-columns:repeat(3,1fr);gap:10px}
   .chips.three div{padding:14px 10px;text-align:left;font-size:13px}
   .chips.three div span{font-size:10.5px;margin-top:3px}
@@ -142,7 +141,7 @@
   .conds span{display:block;font-size:12.2px;line-height:1.75;color:#3a3a44}
 
   /* 动作分类阵列 */
-  .acts-cats{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:26px}
+  .acts-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
   .acts-cats span{display:flex;align-items:center;justify-content:space-between;gap:8px;
     font-size:11.8px;color:#3a3a44;background:#fff;border:1px solid var(--line);
     border-radius:9px;padding:10px 11px;white-space:nowrap;overflow:hidden}
@@ -926,14 +925,9 @@
       </div>
     </div>
 
-    <div class="cfg-shots">
-      <div class="pair">
-        <img src="assets/samsung_all_actions_categories.png" alt="全部操作分类列表">
-        <img src="assets/samsung_action_option_picker.png" alt="底部弹出的参数选择卡片">
-      </div>
-    </div>
-
-    <div class="acts-cats">
+    <div class="cap-body">
+      <div class="vcenter">
+        <div class="acts-cats">
       <span>连接 <b>13</b></span>
       <span>已连接的设备 <b>5</b></span>
       <span>声音和振动 <b>11</b></span>
@@ -959,9 +953,17 @@
       <span>电话 <b>7</b></span>
       <span class="extra">其他应用程序 <b>44</b></span>
     </div>
-    <div class="chips-legend">
+        <div class="chips-legend">
       <span><i class="a"></i>23 类系统动作，共 115 个可选项</span>
       <span><i class="b"></i>「其他应用程序」按已安装应用展开，数量随设备变化，不计入上表</span>
+    </div>
+      </div>
+      <div class="panel">
+        <div class="pair">
+        <img src="assets/samsung_all_actions_categories.png" alt="全部操作分类列表">
+        <img src="assets/samsung_action_option_picker.png" alt="底部弹出的参数选择卡片">
+      </div>
+      </div>
     </div>
   </div>
 
