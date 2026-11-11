@@ -146,11 +146,6 @@
 
 
 
-  /* 三块功能说明 */
-  .ways{display:flex;flex-direction:column;gap:10px}
-  .ways > div{background:#fff;border:1px solid var(--line);border-radius:11px;padding:13px 16px}
-  .ways b{display:block;font-size:12.4px;font-weight:670;color:var(--ink);margin-bottom:5px}
-  .ways span{display:block;font-size:12.2px;color:var(--sub);line-height:1.72}
 
   /* 建议清单 */
   .sug{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
@@ -961,10 +956,10 @@
 
     <div class="cap-body">
       <div class="vcenter">
-        <div class="ways">
-          <div><b>条件自己挑</b><span>点「何时启动此模式」进条件列表，八类 28 个，任一条成立就开，也可以多条叠加。</span></div>
-          <div><b>预设给了推荐</b><span>每个模式自带两三条推荐条件，睡眠给睡眠时间表、影院给应用程序打开，不用自己找。</span></div>
-          <div><b>手动也有时长</b><span>手动开启时可设 1 小时、2 小时或自定义，到点自动退出并还原，散场不怕忘。</span></div>
+        <div class="caplist">
+          <div><b><i></i>条件自己挑</b><p>点「何时启动此模式」进条件列表，八类 28 个，任一条成立就开，也可以多条叠加。</p></div>
+          <div><b><i></i>预设给了推荐</b><p>每个模式自带两三条推荐条件，睡眠给睡眠时间表、影院给应用程序打开，不用自己找。</p></div>
+          <div><b><i></i>手动也有时长</b><p>手动开启时可设 1 小时、2 小时或自定义，到点自动退出并还原，散场不怕忘。</p></div>
         </div>
       </div>
       <div class="panel">
@@ -1016,11 +1011,11 @@
       </div>
       <div class="cap-body">
         <div class="vcenter">
-          <div class="ways">
-            <div><b>免打扰</b><span>通知静音、屏幕不亮，按模式单独设，退出时恢复。</span></div>
-            <div><b>限制应用程序</b><span>选一批应用允许使用，其余在模式里打不开；也可以反过来只封几个。</span></div>
-            <div><b>放行名单</b><span>免打扰里可以指定允许的联系人，重要来电照样响铃，其余一律静音。</span></div>
-          </div>
+          <div class="caplist">
+          <div><b><i></i>免打扰</b><p>通知静音、屏幕不亮，按模式单独设，退出时恢复。</p></div>
+          <div><b><i></i>限制应用程序</b><p>选一批应用允许使用，其余在模式里打不开；也可以反过来只封几个。</p></div>
+          <div><b><i></i>放行名单</b><p>免打扰里可以指定允许的联系人，重要来电照样响铃，其余一律静音。</p></div>
+        </div>
         </div>
         <div class="panel">
           <div class="pair">
@@ -1044,11 +1039,10 @@
           </div>
         </div>
         <div class="vcenter">
-          <div class="ways">
-            <div><b>锁定屏幕</b><span>沉静的壁纸、极简时钟、息屏显示表盘，一并在模式里定好。</span></div>
-            <div><b>主屏幕</b><span>换专用壁纸，或者只保留与当前场景相关的几页应用。</span></div>
-            <div><b>退出自动还原</b><span>系统记下之前的壁纸和排版，模式一关立刻还原，不需要手动改回去。</span></div>
-          </div>
+          <div class="caplist">
+          <div><b><i></i>锁定屏幕</b><p>沉静的壁纸、极简时钟、息屏显示表盘，一并在模式里定好。</p></div>
+          <div><b><i></i>主屏幕</b><p>换专用壁纸，或者只保留与当前场景相关的几页应用。</p></div>
+          <div><b><i></i>退出自动还原</b><p>系统记下之前的壁纸和排版，模式一关立刻还原，不需要手动改回去。</p></div>
         </div>
       </div>
     </div>
