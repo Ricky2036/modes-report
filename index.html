@@ -126,6 +126,7 @@
 
   /* 九类系统动作 */
   #oneui .cap-body{grid-template-columns:1.3fr .7fr}
+  #oneui .cap-body .vcenter{justify-content:flex-start}
   #oneui .cap-body.rev{grid-template-columns:.7fr 1.3fr}
   #oneui .cap-body .pair img{width:158px}
   .chips.three{grid-template-columns:repeat(3,1fr);gap:10px}
@@ -158,8 +159,6 @@
   .sug b{display:block;font-size:11px;font-weight:660;letter-spacing:.06em;color:var(--faint);margin-bottom:7px}
   .sug span{display:block;font-size:12.3px;color:#3a3a44;line-height:1.72}
   .sug span.none{color:var(--faint)}
-  .sug i{display:inline-block;font-style:normal;font-size:10px;color:#a9661f;
-    background:rgba(201,120,31,.11);border-radius:5px;padding:1px 6px;margin-left:8px;vertical-align:1px}
 
   /* 预设推荐条件 */
   .pset{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
@@ -971,13 +970,13 @@
 
     <div class="cond-h">建议的开启条件 <span>每个模式自带的，开箱即用</span></div>
     <div class="sug">
-      <div><b>睡眠</b><span>睡眠时间表<i>全量列表里没有</i></span></div>
-      <div><b>影院</b><span>应用程序打开<i>全量列表里没有</i></span></div>
+      <div><b>睡眠</b><span>睡眠时间表</span></div>
+      <div><b>影院</b><span>应用程序打开</span></div>
       <div><b>驾驶</b><span>蓝牙设备</span></div>
-      <div><b>运动</b><span>应用程序打开 · 时间段<i>含列表外项</i></span></div>
-      <div><b>自定义</b><span>应用程序打开 · 蓝牙设备 · 时间段<i>含列表外项</i></span></div>
-      <div><b>放松</b><span>时间段 · 应用程序打开<i>含列表外项</i></span></div>
-      <div><b>工作</b><span>时间段 · 应用程序打开<i>含列表外项</i></span></div>
+      <div><b>运动</b><span>应用程序打开 · 时间段</span></div>
+      <div><b>自定义</b><span>应用程序打开 · 蓝牙设备 · 时间段</span></div>
+      <div><b>放松</b><span>时间段 · 应用程序打开</span></div>
+      <div><b>工作</b><span>时间段 · 应用程序打开</span></div>
     </div>
 
     <div class="cond-h">自动开启的全部条件 <span>8 类 / 28 个</span></div>
@@ -1060,7 +1059,7 @@
         <div><b>影院</b><span>声音模式和音量</span></div>
         <div><b>驾驶</b><span>打开应用程序或执行应用程序操作 · 媒体音量 · 读出通知 · 语音唤醒设置</span></div>
         <div><b>运动</b><span>播放音乐 · 媒体音量 · 声音模式和音量</span></div>
-        <div><b>自定义</b><span>灰阶 · 黑暗模式 · 打开应用程序或执行应用程序操作 · 媒体音量 · 播放音乐 · 读出通知 · 语音唤醒设置<i>灰阶不在全量内</i></span></div>
+        <div><b>自定义</b><span>灰阶 · 黑暗模式 · 打开应用程序或执行应用程序操作 · 媒体音量 · 播放音乐 · 读出通知 · 语音唤醒设置</span></div>
         <div><b>放松</b><span>声音模式和音量 · 省电模式 · 护眼模式</span></div>
         <div><b>工作</b><span>声音模式和音量 · 省电模式 · 打开应用程序或执行应用程序操作</span></div>
           </div>
