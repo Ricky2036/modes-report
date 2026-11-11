@@ -126,6 +126,7 @@
 
   /* 九类系统动作 */
   #oneui .cap-body{grid-template-columns:1.3fr .7fr}
+  #oneui .cap-body.flip{grid-template-columns:.7fr 1.3fr}
   #oneui .cap-body .panel{align-self:center;padding:24px;border-radius:20px}
   #oneui .cap-body .pair img{width:calc((100% - 14px)/2)}
   #oneui .cap-body.rev{grid-template-columns:.7fr 1.3fr}
@@ -421,7 +422,7 @@
     .mcol + .mcol{margin-top:20px}
     .units{grid-template-columns:repeat(2,1fr);gap:22px}
     .trigs{grid-template-columns:1fr}
-    .cap-body,.cap-body.rev,#oneui .cap-body,#oneui .cap-body.rev{grid-template-columns:1fr;gap:16px}
+    .cap-body,.cap-body.rev,#oneui .cap-body,#oneui .cap-body.rev,#oneui .cap-body.flip{grid-template-columns:1fr;gap:16px}
     .close{grid-template-columns:1fr}
   }
   @media (max-width:680px){
@@ -1035,18 +1036,18 @@
         <span class="idx">08</span><h3>更改外观</h3>
         <p>锁屏和主屏幕各换一套：壁纸、时钟排版、息屏显示。模式退出时自动换回原来的样子，不会改乱桌面。</p>
       </div>
-      <div class="cap-body">
+      <div class="cap-body flip">
+        <div class="panel">
+          <div class="pair">
+            <img src="assets/samsung_mode_detail.png" alt="详情页里的锁屏与主屏外观卡">
+            <img src="assets/samsung_wallpaper.png" alt="壁纸选择页">
+          </div>
+        </div>
         <div class="vcenter">
           <div class="ways">
             <div><b>锁定屏幕</b><span>沉静的壁纸、极简时钟、息屏显示表盘，一并在模式里定好。</span></div>
             <div><b>主屏幕</b><span>换专用壁纸，或者只保留与当前场景相关的几页应用。</span></div>
             <div><b>退出自动还原</b><span>系统记下之前的壁纸和排版，模式一关立刻还原，不需要手动改回去。</span></div>
-          </div>
-        </div>
-        <div class="panel">
-          <div class="pair">
-            <img src="assets/samsung_mode_detail.png" alt="详情页里的锁屏与主屏外观卡">
-            <img src="assets/samsung_wallpaper.png" alt="壁纸选择页">
           </div>
         </div>
       </div>
