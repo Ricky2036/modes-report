@@ -125,7 +125,11 @@
     font-size:11.5px;color:var(--faint);letter-spacing:.02em}
 
   /* 九类系统动作 */
-  #oneui .cap-body .pair img{width:168px}
+  #oneui .cap-body{grid-template-columns:1.3fr .7fr}
+  #oneui .cap-body.rev{grid-template-columns:.7fr 1.3fr}
+  #oneui .cap-body .pair img{width:158px}
+  .sug-shots{display:grid;place-items:start;margin-top:22px;padding-left:2px}
+  .sug-shots .pair img{width:186px}
   .chips.three{grid-template-columns:repeat(3,1fr);gap:10px}
   .chips.three div{padding:14px 10px;text-align:left;font-size:13px}
   .chips.three div span{font-size:10.5px;margin-top:3px}
@@ -816,7 +820,7 @@
       <span class="idx">08</span><h3>自定义屏幕</h3>
       <p>锁屏、桌面、手表各换一套页面，模式一开就切过去。管的不只是通知，还有你眼前能看到什么。</p>
     </div>
-    <div class="cap-body rev">
+    <div class="cap-body">
       <div class="panel">
         <div class="pair">
           <img src="assets/20261110-212617.png" alt="锁屏、主屏、表盘三张卡片">
@@ -1010,7 +1014,6 @@
           <div class="ways">
             <div><b>免打扰</b><span>通知静音、屏幕不亮，按模式单独设，退出时恢复。</span></div>
             <div><b>限制应用程序</b><span>选一批应用允许使用，其余在模式里打不开；也可以反过来只封几个。</span></div>
-            <div><b>这一块的建议只有两条</b><span>免打扰、限制应用程序使用 —— 比其他动作那张卡的建议少得多，因为这块本来就只回答「谁能打扰我」。</span></div>
           </div>
         </div>
         <div class="panel">
@@ -1027,7 +1030,7 @@
         <span class="idx">08</span><h3>更改外观</h3>
         <p>锁屏和主屏幕各换一套：壁纸、时钟排版、息屏显示。模式退出时自动换回原来的样子，不会改乱桌面。</p>
       </div>
-      <div class="cap-body rev">
+      <div class="cap-body">
         <div class="vcenter">
           <div class="ways">
             <div><b>锁定屏幕</b><span>沉静的壁纸、极简时钟、息屏显示表盘，一并在模式里定好。</span></div>
@@ -1059,6 +1062,13 @@
         <div><b>自定义</b><span>灰阶 · 黑暗模式 · 打开应用程序或执行应用程序操作 · 媒体音量 · 播放音乐 · 读出通知 · 语音唤醒设置<i>灰阶不在全量内</i></span></div>
         <div><b>放松</b><span>声音模式和音量 · 省电模式 · 护眼模式</span></div>
         <div><b>工作</b><span>声音模式和音量 · 省电模式 · 打开应用程序或执行应用程序操作</span></div>
+      </div>
+
+      <div class="sug-shots">
+        <div class="pair">
+          <img src="assets/samsung_sug_sleep.png" alt="睡眠模式的建议操作：灰阶、黑暗模式、护眼模式、声音模式和音量、省电模式、息屏提醒">
+          <img src="assets/samsung_sug_custom.png" alt="自定义模式的建议操作：灰阶、黑暗模式、打开应用程序、媒体音量、播放音乐、读出通知、语音唤醒设置">
+        </div>
       </div>
 
       <div class="cond-h">可调用的全部操作 <span>23 类 / 115 项</span></div>
