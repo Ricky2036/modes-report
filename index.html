@@ -140,6 +140,16 @@
   .conds b{display:block;font-size:11px;font-weight:660;letter-spacing:.06em;color:var(--faint);margin-bottom:7px}
   .conds span{display:block;font-size:12.2px;line-height:1.75;color:#3a3a44}
 
+
+  /* 预设推荐条件 */
+  .pset{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+  .pset > div{background:#fff;border:1px solid var(--line);border-radius:11px;padding:13px 15px}
+  .pset b{display:block;font-size:11px;font-weight:660;letter-spacing:.06em;color:var(--faint);margin-bottom:7px}
+  .pset span{display:block;font-size:12.4px;color:#3a3a44;line-height:1.7}
+  .pset i{display:inline-block;font-style:normal;font-size:10px;color:#a9661f;
+    background:rgba(201,120,31,.11);border-radius:5px;padding:1px 6px;margin-left:6px;vertical-align:1px}
+  .note-line{margin-top:14px;font-size:12px;color:var(--sub);line-height:1.85}
+
   /* 动作分类阵列 */
   .acts-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
   .acts-cats span{display:flex;align-items:center;justify-content:space-between;gap:8px;
@@ -408,6 +418,7 @@
     .acts-cats{grid-template-columns:repeat(2,1fr)}
     .chips-legend{flex-direction:column;gap:8px}
     .conds{grid-template-columns:repeat(2,1fr)}
+    .pset{grid-template-columns:repeat(2,1fr)}
     .acts{column-count:1}
     .dir{grid-template-columns:1fr;gap:14px;padding:24px 0}
     .dir-table{min-width:760px}
@@ -910,6 +921,15 @@
         <div><b>事件</b><span>正在玩游戏 · 正在播放媒体</span></div>
         <div><b>呼叫</b><span>来电响铃期间 · 通话期间</span></div>
     </div>
+
+    <div class="cond-h">预设自带的推荐条件 <span>开箱即用，不用自己挑</span></div>
+    <div class="pset">
+      <div><b>睡眠</b><span>睡眠时间表<i>全量列表里没有</i></span></div>
+      <div><b>影院</b><span>应用程序打开<i>全量列表里没有</i></span></div>
+      <div><b>驾驶</b><span>蓝牙设备</span></div>
+      <div><b>运动</b><span>应用程序打开 · 时间段<i>含列表外项</i></span></div>
+    </div>
+    <p class="note-line">推荐条件不是全量条件的子集：睡眠模式的「睡眠时间表」、影院与运动的「应用程序打开」，在 28 个条件里都找不到。系统动作也是一样 —— 建议的操作里会出现「灰阶」这类全量 115 项里没有的条目。建议列表是快捷入口，按场景挑好的组合，不按分类穷举。</p>
 
 
   <div class="sub">
