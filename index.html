@@ -128,8 +128,6 @@
   #oneui .cap-body{grid-template-columns:1.3fr .7fr}
   #oneui .cap-body.rev{grid-template-columns:.7fr 1.3fr}
   #oneui .cap-body .pair img{width:158px}
-  .sug-shots{display:grid;place-items:start;margin-top:22px;padding-left:2px}
-  .sug-shots .pair img{width:186px}
   .chips.three{grid-template-columns:repeat(3,1fr);gap:10px}
   .chips.three div{padding:14px 10px;text-align:left;font-size:13px}
   .chips.three div span{font-size:10.5px;margin-top:3px}
@@ -155,6 +153,7 @@
 
   /* 建议清单 */
   .sug{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+  .sug-2col{grid-template-columns:repeat(2,1fr)}
   .sug > div{background:#fff;border:1px solid var(--line);border-radius:11px;padding:14px 16px}
   .sug b{display:block;font-size:11px;font-weight:660;letter-spacing:.06em;color:var(--faint);margin-bottom:7px}
   .sug span{display:block;font-size:12.3px;color:#3a3a44;line-height:1.72}
@@ -1054,7 +1053,9 @@
       </div>
 
       <div class="cond-h">建议的操作 <span>每个模式自带的快捷动作</span></div>
-      <div class="sug">
+      <div class="cap-body">
+        <div class="vcenter">
+          <div class="sug sug-2col">
         <div><b>睡眠</b><span>灰阶 · 黑暗模式 · 护眼模式 · 声音模式和音量 · 省电模式 · 息屏提醒</span></div>
         <div><b>影院</b><span>声音模式和音量</span></div>
         <div><b>驾驶</b><span>打开应用程序或执行应用程序操作 · 媒体音量 · 读出通知 · 语音唤醒设置</span></div>
@@ -1062,12 +1063,13 @@
         <div><b>自定义</b><span>灰阶 · 黑暗模式 · 打开应用程序或执行应用程序操作 · 媒体音量 · 播放音乐 · 读出通知 · 语音唤醒设置<i>灰阶不在全量内</i></span></div>
         <div><b>放松</b><span>声音模式和音量 · 省电模式 · 护眼模式</span></div>
         <div><b>工作</b><span>声音模式和音量 · 省电模式 · 打开应用程序或执行应用程序操作</span></div>
-      </div>
-
-      <div class="sug-shots">
-        <div class="pair">
-          <img src="assets/samsung_sug_sleep.png" alt="睡眠模式的建议操作：灰阶、黑暗模式、护眼模式、声音模式和音量、省电模式、息屏提醒">
-          <img src="assets/samsung_sug_custom.png" alt="自定义模式的建议操作：灰阶、黑暗模式、打开应用程序、媒体音量、播放音乐、读出通知、语音唤醒设置">
+          </div>
+        </div>
+        <div class="panel">
+          <div class="pair">
+            <img src="assets/samsung_sug_sleep.png" alt="睡眠模式的建议操作：灰阶、黑暗模式、护眼模式、声音模式和音量、省电模式、息屏提醒">
+            <img src="assets/samsung_sug_custom.png" alt="自定义模式的建议操作：灰阶、黑暗模式、打开应用程序、媒体音量、播放音乐、读出通知、语音唤醒设置">
+          </div>
         </div>
       </div>
 
@@ -1104,7 +1106,7 @@
         <div class="panel">
           <div class="pair">
             <img src="assets/samsung_all_actions_categories.png" alt="全部操作分类列表">
-            <img src="assets/samsung_action_option_picker.png" alt="底部弹出的参数选择卡片">
+            <img src="assets/samsung_all_actions.png" alt="所有操作的完整列表">
           </div>
         </div>
       </div>
