@@ -125,7 +125,7 @@
     font-size:11.5px;color:var(--faint);letter-spacing:.02em}
 
   /* 九类系统动作 */
-  #oneui .cap-body .pair img{width:152px}
+  #oneui .cap-body .pair img{width:168px}
   .chips.three{grid-template-columns:repeat(3,1fr);gap:10px}
   .chips.three div{padding:14px 10px;text-align:left;font-size:13px}
   .chips.three div span{font-size:10.5px;margin-top:3px}
@@ -141,6 +141,13 @@
   .conds span{display:block;font-size:12.2px;line-height:1.75;color:#3a3a44}
 
 
+
+
+  /* 三块功能说明 */
+  .ways{display:flex;flex-direction:column;gap:10px}
+  .ways > div{background:#fff;border:1px solid var(--line);border-radius:11px;padding:13px 16px}
+  .ways b{display:block;font-size:12.4px;font-weight:670;color:var(--ink);margin-bottom:5px}
+  .ways span{display:block;font-size:12.2px;color:var(--sub);line-height:1.72}
 
   /* 建议清单 */
   .sug{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
@@ -867,59 +874,98 @@
     </div>
 
     <div class="matrix">
-      <div class="mcol">
-        <div class="mcol-h"><b>入口</b><span>在哪找到，怎么建一个</span></div>
-        <div class="mcell"><div class="mnum">01</div><div><b>进入路径</b><p>控制中心磁贴长按，或设置首页</p></div></div>
-        <div class="mcell"><div class="mnum">02</div><div><b>预设模式</b><p>睡眠、影院、驾驶自带推荐设置</p></div></div>
-        <div class="mcell"><div class="mnum">03</div><div><b>新建与恢复</b><p>自定义名称图标，误删可找回</p></div></div>
-      </div>
-
-      <div class="mcol t">
-        <div class="mcol-h"><b>激活方式</b><span>什么时候自己打开</span></div>
-        <div class="mcell"><div class="mnum">04</div><div><b>手动开关</b><p>磁贴点一下，详情页也有大按钮</p></div></div>
-        <div class="mcell"><div class="mnum">05</div><div><b>条件触发</b><p>8 类 28 个条件，含情境与设备</p></div></div>
-        <div class="mcell"><div class="mnum">06</div><div><b>自动退出</b><p>设倒计时，到点自己关</p></div></div>
-      </div>
-
-      <div class="mcol c">
-        <div class="mcol-h"><b>配置能力</b><span>打开之后改变什么</span></div>
-        <div class="mcell"><div class="mnum">07</div><div><b>通知与应用</b><p>谁能发通知，哪些应用可用</p></div></div>
-        <div class="mcell"><div class="mnum">08</div><div><b>屏幕外观</b><p>换壁纸与时钟，退出自动还原</p></div></div>
-        <div class="mcell"><div class="mnum">09</div><div><b>系统动作</b><p>23 类 115 项系统设置批量调节</p></div></div>
-      </div>
+    <div class="mcol">
+      <div class="mcol-h"><b>入口</b><span>在哪找到，怎么建一个</span></div>
+      <div class="mcell"><div class="mnum">01</div><div><b>进入路径</b><p>控制中心长按，或从设置进入</p></div></div>
+      <div class="mcell"><div class="mnum">02</div><div><b>新建模式</b><p>选一个场景，系统先给一套默认设置</p></div></div>
+      <div class="mcell"><div class="mnum">03</div><div><b>起名与配色</b><p>起名字、选颜色，好在控制中心一眼认出</p></div></div>
     </div>
+
+    <div class="mcol t">
+      <div class="mcol-h"><b>激活方式</b><span>什么时候自己打开</span></div>
+      <div class="mcell"><div class="mnum">04</div><div><b>手动开关</b><p>想开就开，想关就关</p></div></div>
+      <div class="mcell"><div class="mnum">05</div><div><b>智能启用</b><p>按你的作息和位置自己判断</p></div></div>
+      <div class="mcell"><div class="mnum">06</div><div><b>条件触发</b><p>到点、到某地、或打开某个 App 时开</p></div></div>
+    </div>
+
+    <div class="mcol c">
+      <div class="mcol-h"><b>配置能力</b><span>打开之后改变什么</span></div>
+      <div class="mcell"><div class="mnum">07</div><div><b>通知名单</b><p>决定谁能把通知送进来</p></div></div>
+      <div class="mcell"><div class="mnum">08</div><div><b>自定义屏幕</b><p>换一套锁屏和桌面，只留该用的 App</p></div></div>
+      <div class="mcell"><div class="mnum">09</div><div><b>过滤条件</b><p>顺带改 App 里的内容和几种系统设置</p></div></div>
+    </div>
+  </div>
   </div>
 
   <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-entry">4.2 · 入口与激活</span>
+      <span class="sec-tag t-entry">4.2 · 入口</span>
       <div>
-        <h3>磁贴直达，还能到点自己关</h3>
-        <p>入口只比 iOS 多一步「详细信息」。激活上两头都做了：既能按时间、地点自动开启，也能手动开启时设定时长，到点自动退出并还原。</p>
+        <h3>磁贴直达，预设开箱能用</h3>
+        <p>入口只比 iOS 多一步「详细信息」。七个预设按场景排好，点开先问用「基本」还是「自定义」。</p>
       </div>
+    </div>
+
+    <div class="path">
+      <span class="lbl">路径</span>
+      <span class="chip hi">下拉控制中心</span><span class="ar">›</span>
+      <span class="chip">长按「模式」磁贴</span><span class="ar">›</span>
+      <span class="chip">左下角「详细信息」</span>
+    </div>
+    <div class="path" style="margin-top:8px">
+      <span class="lbl">备用</span>
+      <span class="chip">设置</span><span class="ar">›</span>
+      <span class="chip">模式和日常程序</span><span class="ar">›</span>
+      <span class="chip">选择某个模式</span>
     </div>
 
     <div class="units" style="--c:var(--entry);--cs:var(--entry-s)">
       <div class="unit">
         <div class="shot"><img src="assets/samsung_control_center_modes_detail.png" alt="控制中心模式磁贴与详细信息"></div>
         <h4>磁贴直达</h4>
-        <p>下拉控制中心长按「模式」，左下角「详细信息」直接进设置；平时点一下就能开关。</p>
+        <p>下拉控制中心长按「模式」，点左下角「详细信息」直接进设置；平时点一下就能开关，不用翻菜单。</p>
         <span class="scene">会议中途、进影院前一步切换</span>
       </div>
       <div class="unit">
-        <div class="shot"><img src="assets/samsung_theater_opened.png" alt="影院模式初始化向导"></div>
-        <h4>预设带推荐值</h4>
-        <p>睡眠、影院、驾驶等预设点开即用，先给「基本」和「减少干扰」两档，不用自己配几十个开关。</p>
-        <span class="scene">第一次用，不想从零配</span>
+        <div class="shot"><img src="assets/samsung_modes_now.png" alt="模式和日常程序列表"></div>
+        <h4>七个预设排开</h4>
+        <p>睡眠、影院、驾驶、运动、放松、工作六个预设加一个自定义，按使用场景排列，没配过的标「未设置」。</p>
+        <span class="scene">第一次用，直接挑一个</span>
       </div>
       <div class="unit">
-        <div class="shot"><img src="assets/samsung_sleep_detail.png" alt="睡眠模式详情页的自动开启设置"></div>
-        <h4>按条件自动开启</h4>
-        <p>详情页里「自动开启 / 何时启动此模式」就是条件入口，设好时间或地点，到点自己进，不用每天记着开。</p>
-        <span class="scene">到点自己开、到家自己开</span>
+        <div class="shot"><img src="assets/samsung_add_mode_page.png" alt="添加模式页面"></div>
+        <h4>新建与恢复</h4>
+        <p>自己起名字、选颜色和图标；删掉的系统预设能在顶部恢复列表里一键找回，不必重配。</p>
+        <span class="scene">预设不合适，自己改一个</span>
       </div>
     </div>
   </div>
+
+  <div class="sub">
+    <div class="sec-h">
+      <span class="sec-tag t-trigger">4.3 · 激活方式</span>
+      <div>
+        <h3>按条件开，也能到点自己关</h3>
+        <p>每个模式的详情页顶部都有「自动开启 / 何时启动此模式」，这是条件入口。iOS 那边叫「智能启用」的那一层，三星做成了可逐条挑选的清单。</p>
+      </div>
+    </div>
+
+    <div class="cap-body">
+      <div class="vcenter">
+        <div class="ways">
+          <div><b>条件自己挑</b><span>点「何时启动此模式」进条件列表，八类 28 个，任一条成立就开，也可以多条叠加。</span></div>
+          <div><b>预设给了推荐</b><span>每个模式自带两三条推荐条件，睡眠给睡眠时间表、影院给应用程序打开，不用自己找。</span></div>
+          <div><b>手动也有时长</b><span>手动开启时可设 1 小时、2 小时或自定义，到点自动退出并还原，散场不怕忘。</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="pair">
+          <img src="assets/samsung_auto.png" alt="自动开启与建议的条件">
+          <img src="assets/samsung_conditions.png" alt="添加条件的完整列表">
+        </div>
+      </div>
+    </div>
+
     <div class="cond-h">建议的开启条件 <span>每个模式自带的，开箱即用</span></div>
     <div class="sug">
       <div><b>睡眠</b><span>睡眠时间表<i>全量列表里没有</i></span></div>
@@ -933,25 +979,40 @@
 
     <div class="cond-h">自动开启的全部条件 <span>8 类 / 28 个</span></div>
     <div class="conds">
-        <div><b>情境</b><span>醒来时间 · 睡前 · 睡眠 · 驾驶 · 出国旅行</span></div>
-        <div><b>时间</b><span>时间段</span></div>
-        <div><b>地点</b><span>地点</span></div>
-        <div><b>连接</b><span>WLAN 网络 · WLAN 信号强度 · WLAN · 蓝牙设备 · 飞行模式 · 移动数据 · 移动热点</span></div>
-        <div><b>已连接的设备</b><span>Samsung DeX · Smart View · 多重控制 · 连接至 Windows</span></div>
-        <div><b>设备</b><span>有线耳机 · 充电状态 · 电量 · 省电模式 · 声音模式 · 黑暗模式</span></div>
-        <div><b>事件</b><span>正在玩游戏 · 正在播放媒体</span></div>
-        <div><b>呼叫</b><span>来电响铃期间 · 通话期间</span></div>
+          <div><b>情境</b><span>醒来时间 · 睡前 · 睡眠 · 驾驶 · 出国旅行</span></div>
+          <div><b>时间</b><span>时间段</span></div>
+          <div><b>地点</b><span>地点</span></div>
+          <div><b>连接</b><span>WLAN 网络 · WLAN 信号强度 · WLAN · 蓝牙设备 · 飞行模式 · 移动数据 · 移动热点</span></div>
+          <div><b>已连接的设备</b><span>Samsung DeX · Smart View · 多重控制 · 连接至 Windows</span></div>
+          <div><b>设备</b><span>有线耳机 · 充电状态 · 电量 · 省电模式 · 声音模式 · 黑暗模式</span></div>
+          <div><b>事件</b><span>正在玩游戏 · 正在播放媒体</span></div>
+          <div><b>呼叫</b><span>来电响铃期间 · 通话期间</span></div>
     </div>
-
-    <p class="note-line">推荐条件不是全量条件的子集：睡眠模式的「睡眠时间表」、影院与运动的「应用程序打开」，在 28 个条件里都找不到。系统动作也是一样 —— 建议的操作里会出现「灰阶」这类全量 115 项里没有的条目。建议列表是快捷入口，按场景挑好的组合，不按分类穷举。</p>
-
+    <p class="note-line">推荐条件不是全量条件的子集：睡眠模式的「睡眠时间表」、其余模式的「应用程序打开」，在 28 个条件里都找不到。系统动作也是一样 —— 建议的操作里会出现「灰阶」这类全量 115 项里没有的条目。建议列表是快捷入口，按场景挑好的组合，不按分类穷举。</p>
+  </div>
 
   <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-config">4.3 · 配置</span>
+      <span class="sec-tag t-config">4.4 · 配置能力</span>
       <div>
-        <h3>把系统设置整个搬进来</h3>
-        <p>23 类、115 项系统动作，模式开启时批量改，关闭时全部还原。这一段的宽度是两家差距最直观的地方，完整清单见文末附表。</p>
+        <h3>三张卡，各管一类</h3>
+        <p>iOS 把配置拆成三个页面（锁定屏幕、主屏幕、自定义），三星拆成三张卡：保持专注、更改外观、其他动作。前两张管注意力和氛围，第三张才是系统设置。</p>
+      </div>
+    </div>
+
+    <div class="cap-body rev">
+      <div class="vcenter">
+        <div class="ways">
+          <div><b>保持专注</b><span>谁能打扰、哪些应用能用。睡眠模式里就设成了「除了哔哩哔哩和其他 26 个」。</span></div>
+          <div><b>更改外观</b><span>换锁屏与主屏幕的壁纸和时钟，模式退出时自动还原，不会改乱桌面。</span></div>
+          <div><b>其他动作</b><span>23 类 115 项系统设置批量调节，是三家差距最大的一段。</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="pair">
+          <img src="assets/samsung_mode_detail.png" alt="模式详情页的三块功能区">
+          <img src="assets/samsung_focus.png" alt="保持专注的二级页">
+        </div>
       </div>
     </div>
 
@@ -971,43 +1032,41 @@
     <div class="cap-body">
       <div class="vcenter">
         <div class="acts-cats">
-      <span>连接 <b>13</b></span>
-      <span>已连接的设备 <b>5</b></span>
-      <span>声音和振动 <b>11</b></span>
-      <span>通知 <b>1</b></span>
-      <span>显示 <b>14</b></span>
-      <span>壁纸 <b>1</b></span>
-      <span>锁定屏幕和息屏提醒 <b>3</b></span>
-      <span>位置 <b>1</b></span>
-      <span>账号与备份 <b>1</b></span>
-      <span>电池 <b>4</b></span>
-      <span>智能管理器 <b>2</b></span>
-      <span>三星键盘 <b>5</b></span>
-      <span>辅助功能 <b>11</b></span>
-      <span>效果 <b>3</b></span>
-      <span>功能 <b>10</b></span>
-      <span>应用程序 <b>2</b></span>
-      <span>Bixby <b>1</b></span>
-      <span>日历 <b>3</b></span>
-      <span>时钟 <b>7</b></span>
-      <span>相册 <b>5</b></span>
-      <span>游戏助推器 <b>3</b></span>
-      <span>即时简报 <b>2</b></span>
-      <span>电话 <b>7</b></span>
-      <span class="extra">打开应用/快捷操作 <b>44</b></span>
-    </div>
-        
+          <span>连接 <b>13</b></span>
+          <span>已连接的设备 <b>5</b></span>
+          <span>声音和振动 <b>11</b></span>
+          <span>通知 <b>1</b></span>
+          <span>显示 <b>14</b></span>
+          <span>壁纸 <b>1</b></span>
+          <span>锁定屏幕和息屏提醒 <b>3</b></span>
+          <span>位置 <b>1</b></span>
+          <span>账号与备份 <b>1</b></span>
+          <span>电池 <b>4</b></span>
+          <span>智能管理器 <b>2</b></span>
+          <span>三星键盘 <b>5</b></span>
+          <span>辅助功能 <b>11</b></span>
+          <span>效果 <b>3</b></span>
+          <span>功能 <b>10</b></span>
+          <span>应用程序 <b>2</b></span>
+          <span>Bixby <b>1</b></span>
+          <span>日历 <b>3</b></span>
+          <span>时钟 <b>7</b></span>
+          <span>相册 <b>5</b></span>
+          <span>游戏助推器 <b>3</b></span>
+          <span>即时简报 <b>2</b></span>
+          <span>电话 <b>7</b></span>
+          <span class="extra">打开应用/快捷操作 <b>44</b></span>
+        </div>
       </div>
       <div class="panel">
         <div class="pair">
-        <img src="assets/samsung_all_actions_categories.png" alt="全部操作分类列表">
-        <img src="assets/samsung_action_option_picker.png" alt="底部弹出的参数选择卡片">
-      </div>
+          <img src="assets/samsung_all_actions_categories.png" alt="全部操作分类列表">
+          <img src="assets/samsung_action_option_picker.png" alt="底部弹出的参数选择卡片">
+        </div>
       </div>
     </div>
   </div>
-
-  </section>
+</section>
 
 <section id="compare" class="wrap">
   <div class="chap">
