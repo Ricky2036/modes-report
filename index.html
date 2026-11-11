@@ -108,9 +108,24 @@
     font-size:11.5px;color:var(--faint);letter-spacing:.02em}
 
   /* 九类系统动作 */
+  .cfg-shots{margin-top:24px;display:grid;place-items:center}
+  .cfg-shots .pair img{width:186px}
   .chips.three{grid-template-columns:repeat(3,1fr);gap:10px}
   .chips.three div{padding:14px 10px;text-align:left;font-size:13px}
   .chips.three div span{font-size:10.5px;margin-top:3px}
+
+  /* 系统动作清单 */
+  .acts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px;align-items:start}
+  .act-card{background:var(--soft);border-radius:14px;padding:16px 18px 14px}
+  .act-card h5{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+    font-size:12.5px;font-weight:680;letter-spacing:-.01em;color:var(--ink);
+    padding-bottom:10px;border-bottom:1px solid rgba(0,0,0,.05)}
+  .act-card h5 span{font-size:10.5px;font-weight:500;color:var(--faint)}
+  .act-row{margin-top:9px}
+  .act-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .act-top b{font-size:12.3px;font-weight:640;color:var(--ink)}
+  .act-top i{font-style:normal;font-size:10.5px;color:var(--config);white-space:nowrap}
+  .act-row p{font-size:11.4px;color:var(--sub);line-height:1.6;margin-top:2px}
 
   /* 横向对比表 */
   .cmp{width:100%;border-collapse:collapse;font-size:13.4px;margin-top:30px}
@@ -341,6 +356,7 @@
     .epigraph .quote-line p{font-size:16px}
     .epigraph .quote-line p::before{left:16px;top:12px;font-size:36px}
     .models{grid-template-columns:1fr}
+    .acts{grid-template-columns:1fr}
     .dir{grid-template-columns:1fr;gap:14px;padding:24px 0}
     .dir-table{min-width:760px}
     .dir-table ul{grid-template-columns:1fr}
@@ -840,36 +856,221 @@
       <span class="sec-tag t-config">4.3 · 配置</span>
       <div>
         <h3>把系统设置整个搬进来</h3>
-        <p>九大类、数十项系统动作，模式开启时批量改，关闭时全部还原。这是两者差距最大的一段。</p>
+        <p>九大类、43 项系统动作，模式开启时批量改，关闭时全部还原。这一段的宽度，是两家差距最直观的地方。</p>
       </div>
     </div>
 
-    <div class="cap-body">
-      <div class="vcenter">
-        <div class="chips three">
-          <div>连接与网络<span>WLAN、蓝牙、NFC</span></div>
-          <div>屏幕与显示<span>亮度、深色、刷新率</span></div>
-          <div>声音与振动<span>音量、振动、杜比</span></div>
-          <div>通知与提醒<span>播报、闪光提醒</span></div>
-          <div>壁纸与锁屏<span>壁纸、时钟、息屏</span></div>
-          <div>电池与性能<span>省电、保护电池</span></div>
-          <div>系统与维护<span>清理后台、同步</span></div>
-          <div>操作与防误触<span>侧屏、单手模式</span></div>
-          <div>工具联动<span>闹钟、音乐、拒接</span></div>
+    <div class="cfg-shots">
+      <div class="pair">
+        <img src="assets/samsung_all_actions_categories.png" alt="全部操作分类列表">
+        <img src="assets/samsung_action_option_picker.png" alt="底部弹出的参数选择卡片">
+      </div>
+    </div>
+
+    <div class="acts">
+      <div class="act-card">
+        <h5>连接与网络<span>7 项</span></h5>
+        <div class="act-row">
+          <div class="act-top"><b>无线网络 (WLAN)</b><i>开 / 关</i></div>
+          <p>到家自动开启连接，离家自动关闭省电</p>
         </div>
-        <div class="chips-legend">
-          <span><i class="a"></i>九类系统动作，每一类下还有 3–7 个可选开关</span>
+        <div class="act-row">
+          <div class="act-top"><b>蓝牙</b><i>开 / 关</i></div>
+          <p>上车自动连车载，睡眠断开所有蓝牙外设</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>飞行模式</b><i>开 / 关</i></div>
+          <p>登机或深度防打扰时彻底阻断射频信号</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>移动数据</b><i>开 / 关</i></div>
+          <p>连稳定无线网络或流量紧张时关闭蜂窝</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>移动热点</b><i>开 / 关</i></div>
+          <p>外出办公检测到笔记本时自动开热点</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>近场通信 (NFC)</b><i>开 / 关</i></div>
+          <p>通勤刷地铁卡开，回到室内自动关</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>快速共享</b><i>仅联系人 / 关</i></div>
+          <p>需要传文件时开启，平时关闭防骚扰</p>
         </div>
       </div>
-      <div class="panel">
-        <div class="pair">
-          <img src="assets/samsung_all_actions_categories.png" alt="全部操作分类列表">
-          <img src="assets/samsung_action_option_picker.png" alt="底部弹出的参数选择卡片">
+      <div class="act-card">
+        <h5>屏幕与显示<span>7 项</span></h5>
+        <div class="act-row">
+          <div class="act-top"><b>屏幕亮度</b><i>0%~100% 滑块</i></div>
+          <p>晚上自动调暗，户外阳光下自动拉满</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>自动调节亮度</b><i>开 / 关</i></div>
+          <p>看书看视频时锁定固定亮度避免晃眼</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>深色模式</b><i>开 / 关</i></div>
+          <p>晚上全系统切换深色背景，减少光线刺激</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>护眼模式</b><i>开 / 色温调节</i></div>
+          <p>过滤屏幕蓝光，夜间长时间看屏不累眼</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>自动息屏时间</b><i>15秒 ~ 10分钟</i></div>
+          <p>阅读时延长至10分钟，离开时15秒息屏</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>屏幕刷新率</b><i>自适应 / 60Hz</i></div>
+          <p>电量低时强制切换到标准60Hz节省功耗</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>屏幕旋转</b><i>自动 / 纵向锁定</i></div>
+          <p>躺在床上看手机锁定竖屏，防误翻转</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <h5>声音与振动<span>5 项</span></h5>
+        <div class="act-row">
+          <div class="act-top"><b>声音模式</b><i>声音 / 振动 / 静音</i></div>
+          <p>进入影院或会议自动静音，出来恢复响铃</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>媒体音量</b><i>0%~100% 独立</i></div>
+          <p>学习模式单独保留视频声音，铃声通知静音</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>铃声与通知音量</b><i>0%~100% 独立</i></div>
+          <p>安静工位调低铃声音量，避免惊扰同事</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>振动强度</b><i>强 / 中 / 弱 / 关</i></div>
+          <p>放桌面上开会调弱振动，防桌面嗡嗡响</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>杜比全景声</b><i>电影 / 音乐 / 自动</i></div>
+          <p>看电影戴耳机时开启空间环绕音效</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <h5>通知与提醒<span>4 项</span></h5>
+        <div class="act-row">
+          <div class="act-top"><b>朗读通知</b><i>开 / 仅念发件人</i></div>
+          <p>开车或跑步戴耳机时，不用掏手机就能听消息</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>通知提示音</b><i>切换内置声音</i></div>
+          <p>工作期间换成轻柔短促的水滴声</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>相机闪光灯通知</b><i>开 / 关</i></div>
+          <p>静音环境下手机扣在桌上，有电话背面闪烁</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>屏幕闪烁通知</b><i>开 / 关</i></div>
+          <p>收到消息时屏幕四周温和闪光提示</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <h5>壁纸与锁屏<span>5 项</span></h5>
+        <div class="act-row">
+          <div class="act-top"><b>锁定屏幕壁纸</b><i>换指定壁纸</i></div>
+          <p>上班换极简深灰壁纸，退出自动换回个人照</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>主屏幕壁纸</b><i>换指定壁纸</i></div>
+          <p>与当前模式的主题和心情保持一致</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>息屏提醒 (AOD)</b><i>始终 / 轻触 / 关闭</i></div>
+          <p>睡眠模式彻底关闭息屏显示，屋里全黑好入睡</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>时钟样式</b><i>数字 / 表盘 / 大字</i></div>
+          <p>模式中自动换成大字体或简洁时钟样式</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>锁屏快捷方式</b><i>替换底部两个图标</i></div>
+          <p>工作模式把左下角换成便签，右下角换录音机</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <h5>电池与性能<span>4 项</span></h5>
+        <div class="act-row">
+          <div class="act-top"><b>省电模式</b><i>开 / 关</i></div>
+          <p>自动降频CPU、限制后台，大幅延长待机</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>保护电池</b><i>充到80%停 / 自适应</i></div>
+          <p>通宵插充电器或车载常充时保护电池健康</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>无线反向充电</b><i>开 / 关</i></div>
+          <p>手机放固定支架时，自动给背后的耳机补电</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>性能配置文件</b><i>标准 / 轻度降温</i></div>
+          <p>日常待机限制高频发热，保持机身凉爽</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <h5>系统与维护<span>3 项</span></h5>
+        <div class="act-row">
+          <div class="act-top"><b>自动清理运行内存</b><i>立即执行</i></div>
+          <p>进入游戏或重度任务前清理后台多余垃圾</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>限制后台应用</b><i>深度休眠</i></div>
+          <p>非工作或非白名单应用全部深度休眠不耗电</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>自动同步个人数据</b><i>开 / 暂停</i></div>
+          <p>流量受限或省电状态下暂停云端大文件同步</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <h5>操作与防误触<span>4 项</span></h5>
+        <div class="act-row">
+          <div class="act-top"><b>侧屏幕面板</b><i>开 / 关</i></div>
+          <p>打游戏或画图时关闭侧边栏，防止手指误触</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>单手操作模式</b><i>开 / 关</i></div>
+          <p>走路通勤时画面缩小，一只手就能按到全屏</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>高对比度文字</b><i>开 / 关</i></div>
+          <p>户外大太阳底下增强文字边缘，看字不费力</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>移除过渡动画</b><i>开 / 关</i></div>
+          <p>关闭全系统切换动效，点击瞬间秒开页面</p>
+        </div>
+      </div>
+      <div class="act-card">
+        <h5>自带工具联动<span>4 项</span></h5>
+        <div class="act-row">
+          <div class="act-top"><b>闹钟与计时器</b><i>开启或设倒计时</i></div>
+          <p>开启专注模式自动启动20分钟番茄钟</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>音乐播放</b><i>播放 / 暂停</i></div>
+          <p>进入运动模式自动播放音乐歌单</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>自动拒接电话</b><i>拒接并回短信</i></div>
+          <p>开车时来电自动挂断并回复短信告知在驾驶</p>
+        </div>
+        <div class="act-row">
+          <div class="act-top"><b>游戏助推器</b><i>锁定手势 / 防误触</i></div>
+          <p>游戏模式屏蔽底部导航手势与消息弹窗</p>
         </div>
       </div>
     </div>
   </div>
-</section>
+
+  </section>
 
 <section id="compare" class="wrap">
   <div class="chap">
@@ -917,7 +1118,7 @@
           <tr>
             <td>配置范围</td>
             <td>通知名单、三个系统页面、10 项过滤条件</td>
-            <td>通知与应用、壁纸与时钟、九类数十项系统动作</td>
+            <td>通知与应用、壁纸与时钟、九类 43 项系统动作</td>
           </tr>
           <tr>
             <td>使用门槛</td>
