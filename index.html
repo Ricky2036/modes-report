@@ -186,6 +186,12 @@
   .acts-tbl td:first-child{white-space:nowrap;font-weight:660;color:var(--ink);padding-right:30px}
   .acts-tbl td.n{white-space:nowrap;color:var(--config);font-weight:690;padding-right:30px}
   .acts-tbl td:last-child{color:var(--sub)}
+/* 附表：额外一类说明卡 */
+  .extra-card{margin-top:16px;background:var(--soft);border:1px dashed #dedee8;border-radius:12px;padding:15px 18px}
+  .extra-h{display:flex;align-items:baseline;gap:9px;margin-bottom:6px}
+  .extra-h b{font-size:12.6px;font-weight:680;color:var(--ink)}
+  .extra-h span{font-size:11px;color:var(--faint);font-weight:500}
+  .extra-card p{font-size:12.1px;color:var(--sub);line-height:1.8}
   .apx-note{margin-top:16px;font-size:12px;color:var(--faint);line-height:1.85}
 
   /* 系统动作清单 */
@@ -1455,7 +1461,10 @@
           <div class="act-i">新建联系人</div>
       </div>
     </div>
-    <p class="apx-note">另有「打开应用/快捷操作」一类，按手机已安装的应用展开（实测 44 项，如打开相册、QQ 音乐、哔哩哔哩等），数量随安装变化，不计入上表。</p>
+    <div class="extra-card">
+      <div class="extra-h"><b>打开应用/快捷操作</b><span>实测 44 项</span></div>
+      <p>按手机已安装的应用展开：打开相册、QQ 音乐、哔哩哔哩、小红书、三星钱包……每一类的二级动作也跟着应用走（比如 QQ 音乐还带「最近播放」「听歌识曲」）。数量随安装变化，不计入上面的 23 类 115 项。</p>
+    </div>
 </section>
 
 <footer>
