@@ -1,2 +1,5 @@
+_backup/
+_draft/
+scripts/__pycache__/
 v1-按流程.html
 .DS_Store

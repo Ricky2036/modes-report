@@ -461,14 +461,71 @@
     .chart-scroll::-webkit-scrollbar{height:5px}
     .chart-scroll::-webkit-scrollbar-thumb{background:#dcdce4;border-radius:99px}
   }
+/* ══════════════════════════════════════════════
+   编辑模式（浮标式，不写进正文）
+   锚点：data-eid（元素）/ data-sid（列表容器）
+   写回依赖 scripts/serve.py 的 POST /__save
+   ══════════════════════════════════════════════ */
+#ed-ui{position:fixed;right:26px;bottom:26px;z-index:400;display:flex;gap:10px;align-items:center;
+  transition:opacity .25s ease}
+/* 滚动时淡化，避免浮标压住正在看的那几行；停下 1.1s 后恢复 */
+#ed-ui.scrolling{opacity:.32}
+#ed-ui.scrolling:hover{opacity:1}
+#ed-ui button{font-family:inherit;font-size:13.5px;font-weight:700;letter-spacing:.01em;cursor:pointer;
+  border:none;border-radius:100px;padding:12px 24px;background:#fff;color:var(--ink);
+  box-shadow:0 2px 10px rgba(0,0,0,.16),0 14px 36px -14px rgba(0,0,0,.5);
+  transition:transform .18s ease,box-shadow .18s ease,background .18s}
+#ed-ui button:hover{transform:translateY(-1px)}
+#ed-ui button.primary{background:var(--config);color:#fff}
+#ed-ui button#ed-bold{font-weight:800;padding:12px 17px}
+#ed-ui button#ed-bold.on{background:#111;color:#fff}
+#ed-ui button[hidden]{display:none}
+#ed-hint{position:fixed;left:26px;bottom:26px;z-index:400;max-width:330px;
+  background:rgba(18,20,19,.93);color:rgba(255,255,255,.9);font-size:12.5px;line-height:1.75;
+  padding:12px 16px;border-radius:14px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+#ed-hint b{color:#b9b2ff;font-weight:700}
+#ed-hint[hidden]{display:none}
+#ed-toast{position:fixed;left:50%;bottom:104px;transform:translate(-50%,12px);z-index:410;
+  background:rgba(18,20,19,.94);color:#fff;font-size:13.5px;font-weight:600;
+  padding:12px 22px;border-radius:100px;opacity:0;pointer-events:none;max-width:80vw;
+  transition:opacity .22s ease,transform .22s ease}
+#ed-toast.on{opacity:1;transform:translate(-50%,0)}
+#ed-toast.bad{background:#B3261E}
+
+html.editing [data-eid]{cursor:text}
+html.editing [data-eid]:hover{outline:1px dashed rgba(91,74,232,.55);outline-offset:3px;border-radius:3px}
+html.editing [data-eid][contenteditable="true"]{outline:2px solid var(--config);outline-offset:4px;
+  border-radius:3px;background:rgba(91,74,232,.06)}
+html.editing li[data-eid]{position:relative}
+html.editing ol[data-sid],html.editing ul[data-sid]{position:relative}
+html.editing .shot img,html.editing .pair img,html.editing .panel img{cursor:zoom-in}
+html.editing details.apx-fold>summary{cursor:text}
+
+.ed-del{position:absolute;right:-30px;top:0;width:20px;height:20px;padding:0;border:none;
+  border-radius:50%;background:rgba(0,0,0,.30);color:#fff;font-size:0;line-height:0;
+  display:flex;align-items:center;justify-content:center;box-sizing:border-box;
+  font-family:-apple-system,"PingFang SC",system-ui,sans-serif;
+  cursor:pointer;opacity:0;transition:opacity .16s}
+.ed-del svg{display:block}
+.ed-del.on,.ed-del:hover,.ed-del:focus{opacity:1}
+.ed-del:hover{background:#B3261E}
+
+@media(max-width:680px){
+  #ed-ui{right:16px;bottom:16px}
+  #ed-hint{display:none}
+  #ed-ui button{padding:10px 18px;font-size:12.5px}
+  .ed-del{right:-24px}
+}
+@media print{#ed-ui,#ed-hint,#ed-toast,.ed-del{display:none!important}}
+
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-in">
-    <div class="nav-brand"><i></i>模式设计研究</div>
-    <div class="nav-links">
+    <div data-eid="e1" class="nav-brand"><i></i>模式设计研究</div>
+    <div data-eid="e2" class="nav-links">
       <a href="#background">背景</a>
       <a href="#insight">分析结论</a>
       <a href="#design">iOS 思路</a>
@@ -481,21 +538,21 @@
 </nav>
 
 <header class="hero wrap">
-  <span class="eyebrow">数字健康方向 · 2026.11</span>
-  <h1>iOS 与 One UI 模式设计研究报告</h1>
+  <span data-eid="e3" class="eyebrow">数字健康方向 · 2026.11</span>
+  <h1 data-eid="e4">iOS 与 One UI 模式设计研究报告</h1>
 </header>
 
 <section id="background" class="wrap">
   <div class="chap">
-    <span class="chap-n">01</span>
+    <span data-eid="e5" class="chap-n">01</span>
     <div>
-      <h2>背景</h2>
-      <p>我们已经有四个模式了。在研究第五个之前，先弄清这一堆东西到底是什么。</p>
+      <h2 data-eid="e6">背景</h2>
+      <p data-eid="e7">我们已经有四个模式了。在研究第五个之前，先弄清这一堆东西到底是什么。</p>
     </div>
   </div>
 
 <div class="hook">
-    <div class="hk-row">
+    <div data-eid="e8" class="hk-row">
       <span class="lead">我们已经做过</span>
       <span class="m">勿扰模式</span>
       <span class="m">礼拜模式</span>
@@ -504,24 +561,24 @@
       <span class="m more">…</span>
     </div>
 
-    <p class="hk-q">为什么我们需要这么多模式？</p>
-    <p class="hk-a">场景在变，设备却只有一种默认状态。值得问的不是「要不要这么多」，而是「它们到底有什么共同点」—— 想清楚这一点，才知道下一个模式该怎么做。</p>
+    <p data-eid="e9" class="hk-q">为什么我们需要这么多模式？</p>
+    <p data-eid="e10" class="hk-a">场景在变，设备却只有一种默认状态。值得问的不是「要不要这么多」，而是「它们到底有什么共同点」—— 想清楚这一点，才知道下一个模式该怎么做。</p>
 
 <div class="args">
     <div class="arg">
-      <span class="arg-k">问题</span>
-      <b>23 分 15 秒</b>
-      <p>打断一次，平均要花这么久才能重新回到刚才的状态。这期间再被打断一次，前面的恢复就白费了。</p>
+      <span data-eid="e11" class="arg-k">问题</span>
+      <b data-eid="e12">23 分 15 秒</b>
+      <p data-eid="e13">打断一次，平均要花这么久才能重新回到刚才的状态。这期间再被打断一次，前面的恢复就白费了。</p>
     </div>
     <div class="arg k2">
-      <span class="arg-k">旧解法</span>
-      <b>场景驱动，一次一个</b>
-      <p>每来一个新场景就做一个新模式，设计、开发、上线都得重走一遍。场景越多，要维护的版本越多，用户还得记住每个模式藏在哪。</p>
+      <span data-eid="e14" class="arg-k">旧解法</span>
+      <b data-eid="e15">场景驱动，一次一个</b>
+      <p data-eid="e16">每来一个新场景就做一个新模式，设计、开发、上线都得重走一遍。场景越多，要维护的版本越多，用户还得记住每个模式藏在哪。</p>
     </div>
     <div class="arg k3">
-      <span class="arg-k">新解法</span>
-      <b>能力驱动，随时适配</b>
-      <p>把入口、激活、配置拆成可组合的能力，新场景换一组配置就成立，不用重新开发，也不用等下一个版本。</p>
+      <span data-eid="e17" class="arg-k">新解法</span>
+      <b data-eid="e18">能力驱动，随时适配</b>
+      <p data-eid="e19">把入口、激活、配置拆成可组合的能力，新场景换一组配置就成立，不用重新开发，也不用等下一个版本。</p>
     </div>
   </div>
   </div>
@@ -529,15 +586,15 @@
 
 <section id="insight" class="wrap">
   <div class="chap">
-    <span class="chap-n">02</span>
+    <span data-eid="e20" class="chap-n">02</span>
     <div>
-      <h2>分析结论</h2>
-      <p>不逐个看功能，看它们共同面对的那个问题。</p>
+      <h2 data-eid="e21">分析结论</h2>
+      <p data-eid="e22">不逐个看功能，看它们共同面对的那个问题。</p>
     </div>
   </div>
 
   <div class="thesis-quote">
-    <div class="tq-label">
+    <div data-eid="e23" class="tq-label">
       <svg viewBox="0 0 16 16" aria-hidden="true">
         <circle cx="8" cy="8" r="6.8" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".45"/>
         <circle cx="8" cy="8" r="3.9" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".75"/>
@@ -545,10 +602,10 @@
       </svg>
       核心洞察
     </div>
-    <p class="tq-main">模式类功能是系统在<em>数字健康</em>方向上的一次能力建设：不要求用户更自律，而是让设备在合适的场景里，主动把干扰拿掉。</p>
+    <p data-eid="e24" class="tq-main">模式类功能是系统在<em>数字健康</em>方向上的一次能力建设：不要求用户更自律，而是让设备在合适的场景里，主动把干扰拿掉。</p>
 
     <div class="tq-sub">
-      <div class="tq-sub-h">
+      <div data-eid="e25" class="tq-sub-h">
         <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor"
              stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="8" cy="6.15" r="3.45"/>
@@ -560,8 +617,8 @@
         能力边界
       </div>
       <div class="tq-sub-b">
-        <p>这类功能都有个共同的软肋：办法给了，但用不用、怎么用，仍然取决于用户自己。两边都没完全跳出去 —— 名单得自己填、动作得自己勾，不配置就等于没开。</p>
-        <p>所以这类功能真正做到的，不是替人做决定，而是把「保持专注」的代价，从每一次的小决定，压缩成一次设置。</p>
+        <p data-eid="e26">这类功能都有个共同的软肋：办法给了，但用不用、怎么用，仍然取决于用户自己。两边都没完全跳出去 —— 名单得自己填、动作得自己勾，不配置就等于没开。</p>
+        <p data-eid="e27">所以这类功能真正做到的，不是替人做决定，而是把「保持专注」的代价，从每一次的小决定，压缩成一次设置。</p>
       </div>
     </div>
   </div>
@@ -570,52 +627,52 @@
 
   
 
-  <p class="bridge">所以，一个模式好不好用，就看三件事有没有解决：<b>找不找得到</b>、<b>该开的时候开没开</b>、<b>开了之后和没开有没有区别</b>。</p>
+  <p data-eid="e28" class="bridge">所以，一个模式好不好用，就看三件事有没有解决：<b>找不找得到</b>、<b>该开的时候开没开</b>、<b>开了之后和没开有没有区别</b>。</p>
 </section>
 
 <section id="design" class="wrap">
   <div class="chap">
-    <span class="chap-n">03</span>
+    <span data-eid="e29" class="chap-n">03</span>
     <div>
-      <h2>iOS 设计思路</h2>
-      <p>苹果既给了勿扰、个人、工作、睡眠、正念这些预设，也给了一套能自己长出模式的框架。</p>
+      <h2 data-eid="e30">iOS 设计思路</h2>
+      <p data-eid="e31">苹果既给了勿扰、个人、工作、睡眠、正念这些预设，也给了一套能自己长出模式的框架。</p>
     </div>
   </div>
 
   <div class="epigraph">
     <div class="quote-line">
-      <p>保持平衡与保持连接同样重要。专注模式减少干扰，让人专注当下。</p>
+      <p data-eid="e32">保持平衡与保持连接同样重要。专注模式减少干扰，让人专注当下。</p>
     </div>
   </div>
 
   <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-config">3.1 · 总览</span>
+      <span data-eid="e33" class="sec-tag t-config">3.1 · 总览</span>
       <div>
-        <h3>九个设置项，分三组</h3>
-        <p>一个模式，就是这三组设置的一次组合。每组三项，彼此独立；刚开始用，每组做一项就能跑起来。</p>
+        <h3 data-eid="e34">九个设置项，分三组</h3>
+        <p data-eid="e35">一个模式，就是这三组设置的一次组合。每组三项，彼此独立；刚开始用，每组做一项就能跑起来。</p>
       </div>
     </div>
     <div class="matrix">
     <div class="mcol">
-      <div class="mcol-h"><b>入口</b><span>在哪找到，怎么建一个</span></div>
-      <div class="mcell"><div class="mnum">01</div><div><b>进入路径</b><p>控制中心长按，或从设置进入</p></div></div>
-      <div class="mcell"><div class="mnum">02</div><div><b>新建模式</b><p>选一个场景，系统先给一套默认设置</p></div></div>
-      <div class="mcell"><div class="mnum">03</div><div><b>起名与配色</b><p>起名字、选颜色，好在控制中心一眼认出</p></div></div>
+      <div data-eid="e36" class="mcol-h"><b>入口</b><span>在哪找到，怎么建一个</span></div>
+      <div class="mcell"><div class="mnum">01</div><div><b data-eid="e37">进入路径</b><p data-eid="e38">控制中心长按，或从设置进入</p></div></div>
+      <div class="mcell"><div class="mnum">02</div><div><b data-eid="e39">新建模式</b><p data-eid="e40">选一个场景，系统先给一套默认设置</p></div></div>
+      <div class="mcell"><div class="mnum">03</div><div><b data-eid="e41">起名与配色</b><p data-eid="e42">起名字、选颜色，好在控制中心一眼认出</p></div></div>
     </div>
 
     <div class="mcol t">
-      <div class="mcol-h"><b>激活方式</b><span>什么时候自己打开</span></div>
-      <div class="mcell"><div class="mnum">04</div><div><b>手动开关</b><p>想开就开，想关就关</p></div></div>
-      <div class="mcell"><div class="mnum">05</div><div><b>智能启用</b><p>按你的作息和位置自己判断</p></div></div>
-      <div class="mcell"><div class="mnum">06</div><div><b>条件触发</b><p>到点、到某地、或打开某个 App 时开</p></div></div>
+      <div data-eid="e43" class="mcol-h"><b>激活方式</b><span>什么时候自己打开</span></div>
+      <div class="mcell"><div class="mnum">04</div><div><b data-eid="e44">手动开关</b><p data-eid="e45">想开就开，想关就关</p></div></div>
+      <div class="mcell"><div class="mnum">05</div><div><b data-eid="e46">智能启用</b><p data-eid="e47">按你的作息和位置自己判断</p></div></div>
+      <div class="mcell"><div class="mnum">06</div><div><b data-eid="e48">条件触发</b><p data-eid="e49">到点、到某地、或打开某个 App 时开</p></div></div>
     </div>
 
     <div class="mcol c">
-      <div class="mcol-h"><b>配置能力</b><span>打开之后改变什么</span></div>
-      <div class="mcell"><div class="mnum">07</div><div><b>通知名单</b><p>决定谁能把通知送进来</p></div></div>
-      <div class="mcell"><div class="mnum">08</div><div><b>自定义屏幕</b><p>换一套锁屏和桌面，只留该用的 App</p></div></div>
-      <div class="mcell"><div class="mnum">09</div><div><b>过滤条件</b><p>顺带改 App 里的内容和几种系统设置</p></div></div>
+      <div data-eid="e50" class="mcol-h"><b>配置能力</b><span>打开之后改变什么</span></div>
+      <div class="mcell"><div class="mnum">07</div><div><b data-eid="e51">通知名单</b><p data-eid="e52">决定谁能把通知送进来</p></div></div>
+      <div class="mcell"><div class="mnum">08</div><div><b data-eid="e53">自定义屏幕</b><p data-eid="e54">换一套锁屏和桌面，只留该用的 App</p></div></div>
+      <div class="mcell"><div class="mnum">09</div><div><b data-eid="e55">过滤条件</b><p data-eid="e56">顺带改 App 里的内容和几种系统设置</p></div></div>
     </div>
   </div>
 
@@ -623,20 +680,20 @@
 
   <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-entry">3.2 · 入口</span>
+      <span data-eid="e57" class="sec-tag t-entry">3.2 · 入口</span>
       <div>
-        <h3>建得起来，也找得到</h3>
-        <p>切换要快：最好一次点按完成，不用每次都翻设置。</p>
+        <h3 data-eid="e58">建得起来，也找得到</h3>
+        <p data-eid="e59">切换要快：最好一次点按完成，不用每次都翻设置。</p>
       </div>
     </div>
-    <div class="path">
+    <div data-eid="e60" class="path">
     <span class="lbl">路径</span>
     <span class="chip hi">控制中心长按专注模式</span><span class="ar">›</span>
     <span class="chip">＋ 新专注模式</span><span class="ar">›</span>
     <span class="chip">选专注方向</span><span class="ar">›</span>
     <span class="chip">命名与外观</span>
   </div>
-  <div class="path" style="margin-top:8px">
+  <div data-eid="e61" class="path" style="margin-top:8px">
     <span class="lbl">备用</span>
     <span class="chip">设置</span><span class="ar">›</span>
     <span class="chip">专注模式</span><span class="ar">›</span>
@@ -646,21 +703,21 @@
   <div class="units" style="--c:var(--entry);--cs:var(--entry-s)">
     <div class="unit">
       <div class="shot"><img src="assets/v_3.png" alt="控制中心展开的专注模式列表"></div>
-      <h4>进入路径</h4>
-      <p>长按就展开全部模式，最底下是新建。平时切换不走设置。</p>
-      <span class="scene">会议中途静音、临时专注一小时</span>
+      <h4 data-eid="e62">进入路径</h4>
+      <p data-eid="e63">长按就展开全部模式，最底下是新建。平时切换不走设置。</p>
+      <span data-eid="e64" class="scene">会议中途静音、临时专注一小时</span>
     </div>
     <div class="unit">
       <div class="shot"><img src="assets/20261110-212556.png" alt="专注方向选择列表"></div>
-      <h4>新建模式</h4>
-      <p>选一个场景，图标、颜色、通知规则都会先配好；不满意可以逐项改。</p>
-      <span class="scene">开会、写作、通勤这类固定场景</span>
+      <h4 data-eid="e65">新建模式</h4>
+      <p data-eid="e66">选一个场景，图标、颜色、通知规则都会先配好；不满意可以逐项改。</p>
+      <span data-eid="e67" class="scene">开会、写作、通勤这类固定场景</span>
     </div>
     <div class="unit">
       <div class="shot"><img src="assets/v_11.png" alt="命名与配色页面"></div>
-      <h4>起名与配色</h4>
-      <p>名字和颜色会出现在控制中心、锁屏和状态栏，几个模式并存时靠它区分。</p>
-      <span class="scene">同时开着工作和睡眠两个模式</span>
+      <h4 data-eid="e68">起名与配色</h4>
+      <p data-eid="e69">名字和颜色会出现在控制中心、锁屏和状态栏，几个模式并存时靠它区分。</p>
+      <span data-eid="e70" class="scene">同时开着工作和睡眠两个模式</span>
     </div>
   </div>
 
@@ -668,14 +725,14 @@
 
   <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-trigger">3.3 · 激活方式</span>
+      <span data-eid="e71" class="sec-tag t-trigger">3.3 · 激活方式</span>
       <div>
-        <h3>在对的时候自己打开</h3>
-        <p>三种方式可以同时设，满足任意一个就打开。只有一种是手动，其余交给系统。</p>
+        <h3 data-eid="e72">在对的时候自己打开</h3>
+        <p data-eid="e73">三种方式可以同时设，满足任意一个就打开。只有一种是手动，其余交给系统。</p>
       </div>
     </div>
     <div class="chart">
-    <div class="chart-scroll">
+    <div data-eid="e74" class="chart-scroll">
     <svg viewBox="0 0 680 282" role="img" aria-label="一天中的四类触发方式示意">
       <g stroke="#f4f4f8" stroke-width="1">
         <line x1="132.5" y1="72" x2="132.5" y2="248"/>
@@ -741,7 +798,7 @@
       </g>
     </svg>
     </div>
-    <div class="chart-note">
+    <div data-eid="e75" class="chart-note">
       <span><b>可以同时设多条</b>　谁先满足，就按谁执行</span>
       <span><b>每条都能单独关</b>　不影响其他条件</span>
     </div>
@@ -749,19 +806,19 @@
 
   <div class="trigs">
     <div class="trig">
-      <h4><i class="gray"></i>手动开关</h4>
-      <p>点一下就开，再点一下关，不看时间地点。</p>
-      <div class="mini"><span>临时专注 30 分钟</span><span>会议中途</span></div>
+      <h4 data-eid="e76"><i class="gray"></i>手动开关</h4>
+      <p data-eid="e77">点一下就开，再点一下关，不看时间地点。</p>
+      <div data-eid="e78" class="mini"><span>临时专注 30 分钟</span><span>会议中途</span></div>
     </div>
     <div class="trig">
-      <h4><i></i>智能启用</h4>
-      <p>系统根据你的位置和使用习惯判断，不用一条条写规则。</p>
-      <div class="mini"><span>通勤</span><span>午休</span><span>睡前</span></div>
+      <h4 data-eid="e79"><i></i>智能启用</h4>
+      <p data-eid="e80">系统根据你的位置和使用习惯判断，不用一条条写规则。</p>
+      <div data-eid="e81" class="mini"><span>通勤</span><span>午休</span><span>睡前</span></div>
     </div>
     <div class="trig">
-      <h4><i></i>条件触发</h4>
-      <p>自己定规则：到点、到某个地方、或者打开某个 App。</p>
-      <div class="mini"><span>时间</span><span>位置</span><span>打开某 App</span></div>
+      <h4 data-eid="e82"><i></i>条件触发</h4>
+      <p data-eid="e83">自己定规则：到点、到某个地方、或者打开某个 App。</p>
+      <div data-eid="e84" class="mini"><span>时间</span><span>位置</span><span>打开某 App</span></div>
     </div>
   </div>
 
@@ -769,16 +826,16 @@
 
   <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-config">3.4 · 配置能力</span>
+      <span data-eid="e85" class="sec-tag t-config">3.4 · 配置能力</span>
       <div>
-        <h3>开了之后，真的不一样</h3>
-        <p>三件事依次收紧：谁能打扰你、屏幕上能看见什么、手机本身要不要跟着变。</p>
+        <h3 data-eid="e86">开了之后，真的不一样</h3>
+        <p data-eid="e87">三件事依次收紧：谁能打扰你、屏幕上能看见什么、手机本身要不要跟着变。</p>
       </div>
     </div>
     <div class="cap">
     <div class="cap-h">
-      <span class="idx">07</span><h3>通知名单</h3>
-      <p>只有名单里的联系人和 App 能把通知送进来，其他全部静音。名单空着，一条都进不来。</p>
+      <span class="idx">07</span><h3 data-eid="e88">通知名单</h3>
+      <p data-eid="e89">只有名单里的联系人和 App 能把通知送进来，其他全部静音。名单空着，一条都进不来。</p>
     </div>
     <div class="cap-body">
       <div class="chartbox">
@@ -809,7 +866,7 @@
           <text x="574" y="134" text-anchor="middle" font-size="12.5" fill="#5c5c66" font-weight="600">静音</text>
           <text x="574" y="152" text-anchor="middle" font-size="10" fill="#9a9aa5">不打扰，只进通知中心</text>
         </svg>
-        <p>名单空着，所有通知都走下面这条静音的路</p>
+        <p data-eid="e90">名单空着，所有通知都走下面这条静音的路</p>
       </div>
       <div class="panel">
         <div class="pair">
@@ -822,8 +879,8 @@
 
   <div class="cap">
     <div class="cap-h">
-      <span class="idx">08</span><h3>自定义屏幕</h3>
-      <p>锁屏、桌面、手表各换一套页面，模式一开就切过去。管的不只是通知，还有你眼前能看到什么。</p>
+      <span class="idx">08</span><h3 data-eid="e91">自定义屏幕</h3>
+      <p data-eid="e92">锁屏、桌面、手表各换一套页面，模式一开就切过去。管的不只是通知，还有你眼前能看到什么。</p>
     </div>
     <div class="cap-body">
       <div class="panel">
@@ -834,31 +891,31 @@
         </div>
       </div>
       <div class="caplist">
-        <div><b><i></i>锁屏</b><p>换成另一张壁纸和另一组小组件。</p></div>
-        <div><b><i></i>主屏幕</b><p>只留这一页 App，其他页面暂时收起来。</p></div>
-        <div><b><i></i>表盘</b><p>配对的手表也跟着换表盘。</p></div>
+        <div><b data-eid="e93"><i></i>锁屏</b><p data-eid="e94">换成另一张壁纸和另一组小组件。</p></div>
+        <div><b data-eid="e95"><i></i>主屏幕</b><p data-eid="e96">只留这一页 App，其他页面暂时收起来。</p></div>
+        <div><b data-eid="e97"><i></i>表盘</b><p data-eid="e98">配对的手表也跟着换表盘。</p></div>
       </div>
     </div>
   </div>
 
   <div class="cap">
     <div class="cap-h">
-      <span class="idx">09</span><h3>过滤条件</h3>
-      <p>开模式的同时，把某些 App 里的内容和几项系统设置一起改掉，省得再手动设一遍。</p>
+      <span class="idx">09</span><h3 data-eid="e99">过滤条件</h3>
+      <p data-eid="e100">开模式的同时，把某些 App 里的内容和几项系统设置一起改掉，省得再手动设一遍。</p>
     </div>
     <div class="chips">
-      <div>电话<span>按 SIM 卡</span></div>
-      <div>日历<span>过滤日历</span></div>
-      <div>信息<span>过滤对话</span></div>
-      <div>邮件<span>过滤收件箱</span></div>
-      <div>音乐<span>听歌历史</span></div>
-      <div>Safari<span>场景 / 标签组</span></div>
-      <div>第三方 App<span>跟着模式切换</span></div>
-      <div class="sys">低电量模式<span>打开 / 关闭</span></div>
-      <div class="sys">静音模式<span>打开</span></div>
-      <div class="sys">全天候显示<span>开 / 关</span></div>
-      <div class="sys">深色模式<span>设为深色</span></div>
-      <div class="sys" style="border-style:dashed;color:#bdbdc7">＋ 添加条件</div>
+      <div data-eid="e101">电话<span>按 SIM 卡</span></div>
+      <div data-eid="e102">日历<span>过滤日历</span></div>
+      <div data-eid="e103">信息<span>过滤对话</span></div>
+      <div data-eid="e104">邮件<span>过滤收件箱</span></div>
+      <div data-eid="e105">音乐<span>听歌历史</span></div>
+      <div data-eid="e106">Safari<span>场景 / 标签组</span></div>
+      <div data-eid="e107">第三方 App<span>跟着模式切换</span></div>
+      <div data-eid="e108" class="sys">低电量模式<span>打开 / 关闭</span></div>
+      <div data-eid="e109" class="sys">静音模式<span>打开</span></div>
+      <div data-eid="e110" class="sys">全天候显示<span>开 / 关</span></div>
+      <div data-eid="e111" class="sys">深色模式<span>设为深色</span></div>
+      <div data-eid="e112" class="sys" style="border-style:dashed;color:#bdbdc7">＋ 添加条件</div>
     </div>
       </div>
 
@@ -867,62 +924,62 @@
 
 <section id="oneui" class="wrap">
   <div class="chap">
-    <span class="chap-n">04</span>
+    <span data-eid="e113" class="chap-n">04</span>
     <div>
-      <h2>One UI 设计思路</h2>
-      <p>三星把模式做成了一个能改系统设置的自动化容器。</p>
+      <h2 data-eid="e114">One UI 设计思路</h2>
+      <p data-eid="e115">三星把模式做成了一个能改系统设置的自动化容器。</p>
     </div>
   </div>
 
   <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-config">4.1 · 总览</span>
+      <span data-eid="e116" class="sec-tag t-config">4.1 · 总览</span>
       <div>
-        <h3>同样是九项，重心偏后</h3>
-        <p>入口和激活的结构与 iOS 接近，差别集中在配置这一段能走多深。</p>
+        <h3 data-eid="e117">同样是九项，重心偏后</h3>
+        <p data-eid="e118">入口和激活的结构与 iOS 接近，差别集中在配置这一段能走多深。</p>
       </div>
     </div>
 
     <div class="matrix">
       <div class="mcol">
-        <div class="mcol-h"><b>入口</b><span>在哪找到，怎么建一个</span></div>
-        <div class="mcell"><div class="mnum">01</div><div><b>进入路径</b><p>控制中心磁贴长按，或设置首页</p></div></div>
-        <div class="mcell"><div class="mnum">02</div><div><b>预设模式</b><p>睡眠、影院、驾驶、运动、放松、工作</p></div></div>
-        <div class="mcell"><div class="mnum">03</div><div><b>新建与恢复</b><p>自定义名称图标，误删可找回</p></div></div>
+        <div data-eid="e119" class="mcol-h"><b>入口</b><span>在哪找到，怎么建一个</span></div>
+        <div class="mcell"><div class="mnum">01</div><div><b data-eid="e120">进入路径</b><p data-eid="e121">控制中心磁贴长按，或设置首页</p></div></div>
+        <div class="mcell"><div class="mnum">02</div><div><b data-eid="e122">预设模式</b><p data-eid="e123">睡眠、影院、驾驶、运动、放松、工作</p></div></div>
+        <div class="mcell"><div class="mnum">03</div><div><b data-eid="e124">新建与恢复</b><p data-eid="e125">自定义名称图标，误删可找回</p></div></div>
       </div>
 
       <div class="mcol t">
-        <div class="mcol-h"><b>激活方式</b><span>什么时候自己打开</span></div>
-        <div class="mcell"><div class="mnum">04</div><div><b>手动开关</b><p>磁贴点一下，详情页也有大按钮</p></div></div>
-        <div class="mcell"><div class="mnum">05</div><div><b>条件触发</b><p>8 类 28 个条件，含情境与设备</p></div></div>
-        <div class="mcell"><div class="mnum">06</div><div><b>自动退出</b><p>手动开启可设时长，到点自己关</p></div></div>
+        <div data-eid="e126" class="mcol-h"><b>激活方式</b><span>什么时候自己打开</span></div>
+        <div class="mcell"><div class="mnum">04</div><div><b data-eid="e127">手动开关</b><p data-eid="e128">磁贴点一下，详情页也有大按钮</p></div></div>
+        <div class="mcell"><div class="mnum">05</div><div><b data-eid="e129">条件触发</b><p data-eid="e130">8 类 28 个条件，含情境与设备</p></div></div>
+        <div class="mcell"><div class="mnum">06</div><div><b data-eid="e131">自动退出</b><p data-eid="e132">手动开启可设时长，到点自己关</p></div></div>
       </div>
 
       <div class="mcol c">
-        <div class="mcol-h"><b>配置能力</b><span>打开之后改变什么</span></div>
-        <div class="mcell"><div class="mnum">07</div><div><b>保持专注</b><p>免打扰 + 限制应用程序两张名单</p></div></div>
-        <div class="mcell"><div class="mnum">08</div><div><b>更改外观</b><p>锁屏与主屏各换一套，退出还原</p></div></div>
-        <div class="mcell"><div class="mnum">09</div><div><b>其他动作</b><p>23 类 115 项系统设置批量调节</p></div></div>
+        <div data-eid="e133" class="mcol-h"><b>配置能力</b><span>打开之后改变什么</span></div>
+        <div class="mcell"><div class="mnum">07</div><div><b data-eid="e134">保持专注</b><p data-eid="e135">免打扰 + 限制应用程序两张名单</p></div></div>
+        <div class="mcell"><div class="mnum">08</div><div><b data-eid="e136">更改外观</b><p data-eid="e137">锁屏与主屏各换一套，退出还原</p></div></div>
+        <div class="mcell"><div class="mnum">09</div><div><b data-eid="e138">其他动作</b><p data-eid="e139">23 类 115 项系统设置批量调节</p></div></div>
       </div>
     </div>
   </div>
 
   <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-entry">4.2 · 入口</span>
+      <span data-eid="e140" class="sec-tag t-entry">4.2 · 入口</span>
       <div>
-        <h3>磁贴直达，预设开箱能用</h3>
-        <p>入口只比 iOS 多一步「详细信息」。七个预设按场景排好，点开先问用「基本」还是「自定义」。</p>
+        <h3 data-eid="e141">磁贴直达，预设开箱能用</h3>
+        <p data-eid="e142">入口只比 iOS 多一步「详细信息」。七个预设按场景排好，点开先问用「基本」还是「自定义」。</p>
       </div>
     </div>
 
-    <div class="path">
+    <div data-eid="e143" class="path">
       <span class="lbl">路径</span>
       <span class="chip hi">下拉控制中心</span><span class="ar">›</span>
       <span class="chip">长按「模式」磁贴</span><span class="ar">›</span>
       <span class="chip">左下角「详细信息」</span>
     </div>
-    <div class="path" style="margin-top:8px">
+    <div data-eid="e144" class="path" style="margin-top:8px">
       <span class="lbl">备用</span>
       <span class="chip">设置</span><span class="ar">›</span>
       <span class="chip">模式和日常程序</span><span class="ar">›</span>
@@ -932,40 +989,40 @@
     <div class="units" style="--c:var(--entry);--cs:var(--entry-s)">
       <div class="unit">
         <div class="shot"><img src="assets/samsung_control_center_modes_detail.png" alt="控制中心模式磁贴与详细信息"></div>
-        <h4>磁贴直达</h4>
-        <p>下拉控制中心长按「模式」，点左下角「详细信息」直接进设置；平时点一下就能开关，不用翻菜单。</p>
-        <span class="scene">会议中途、进影院前一步切换</span>
+        <h4 data-eid="e145">磁贴直达</h4>
+        <p data-eid="e146">下拉控制中心长按「模式」，点左下角「详细信息」直接进设置；平时点一下就能开关，不用翻菜单。</p>
+        <span data-eid="e147" class="scene">会议中途、进影院前一步切换</span>
       </div>
       <div class="unit">
         <div class="shot"><img src="assets/samsung_modes_now.png" alt="模式和日常程序列表"></div>
-        <h4>七个预设排开</h4>
-        <p>睡眠、影院、驾驶、运动、放松、工作六个预设加一个自定义，按使用场景排列，没配过的标「未设置」。</p>
-        <span class="scene">第一次用，直接挑一个</span>
+        <h4 data-eid="e148">七个预设排开</h4>
+        <p data-eid="e149">睡眠、影院、驾驶、运动、放松、工作六个预设加一个自定义，按使用场景排列，没配过的标「未设置」。</p>
+        <span data-eid="e150" class="scene">第一次用，直接挑一个</span>
       </div>
       <div class="unit">
         <div class="shot"><img src="assets/samsung_add_mode_page.png" alt="添加模式页面"></div>
-        <h4>新建与恢复</h4>
-        <p>自己起名字、选颜色和图标；删掉的系统预设能在顶部恢复列表里一键找回，不必重配。</p>
-        <span class="scene">预设不合适，自己改一个</span>
+        <h4 data-eid="e151">新建与恢复</h4>
+        <p data-eid="e152">自己起名字、选颜色和图标；删掉的系统预设能在顶部恢复列表里一键找回，不必重配。</p>
+        <span data-eid="e153" class="scene">预设不合适，自己改一个</span>
       </div>
     </div>
   </div>
 
   <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-trigger">4.3 · 激活方式</span>
+      <span data-eid="e154" class="sec-tag t-trigger">4.3 · 激活方式</span>
       <div>
-        <h3>按条件开，也能到点自己关</h3>
-        <p>每个模式的详情页顶部都有「自动开启 / 何时启动此模式」，这是条件入口。iOS 那边叫「智能启用」的那一层，三星做成了可逐条挑选的清单。</p>
+        <h3 data-eid="e155">按条件开，也能到点自己关</h3>
+        <p data-eid="e156">每个模式的详情页顶部都有「自动开启 / 何时启动此模式」，这是条件入口。iOS 那边叫「智能启用」的那一层，三星做成了可逐条挑选的清单。</p>
       </div>
     </div>
 
     <div class="cap-body">
       <div class="vcenter">
         <div class="ways">
-          <div><b>条件自己挑</b><span>点「何时启动此模式」进条件列表，八类 28 个，任一条成立就开，也可以多条叠加。</span></div>
-          <div><b>预设给了推荐</b><span>每个模式自带两三条推荐条件，睡眠给睡眠时间表、影院给应用程序打开，不用自己找。</span></div>
-          <div><b>手动也有时长</b><span>手动开启时可设 1 小时、2 小时或自定义，到点自动退出并还原，散场不怕忘。</span></div>
+          <div data-eid="e157"><b>条件自己挑</b><span>点「何时启动此模式」进条件列表，八类 28 个，任一条成立就开，也可以多条叠加。</span></div>
+          <div data-eid="e158"><b>预设给了推荐</b><span>每个模式自带两三条推荐条件，睡眠给睡眠时间表、影院给应用程序打开，不用自己找。</span></div>
+          <div data-eid="e159"><b>手动也有时长</b><span>手动开启时可设 1 小时、2 小时或自定义，到点自动退出并还原，散场不怕忘。</span></div>
         </div>
       </div>
       <div class="panel">
@@ -976,51 +1033,51 @@
       </div>
     </div>
 
-    <div class="cond-h">建议的开启条件 <span>每个模式自带的，开箱即用</span></div>
+    <div data-eid="e160" class="cond-h">建议的开启条件 <span>每个模式自带的，开箱即用</span></div>
     <div class="sug">
-      <div><b>睡眠</b><span>睡眠时间表</span></div>
-      <div><b>影院</b><span>应用程序打开</span></div>
-      <div><b>驾驶</b><span>蓝牙设备</span></div>
-      <div><b>运动</b><span>应用程序打开 · 时间段</span></div>
-      <div><b>自定义</b><span>应用程序打开 · 蓝牙设备 · 时间段</span></div>
-      <div><b>放松</b><span>时间段 · 应用程序打开</span></div>
-      <div><b>工作</b><span>时间段 · 应用程序打开</span></div>
+      <div data-eid="e161"><b>睡眠</b><span>睡眠时间表</span></div>
+      <div data-eid="e162"><b>影院</b><span>应用程序打开</span></div>
+      <div data-eid="e163"><b>驾驶</b><span>蓝牙设备</span></div>
+      <div data-eid="e164"><b>运动</b><span>应用程序打开 · 时间段</span></div>
+      <div data-eid="e165"><b>自定义</b><span>应用程序打开 · 蓝牙设备 · 时间段</span></div>
+      <div data-eid="e166"><b>放松</b><span>时间段 · 应用程序打开</span></div>
+      <div data-eid="e167"><b>工作</b><span>时间段 · 应用程序打开</span></div>
     </div>
 
-    <div class="cond-h">自动开启的全部条件 <span>8 类 / 28 个</span></div>
+    <div data-eid="e168" class="cond-h">自动开启的全部条件 <span>8 类 / 28 个</span></div>
     <div class="conds">
-          <div><b>情境</b><span>醒来时间 · 睡前 · 睡眠 · 驾驶 · 出国旅行</span></div>
-          <div><b>时间</b><span>时间段</span></div>
-          <div><b>地点</b><span>地点</span></div>
-          <div><b>连接</b><span>WLAN 网络 · WLAN 信号强度 · WLAN · 蓝牙设备 · 飞行模式 · 移动数据 · 移动热点</span></div>
-          <div><b>已连接的设备</b><span>Samsung DeX · Smart View · 多重控制 · 连接至 Windows</span></div>
-          <div><b>设备</b><span>有线耳机 · 充电状态 · 电量 · 省电模式 · 声音模式 · 黑暗模式</span></div>
-          <div><b>事件</b><span>正在玩游戏 · 正在播放媒体</span></div>
-          <div><b>呼叫</b><span>来电响铃期间 · 通话期间</span></div>
+          <div data-eid="e169"><b>情境</b><span>醒来时间 · 睡前 · 睡眠 · 驾驶 · 出国旅行</span></div>
+          <div data-eid="e170"><b>时间</b><span>时间段</span></div>
+          <div data-eid="e171"><b>地点</b><span>地点</span></div>
+          <div data-eid="e172"><b>连接</b><span>WLAN 网络 · WLAN 信号强度 · WLAN · 蓝牙设备 · 飞行模式 · 移动数据 · 移动热点</span></div>
+          <div data-eid="e173"><b>已连接的设备</b><span>Samsung DeX · Smart View · 多重控制 · 连接至 Windows</span></div>
+          <div data-eid="e174"><b>设备</b><span>有线耳机 · 充电状态 · 电量 · 省电模式 · 声音模式 · 黑暗模式</span></div>
+          <div data-eid="e175"><b>事件</b><span>正在玩游戏 · 正在播放媒体</span></div>
+          <div data-eid="e176"><b>呼叫</b><span>来电响铃期间 · 通话期间</span></div>
     </div>
-    <p class="note-line">推荐条件不是全量条件的子集：睡眠模式的「睡眠时间表」、其余模式的「应用程序打开」，在 28 个条件里都找不到。系统动作也是一样 —— 建议的操作里会出现「灰阶」这类全量 115 项里没有的条目。建议列表是快捷入口，按场景挑好的组合，不按分类穷举。</p>
+    <p data-eid="e177" class="note-line">推荐条件不是全量条件的子集：睡眠模式的「睡眠时间表」、其余模式的「应用程序打开」，在 28 个条件里都找不到。系统动作也是一样 —— 建议的操作里会出现「灰阶」这类全量 115 项里没有的条目。建议列表是快捷入口，按场景挑好的组合，不按分类穷举。</p>
   </div>
 
     <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-config">4.4 · 配置能力</span>
+      <span data-eid="e178" class="sec-tag t-config">4.4 · 配置能力</span>
       <div>
-        <h3>三张卡，逐块收紧</h3>
-        <p>iOS 把配置摊成三个页面，三星压成三张卡：先管注意力，再管氛围，最后才动系统设置。</p>
+        <h3 data-eid="e179">三张卡，逐块收紧</h3>
+        <p data-eid="e180">iOS 把配置摊成三个页面，三星压成三张卡：先管注意力，再管氛围，最后才动系统设置。</p>
       </div>
     </div>
 
     <div class="cap">
       <div class="cap-h">
-        <span class="idx">07</span><h3>保持专注</h3>
-        <p>两张口的名单：免打扰决定通知怎么拦，限制应用程序决定哪些应用能用。睡眠模式里就设成了「除了哔哩哔哩和其他 26 个」。</p>
+        <span class="idx">07</span><h3 data-eid="e181">保持专注</h3>
+        <p data-eid="e182">两张口的名单：免打扰决定通知怎么拦，限制应用程序决定哪些应用能用。睡眠模式里就设成了「除了哔哩哔哩和其他 26 个」。</p>
       </div>
       <div class="cap-body">
         <div class="vcenter">
           <div class="ways">
-          <div><b>免打扰</b><span>通知静音、屏幕不亮，按模式单独设，退出时恢复。</span></div>
-          <div><b>限制应用程序</b><span>选一批应用允许使用，其余在模式里打不开；也可以反过来只封几个。</span></div>
-          <div><b>放行名单</b><span>免打扰里可以指定允许的联系人，重要来电照样响铃，其余一律静音。</span></div>
+          <div data-eid="e183"><b>免打扰</b><span>通知静音、屏幕不亮，按模式单独设，退出时恢复。</span></div>
+          <div data-eid="e184"><b>限制应用程序</b><span>选一批应用允许使用，其余在模式里打不开；也可以反过来只封几个。</span></div>
+          <div data-eid="e185"><b>放行名单</b><span>免打扰里可以指定允许的联系人，重要来电照样响铃，其余一律静音。</span></div>
         </div>
         </div>
         <div class="panel">
@@ -1034,8 +1091,8 @@
 
     <div class="cap">
       <div class="cap-h">
-        <span class="idx">08</span><h3>更改外观</h3>
-        <p>锁屏和主屏幕各换一套：壁纸、时钟排版、息屏显示。模式退出时自动换回原来的样子，不会改乱桌面。</p>
+        <span class="idx">08</span><h3 data-eid="e186">更改外观</h3>
+        <p data-eid="e187">锁屏和主屏幕各换一套：壁纸、时钟排版、息屏显示。模式退出时自动换回原来的样子，不会改乱桌面。</p>
       </div>
       <div class="cap-body flip">
         <div class="panel">
@@ -1046,30 +1103,30 @@
         </div>
         <div class="vcenter">
           <div class="caplist">
-          <div><b><i></i>锁定屏幕</b><p>沉静的壁纸、极简时钟、息屏显示表盘，一并在模式里定好。</p></div>
-          <div><b><i></i>主屏幕</b><p>换专用壁纸，或者只保留与当前场景相关的几页应用。</p></div>
-          <div><b><i></i>退出自动还原</b><p>系统记下之前的壁纸和排版，模式一关立刻还原，不需要手动改回去。</p></div>
+          <div><b data-eid="e188"><i></i>锁定屏幕</b><p data-eid="e189">沉静的壁纸、极简时钟、息屏显示表盘，一并在模式里定好。</p></div>
+          <div><b data-eid="e190"><i></i>主屏幕</b><p data-eid="e191">换专用壁纸，或者只保留与当前场景相关的几页应用。</p></div>
+          <div><b data-eid="e192"><i></i>退出自动还原</b><p data-eid="e193">系统记下之前的壁纸和排版，模式一关立刻还原，不需要手动改回去。</p></div>
         </div>
       </div>
     </div>
 
     <div class="cap">
       <div class="cap-h">
-        <span class="idx">09</span><h3>其他动作</h3>
-        <p>打破设置页之间的边界，把连接、声音、显示、电池、辅助功能等全部收进模式统一控制。开启时批量改，关闭时全部还原 —— 这是两家差距最实在的一段。</p>
+        <span class="idx">09</span><h3 data-eid="e194">其他动作</h3>
+        <p data-eid="e195">打破设置页之间的边界，把连接、声音、显示、电池、辅助功能等全部收进模式统一控制。开启时批量改，关闭时全部还原 —— 这是两家差距最实在的一段。</p>
       </div>
 
-      <div class="cond-h">建议的操作 <span>每个模式自带的快捷动作</span></div>
+      <div data-eid="e196" class="cond-h">建议的操作 <span>每个模式自带的快捷动作</span></div>
       <div class="cap-body">
         <div class="vcenter">
           <div class="sug sug-2col">
-        <div><b>睡眠</b><span>灰阶 · 黑暗模式 · 护眼模式 · 声音模式和音量 · 省电模式 · 息屏提醒</span></div>
-        <div><b>影院</b><span>声音模式和音量</span></div>
-        <div><b>驾驶</b><span>打开应用程序或执行应用程序操作 · 媒体音量 · 读出通知 · 语音唤醒设置</span></div>
-        <div><b>运动</b><span>播放音乐 · 媒体音量 · 声音模式和音量</span></div>
-        <div><b>自定义</b><span>灰阶 · 黑暗模式 · 打开应用程序或执行应用程序操作 · 媒体音量 · 播放音乐 · 读出通知 · 语音唤醒设置</span></div>
-        <div><b>放松</b><span>声音模式和音量 · 省电模式 · 护眼模式</span></div>
-        <div><b>工作</b><span>声音模式和音量 · 省电模式 · 打开应用程序或执行应用程序操作</span></div>
+        <div data-eid="e197"><b>睡眠</b><span>灰阶 · 黑暗模式 · 护眼模式 · 声音模式和音量 · 省电模式 · 息屏提醒</span></div>
+        <div data-eid="e198"><b>影院</b><span>声音模式和音量</span></div>
+        <div data-eid="e199"><b>驾驶</b><span>打开应用程序或执行应用程序操作 · 媒体音量 · 读出通知 · 语音唤醒设置</span></div>
+        <div data-eid="e200"><b>运动</b><span>播放音乐 · 媒体音量 · 声音模式和音量</span></div>
+        <div data-eid="e201"><b>自定义</b><span>灰阶 · 黑暗模式 · 打开应用程序或执行应用程序操作 · 媒体音量 · 播放音乐 · 读出通知 · 语音唤醒设置</span></div>
+        <div data-eid="e202"><b>放松</b><span>声音模式和音量 · 省电模式 · 护眼模式</span></div>
+        <div data-eid="e203"><b>工作</b><span>声音模式和音量 · 省电模式 · 打开应用程序或执行应用程序操作</span></div>
           </div>
         </div>
         <div class="panel">
@@ -1080,10 +1137,10 @@
         </div>
       </div>
 
-      <div class="cond-h">可调用的全部操作 <span>23 类 / 115 项</span></div>
+      <div data-eid="e204" class="cond-h">可调用的全部操作 <span>23 类 / 115 项</span></div>
       <div class="cap-body">
         <div class="vcenter">
-          <div class="acts-cats">
+          <div data-eid="e205" class="acts-cats">
             <span>连接 <b>13</b></span>
             <span>已连接的设备 <b>5</b></span>
             <span>声音和振动 <b>11</b></span>
@@ -1119,23 +1176,24 @@
       </div>
     </div>
   </div>
+  </div>
 </section>
 
 <section id="compare" class="wrap">
   <div class="chap">
-    <span class="chap-n">05</span>
+    <span data-eid="e206" class="chap-n">05</span>
     <div>
-      <h2>横向对比</h2>
-      <p>两边都能用，但替用户做的决定不一样多。</p>
+      <h2 data-eid="e207">横向对比</h2>
+      <p data-eid="e208">两边都能用，但替用户做的决定不一样多。</p>
     </div>
   </div>
 
   <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-config">5.1 · 逐项对照</span>
+      <span data-eid="e209" class="sec-tag t-config">5.1 · 逐项对照</span>
       <div>
-        <h3>六个维度上的差异</h3>
-        <p>前三行是做法，后三行是代价。</p>
+        <h3 data-eid="e210">六个维度上的差异</h3>
+        <p data-eid="e211">前三行是做法，后三行是代价。</p>
       </div>
     </div>
 
@@ -1143,41 +1201,41 @@
       <table class="cmp">
         <thead>
           <tr>
-            <th style="width:16%">维度</th>
-            <th style="width:42%">iOS 专注模式</th>
-            <th>One UI 模式与日常程序</th>
+            <th data-eid="e212" style="width:16%">维度</th>
+            <th data-eid="e213" style="width:42%">iOS 专注模式</th>
+            <th data-eid="e214">One UI 模式与日常程序</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>核心模型</td>
-            <td>选一个场景，系统配好一套参数</td>
-            <td>定一个条件，逐项勾选要执行的动作</td>
+            <td data-eid="e215">核心模型</td>
+            <td data-eid="e216">选一个场景，系统配好一套参数</td>
+            <td data-eid="e217">定一个条件，逐项勾选要执行的动作</td>
           </tr>
           <tr>
-            <td>入口</td>
-            <td>控制中心长按展开全部模式，底部新建</td>
-            <td>控制中心磁贴长按进「详细信息」，或从设置进入</td>
+            <td data-eid="e218">入口</td>
+            <td data-eid="e219">控制中心长按展开全部模式，底部新建</td>
+            <td data-eid="e220">控制中心磁贴长按进「详细信息」，或从设置进入</td>
           </tr>
           <tr>
-            <td>激活</td>
-            <td>智能启用 + 时间、位置、打开 App；手动开关</td>
-            <td>8 类 28 个条件（含情境、设备、事件）；支持倒计时自动退出</td>
+            <td data-eid="e221">激活</td>
+            <td data-eid="e222">智能启用 + 时间、位置、打开 App；手动开关</td>
+            <td data-eid="e223">8 类 28 个条件（含情境、设备、事件）；支持倒计时自动退出</td>
           </tr>
           <tr>
-            <td>配置范围</td>
-            <td>通知名单、三个系统页面、10 项过滤条件</td>
-            <td>保持专注、更改外观，加 23 类 115 项其他动作</td>
+            <td data-eid="e224">配置范围</td>
+            <td data-eid="e225">通知名单、三个系统页面、10 项过滤条件</td>
+            <td data-eid="e226">保持专注、更改外观，加 23 类 115 项其他动作</td>
           </tr>
           <tr>
-            <td>使用门槛</td>
-            <td>低：预设直接用，每组改一项就能跑</td>
-            <td>高：要会搭规则，动作得一个个选</td>
+            <td data-eid="e227">使用门槛</td>
+            <td data-eid="e228">低：预设直接用，每组改一项就能跑</td>
+            <td data-eid="e229">高：要会搭规则，动作得一个个选</td>
           </tr>
           <tr>
-            <td>典型失败</td>
-            <td>名单空着，等于全部静音</td>
-            <td>规则搭得太复杂，建完就忘了用</td>
+            <td data-eid="e230">典型失败</td>
+            <td data-eid="e231">名单空着，等于全部静音</td>
+            <td data-eid="e232">规则搭得太复杂，建完就忘了用</td>
           </tr>
         </tbody>
       </table>
@@ -1186,23 +1244,23 @@
 
   <div class="sub">
     <div class="sec-h">
-      <span class="sec-tag t-config">5.2 · 结论</span>
+      <span data-eid="e233" class="sec-tag t-config">5.2 · 结论</span>
       <div>
-        <h3>不是功能多少，是复杂度放在谁那边</h3>
-        <p>一个把复杂度收进系统，一个把复杂度摊给用户。</p>
+        <h3 data-eid="e234">不是功能多少，是复杂度放在谁那边</h3>
+        <p data-eid="e235">一个把复杂度收进系统，一个把复杂度摊给用户。</p>
       </div>
     </div>
 
     <div class="models">
       <div class="model">
-        <b>iOS：做减法</b>
-        <p>用户只需要回答「现在是什么场景」，剩下的参数由系统预置。代价是上限固定 —— 想改系统级设置，只能靠 10 项过滤条件挑几样。</p>
-        <div class="m-flow"><span>选场景</span><i>→</i><span>系统配好一套</span><i>→</i><span>可微调</span></div>
+        <b data-eid="e236">iOS：做减法</b>
+        <p data-eid="e237">用户只需要回答「现在是什么场景」，剩下的参数由系统预置。代价是上限固定 —— 想改系统级设置，只能靠 10 项过滤条件挑几样。</p>
+        <div data-eid="e238" class="m-flow"><span>选场景</span><i>→</i><span>系统配好一套</span><i>→</i><span>可微调</span></div>
       </div>
       <div class="model">
-        <b>One UI：做加法</b>
-        <p>用户需要回答「什么条件触发、执行哪些动作」，每一步都要自己勾。代价是门槛高 —— 不会搭的人，模式建了也不会用起来。</p>
-        <div class="m-flow"><span>定条件</span><i>→</i><span>勾动作</span><i>→</i><span>到点自动退</span></div>
+        <b data-eid="e239">One UI：做加法</b>
+        <p data-eid="e240">用户需要回答「什么条件触发、执行哪些动作」，每一步都要自己勾。代价是门槛高 —— 不会搭的人，模式建了也不会用起来。</p>
+        <div data-eid="e241" class="m-flow"><span>定条件</span><i>→</i><span>勾动作</span><i>→</i><span>到点自动退</span></div>
       </div>
     </div>
   </div>
@@ -1210,10 +1268,10 @@
 
 <section id="action" class="wrap">
   <div class="chap">
-    <span class="chap-n">06</span>
+    <span data-eid="e242" class="chap-n">06</span>
     <div>
-      <h2>实施建议</h2>
-      <p>两个样本给了两套解法，落到我们身上，还是这三个方向。</p>
+      <h2 data-eid="e243">实施建议</h2>
+      <p data-eid="e244">两个样本给了两套解法，落到我们身上，还是这三个方向。</p>
     </div>
   </div>
 
@@ -1221,45 +1279,45 @@
     <table class="dir-table">
       <thead>
         <tr>
-          <th style="width:1%">方向</th>
-          <th style="width:22%">一句话判断</th>
-          <th>重点要做的</th>
+          <th data-eid="e245" style="width:1%">方向</th>
+          <th data-eid="e246" style="width:22%">一句话判断</th>
+          <th data-eid="e247">重点要做的</th>
         </tr>
       </thead>
       <tbody>
           <tr>
-            <td>构建入口</td>
-            <td class="dt-say">让模式出现在手边，而不是藏在设置里</td>
+            <td data-eid="e248">构建入口</td>
+            <td data-eid="e249" class="dt-say">让模式出现在手边，而不是藏在设置里</td>
             <td>
-              <ul>
-                <li>切换入口放进控制中心，一次点按完成，不进设置</li>
-                <li>新建压到三步：选场景、起名字、选通知名单</li>
-                <li>预置几套场景模板，第一次用不必从零配</li>
-                <li>删掉的模式要能找回</li>
+              <ul data-sid="s1">
+                <li data-eid="e250">切换入口放进控制中心，一次点按完成，不进设置</li>
+                <li data-eid="e251">新建压到三步：选场景、起名字、选通知名单</li>
+                <li data-eid="e252">预置几套场景模板，第一次用不必从零配</li>
+                <li data-eid="e253">删掉的模式要能找回</li>
               </ul>
             </td>
           </tr>
           <tr>
-            <td>激活能力</td>
-            <td class="dt-say">从「记得开」变成「帮你开」</td>
+            <td data-eid="e254">激活能力</td>
+            <td data-eid="e255" class="dt-say">从「记得开」变成「帮你开」</td>
             <td>
-              <ul>
-                <li>优先做智能启用：按位置和使用习惯判断，减少配置负担</li>
-                <li>时间、位置、打开某个 App 三类条件齐备，可叠加也可单条关</li>
-                <li>补上蓝牙、网络这类设备条件，上车连上车载就开</li>
-                <li>手动开启时给个时长，到点自动退出</li>
+              <ul data-sid="s2">
+                <li data-eid="e256">优先做智能启用：按位置和使用习惯判断，减少配置负担</li>
+                <li data-eid="e257">时间、位置、打开某个 App 三类条件齐备，可叠加也可单条关</li>
+                <li data-eid="e258">补上蓝牙、网络这类设备条件，上车连上车载就开</li>
+                <li data-eid="e259">手动开启时给个时长，到点自动退出</li>
               </ul>
             </td>
           </tr>
           <tr>
-            <td>系统控制</td>
-            <td class="dt-say">不只是静音通知，设备行为要真的变</td>
+            <td data-eid="e260">系统控制</td>
+            <td data-eid="e261" class="dt-say">不只是静音通知，设备行为要真的变</td>
             <td>
-              <ul>
-                <li>通知名单给默认模板，别让用户面对一张空白名单</li>
-                <li>支持更换锁屏与主屏幕页面，把场景外的 App 移出视线</li>
-                <li>App 联动：日历、邮件、信息只显示该场景需要的那部分</li>
-                <li>系统联动：深色、静音、低电量、屏幕常亮</li>
+              <ul data-sid="s3">
+                <li data-eid="e262">通知名单给默认模板，别让用户面对一张空白名单</li>
+                <li data-eid="e263">支持更换锁屏与主屏幕页面，把场景外的 App 移出视线</li>
+                <li data-eid="e264">App 联动：日历、邮件、信息只显示该场景需要的那部分</li>
+                <li data-eid="e265">系统联动：深色、静音、低电量、屏幕常亮</li>
               </ul>
             </td>
           </tr>
@@ -1270,201 +1328,201 @@
 
 <section id="appendix" class="wrap">
   <div class="chap">
-    <span class="chap-n">A</span>
+    <span data-eid="e266" class="chap-n">A</span>
     <div>
-      <h2>附表 · One UI 系统动作全表</h2>
-      <p>模式能调用的全部系统能力，115 项，按 23 类归档。这也是它与 iOS 差距最实在的一段。</p>
+      <h2 data-eid="e267">附表 · One UI 系统动作全表</h2>
+      <p data-eid="e268">模式能调用的全部系统能力，115 项，按 23 类归档。这也是它与 iOS 差距最实在的一段。</p>
     </div>
   </div>
 
   <div class="acts">
       <div class="act-card">
-        <h5>连接<span>13 项</span></h5>
-          <div class="act-i">WLAN</div>
-          <div class="act-i">显示 WLAN 二维码</div>
-          <div class="act-i">蓝牙</div>
-          <div class="act-i">连接至蓝牙设备</div>
-          <div class="act-i">断开与蓝牙设备的连接</div>
-          <div class="act-i">音乐分享</div>
-          <div class="act-i">NFC</div>
-          <div class="act-i">飞行模式</div>
-          <div class="act-i">移动数据</div>
-          <div class="act-i">流量节省</div>
-          <div class="act-i">移动热点</div>
-          <div class="act-i">连接至 VPN</div>
-          <div class="act-i">断开与 VPN 的连接</div>
+        <h5 data-eid="e269">连接<span>13 项</span></h5>
+          <div data-eid="e270" class="act-i">WLAN</div>
+          <div data-eid="e271" class="act-i">显示 WLAN 二维码</div>
+          <div data-eid="e272" class="act-i">蓝牙</div>
+          <div data-eid="e273" class="act-i">连接至蓝牙设备</div>
+          <div data-eid="e274" class="act-i">断开与蓝牙设备的连接</div>
+          <div data-eid="e275" class="act-i">音乐分享</div>
+          <div data-eid="e276" class="act-i">NFC</div>
+          <div data-eid="e277" class="act-i">飞行模式</div>
+          <div data-eid="e278" class="act-i">移动数据</div>
+          <div data-eid="e279" class="act-i">流量节省</div>
+          <div data-eid="e280" class="act-i">移动热点</div>
+          <div data-eid="e281" class="act-i">连接至 VPN</div>
+          <div data-eid="e282" class="act-i">断开与 VPN 的连接</div>
       </div>
       <div class="act-card">
-        <h5>已连接的设备<span>5 项</span></h5>
-          <div class="act-i">多重控制</div>
-          <div class="act-i">Samsung DeX (无线显示器)</div>
-          <div class="act-i">跨设备接打电话和收发短信</div>
-          <div class="act-i">连接至 Windows</div>
-          <div class="act-i">S 互传</div>
+        <h5 data-eid="e283">已连接的设备<span>5 项</span></h5>
+          <div data-eid="e284" class="act-i">多重控制</div>
+          <div data-eid="e285" class="act-i">Samsung DeX (无线显示器)</div>
+          <div data-eid="e286" class="act-i">跨设备接打电话和收发短信</div>
+          <div data-eid="e287" class="act-i">连接至 Windows</div>
+          <div data-eid="e288" class="act-i">S 互传</div>
       </div>
       <div class="act-card">
-        <h5>声音和振动<span>11 项</span></h5>
-          <div class="act-i">拨号按键音</div>
-          <div class="act-i">三星键盘声音</div>
-          <div class="act-i">三星键盘振动</div>
-          <div class="act-i">杜比全景声</div>
-          <div class="act-i">单独播放应用程序声音</div>
-          <div class="act-i">均衡器</div>
-          <div class="act-i">音量标准化</div>
-          <div class="act-i">铃响时振动</div>
-          <div class="act-i">人工智能语音助手音量</div>
-          <div class="act-i">通话音量</div>
-          <div class="act-i">铃声</div>
+        <h5 data-eid="e289">声音和振动<span>11 项</span></h5>
+          <div data-eid="e290" class="act-i">拨号按键音</div>
+          <div data-eid="e291" class="act-i">三星键盘声音</div>
+          <div data-eid="e292" class="act-i">三星键盘振动</div>
+          <div data-eid="e293" class="act-i">杜比全景声</div>
+          <div data-eid="e294" class="act-i">单独播放应用程序声音</div>
+          <div data-eid="e295" class="act-i">均衡器</div>
+          <div data-eid="e296" class="act-i">音量标准化</div>
+          <div data-eid="e297" class="act-i">铃响时振动</div>
+          <div data-eid="e298" class="act-i">人工智能语音助手音量</div>
+          <div data-eid="e299" class="act-i">通话音量</div>
+          <div data-eid="e300" class="act-i">铃声</div>
       </div>
       <div class="act-card">
-        <h5>通知<span>1 项</span></h5>
-          <div class="act-i">显示自定义通知</div>
+        <h5 data-eid="e301">通知<span>1 项</span></h5>
+          <div data-eid="e302" class="act-i">显示自定义通知</div>
       </div>
       <div class="act-card">
-        <h5>显示<span>14 项</span></h5>
-          <div class="act-i">亮度</div>
-          <div class="act-i">屏幕刷新率</div>
-          <div class="act-i">黑暗模式开启时壁纸变暗</div>
-          <div class="act-i">字体风格</div>
-          <div class="act-i">字体大小</div>
-          <div class="act-i">屏幕缩放</div>
-          <div class="act-i">屏幕分辨率</div>
-          <div class="act-i">自动息屏</div>
-          <div class="act-i">屏幕方向</div>
-          <div class="act-i">侧屏幕面板</div>
-          <div class="act-i">自动调节亮度</div>
-          <div class="act-i">触摸灵敏度</div>
-          <div class="act-i">自适应色调</div>
-          <div class="act-i">防误触保护</div>
+        <h5 data-eid="e303">显示<span>14 项</span></h5>
+          <div data-eid="e304" class="act-i">亮度</div>
+          <div data-eid="e305" class="act-i">屏幕刷新率</div>
+          <div data-eid="e306" class="act-i">黑暗模式开启时壁纸变暗</div>
+          <div data-eid="e307" class="act-i">字体风格</div>
+          <div data-eid="e308" class="act-i">字体大小</div>
+          <div data-eid="e309" class="act-i">屏幕缩放</div>
+          <div data-eid="e310" class="act-i">屏幕分辨率</div>
+          <div data-eid="e311" class="act-i">自动息屏</div>
+          <div data-eid="e312" class="act-i">屏幕方向</div>
+          <div data-eid="e313" class="act-i">侧屏幕面板</div>
+          <div data-eid="e314" class="act-i">自动调节亮度</div>
+          <div data-eid="e315" class="act-i">触摸灵敏度</div>
+          <div data-eid="e316" class="act-i">自适应色调</div>
+          <div data-eid="e317" class="act-i">防误触保护</div>
       </div>
       <div class="act-card">
-        <h5>壁纸<span>1 项</span></h5>
-          <div class="act-i">黑暗模式开启时壁纸变暗</div>
+        <h5 data-eid="e318">壁纸<span>1 项</span></h5>
+          <div data-eid="e319" class="act-i">黑暗模式开启时壁纸变暗</div>
       </div>
       <div class="act-card">
-        <h5>锁定屏幕和息屏提醒<span>3 项</span></h5>
-          <div class="act-i">息屏提醒</div>
-          <div class="act-i">保持手机解锁</div>
-          <div class="act-i">使用生物识别解锁</div>
+        <h5 data-eid="e320">锁定屏幕和息屏提醒<span>3 项</span></h5>
+          <div data-eid="e321" class="act-i">息屏提醒</div>
+          <div data-eid="e322" class="act-i">保持手机解锁</div>
+          <div data-eid="e323" class="act-i">使用生物识别解锁</div>
       </div>
       <div class="act-card">
-        <h5>位置<span>1 项</span></h5>
-          <div class="act-i">位置</div>
+        <h5 data-eid="e324">位置<span>1 项</span></h5>
+          <div data-eid="e325" class="act-i">位置</div>
       </div>
       <div class="act-card">
-        <h5>账号与备份<span>1 项</span></h5>
-          <div class="act-i">自动同步数据</div>
+        <h5 data-eid="e326">账号与备份<span>1 项</span></h5>
+          <div data-eid="e327" class="act-i">自动同步数据</div>
       </div>
       <div class="act-card">
-        <h5>电池<span>4 项</span></h5>
-          <div class="act-i">省电模式</div>
-          <div class="act-i">加速充电</div>
-          <div class="act-i">无线加速充电</div>
-          <div class="act-i">电池保护</div>
+        <h5 data-eid="e328">电池<span>4 项</span></h5>
+          <div data-eid="e329" class="act-i">省电模式</div>
+          <div data-eid="e330" class="act-i">加速充电</div>
+          <div data-eid="e331" class="act-i">无线加速充电</div>
+          <div data-eid="e332" class="act-i">电池保护</div>
       </div>
       <div class="act-card">
-        <h5>智能管理器<span>2 项</span></h5>
-          <div class="act-i">性能配置</div>
-          <div class="act-i">优化手机</div>
+        <h5 data-eid="e333">智能管理器<span>2 项</span></h5>
+          <div data-eid="e334" class="act-i">性能配置</div>
+          <div data-eid="e335" class="act-i">优化手机</div>
       </div>
       <div class="act-card">
-        <h5>三星键盘<span>5 项</span></h5>
-          <div class="act-i">三星键盘语音输入</div>
-          <div class="act-i">语言和类型</div>
-          <div class="act-i">模式</div>
-          <div class="act-i">高对比度键盘</div>
-          <div class="act-i">清除剪贴板</div>
+        <h5 data-eid="e336">三星键盘<span>5 项</span></h5>
+          <div data-eid="e337" class="act-i">三星键盘语音输入</div>
+          <div data-eid="e338" class="act-i">语言和类型</div>
+          <div data-eid="e339" class="act-i">模式</div>
+          <div data-eid="e340" class="act-i">高对比度键盘</div>
+          <div data-eid="e341" class="act-i">清除剪贴板</div>
       </div>
       <div class="act-card">
-        <h5>辅助功能<span>11 项</span></h5>
-          <div class="act-i">放大环境音</div>
-          <div class="act-i">悬浮菜单</div>
-          <div class="act-i">静音所有声音</div>
-          <div class="act-i">单声道音频</div>
-          <div class="act-i">相机闪光灯通知</div>
-          <div class="act-i">屏幕闪光灯通知</div>
-          <div class="act-i">左/右声音平衡</div>
-          <div class="act-i">极暗</div>
-          <div class="act-i">颜色反转</div>
-          <div class="act-i">颜色修正</div>
-          <div class="act-i">颜色过滤器</div>
+        <h5 data-eid="e342">辅助功能<span>11 项</span></h5>
+          <div data-eid="e343" class="act-i">放大环境音</div>
+          <div data-eid="e344" class="act-i">悬浮菜单</div>
+          <div data-eid="e345" class="act-i">静音所有声音</div>
+          <div data-eid="e346" class="act-i">单声道音频</div>
+          <div data-eid="e347" class="act-i">相机闪光灯通知</div>
+          <div data-eid="e348" class="act-i">屏幕闪光灯通知</div>
+          <div data-eid="e349" class="act-i">左/右声音平衡</div>
+          <div data-eid="e350" class="act-i">极暗</div>
+          <div data-eid="e351" class="act-i">颜色反转</div>
+          <div data-eid="e352" class="act-i">颜色修正</div>
+          <div data-eid="e353" class="act-i">颜色过滤器</div>
       </div>
       <div class="act-card">
-        <h5>效果<span>3 项</span></h5>
-          <div class="act-i">蜂鸣一次</div>
-          <div class="act-i">振动一次</div>
-          <div class="act-i">侧屏闪光效果一次</div>
+        <h5 data-eid="e354">效果<span>3 项</span></h5>
+          <div data-eid="e355" class="act-i">蜂鸣一次</div>
+          <div data-eid="e356" class="act-i">振动一次</div>
+          <div data-eid="e357" class="act-i">侧屏闪光效果一次</div>
       </div>
       <div class="act-card">
-        <h5>功能<span>10 项</span></h5>
-          <div class="act-i">进入网站</div>
-          <div class="act-i">手电筒</div>
-          <div class="act-i">导航按钮操作</div>
-          <div class="act-i">视频亮度</div>
-          <div class="act-i">使用画笔按钮打开浮窗指令</div>
-          <div class="act-i">读出文本</div>
-          <div class="act-i">使用扬声器接听</div>
-          <div class="act-i">截屏</div>
-          <div class="act-i">录制屏幕</div>
-          <div class="act-i">拒绝来电并发送快速信息</div>
+        <h5 data-eid="e358">功能<span>10 项</span></h5>
+          <div data-eid="e359" class="act-i">进入网站</div>
+          <div data-eid="e360" class="act-i">手电筒</div>
+          <div data-eid="e361" class="act-i">导航按钮操作</div>
+          <div data-eid="e362" class="act-i">视频亮度</div>
+          <div data-eid="e363" class="act-i">使用画笔按钮打开浮窗指令</div>
+          <div data-eid="e364" class="act-i">读出文本</div>
+          <div data-eid="e365" class="act-i">使用扬声器接听</div>
+          <div data-eid="e366" class="act-i">截屏</div>
+          <div data-eid="e367" class="act-i">录制屏幕</div>
+          <div data-eid="e368" class="act-i">拒绝来电并发送快速信息</div>
       </div>
       <div class="act-card">
-        <h5>应用程序<span>2 项</span></h5>
-          <div class="act-i">关闭应用程序</div>
-          <div class="act-i">打开一键分屏</div>
+        <h5 data-eid="e369">应用程序<span>2 项</span></h5>
+          <div data-eid="e370" class="act-i">关闭应用程序</div>
+          <div data-eid="e371" class="act-i">打开一键分屏</div>
       </div>
       <div class="act-card">
-        <h5>Bixby<span>1 项</span></h5>
-          <div class="act-i">问 Bixby</div>
+        <h5 data-eid="e372">Bixby<span>1 项</span></h5>
+          <div data-eid="e373" class="act-i">问 Bixby</div>
       </div>
       <div class="act-card">
-        <h5>日历<span>3 项</span></h5>
-          <div class="act-i">打开日历</div>
-          <div class="act-i">添加事件</div>
-          <div class="act-i">搜索日历</div>
+        <h5 data-eid="e374">日历<span>3 项</span></h5>
+          <div data-eid="e375" class="act-i">打开日历</div>
+          <div data-eid="e376" class="act-i">添加事件</div>
+          <div data-eid="e377" class="act-i">搜索日历</div>
       </div>
       <div class="act-card">
-        <h5>时钟<span>7 项</span></h5>
-          <div class="act-i">开启闹钟</div>
-          <div class="act-i">关闭闹钟</div>
-          <div class="act-i">启动定时器</div>
-          <div class="act-i">打开时钟</div>
-          <div class="act-i">添加闹钟</div>
-          <div class="act-i">设置定时器</div>
-          <div class="act-i">启动秒表</div>
+        <h5 data-eid="e378">时钟<span>7 项</span></h5>
+          <div data-eid="e379" class="act-i">开启闹钟</div>
+          <div data-eid="e380" class="act-i">关闭闹钟</div>
+          <div data-eid="e381" class="act-i">启动定时器</div>
+          <div data-eid="e382" class="act-i">打开时钟</div>
+          <div data-eid="e383" class="act-i">添加闹钟</div>
+          <div data-eid="e384" class="act-i">设置定时器</div>
+          <div data-eid="e385" class="act-i">启动秒表</div>
       </div>
       <div class="act-card">
-        <h5>相册<span>5 项</span></h5>
-          <div class="act-i">显示图片</div>
-          <div class="act-i">打开相册</div>
-          <div class="act-i">搜索相册</div>
-          <div class="act-i">最近</div>
-          <div class="act-i">收藏</div>
+        <h5 data-eid="e386">相册<span>5 项</span></h5>
+          <div data-eid="e387" class="act-i">显示图片</div>
+          <div data-eid="e388" class="act-i">打开相册</div>
+          <div data-eid="e389" class="act-i">搜索相册</div>
+          <div data-eid="e390" class="act-i">最近</div>
+          <div data-eid="e391" class="act-i">收藏</div>
       </div>
       <div class="act-card">
-        <h5>游戏助推器<span>3 项</span></h5>
-          <div class="act-i">游戏期间禁用侧屏幕面板</div>
-          <div class="act-i">游戏期间禁用 Bixby</div>
-          <div class="act-i">游戏期间禁用自动调节亮度</div>
+        <h5 data-eid="e392">游戏助推器<span>3 项</span></h5>
+          <div data-eid="e393" class="act-i">游戏期间禁用侧屏幕面板</div>
+          <div data-eid="e394" class="act-i">游戏期间禁用 Bixby</div>
+          <div data-eid="e395" class="act-i">游戏期间禁用自动调节亮度</div>
       </div>
       <div class="act-card">
-        <h5>即时简报<span>2 项</span></h5>
-          <div class="act-i">打开即时简报</div>
-          <div class="act-i">播放语音简报</div>
+        <h5 data-eid="e396">即时简报<span>2 项</span></h5>
+          <div data-eid="e397" class="act-i">打开即时简报</div>
+          <div data-eid="e398" class="act-i">播放语音简报</div>
       </div>
       <div class="act-card">
-        <h5>电话<span>7 项</span></h5>
-          <div class="act-i">拒绝来电并发送快速信息</div>
-          <div class="act-i">使用扬声器接听</div>
-          <div class="act-i">来电筛选</div>
-          <div class="act-i">打开电话</div>
-          <div class="act-i">未接来电</div>
-          <div class="act-i">搜索</div>
-          <div class="act-i">新建联系人</div>
+        <h5 data-eid="e399">电话<span>7 项</span></h5>
+          <div data-eid="e400" class="act-i">拒绝来电并发送快速信息</div>
+          <div data-eid="e401" class="act-i">使用扬声器接听</div>
+          <div data-eid="e402" class="act-i">来电筛选</div>
+          <div data-eid="e403" class="act-i">打开电话</div>
+          <div data-eid="e404" class="act-i">未接来电</div>
+          <div data-eid="e405" class="act-i">搜索</div>
+          <div data-eid="e406" class="act-i">新建联系人</div>
       </div>
       <div class="extra-card">
-      <div class="extra-h"><b>打开应用/快捷操作</b><span>实测 44 项</span></div>
-      <p>按手机已安装的应用展开：打开相册、QQ 音乐、哔哩哔哩、小红书、三星钱包……每一类的二级动作也跟着应用走（比如 QQ 音乐还带「最近播放」「听歌识曲」）。数量随安装变化，不计入上面的 23 类 115 项。</p>
+      <div data-eid="e407" class="extra-h"><b>打开应用/快捷操作</b><span>实测 44 项</span></div>
+      <p data-eid="e408">按手机已安装的应用展开：打开相册、QQ 音乐、哔哩哔哩、小红书、三星钱包……每一类的二级动作也跟着应用走（比如 QQ 音乐还带「最近播放」「听歌识曲」）。数量随安装变化，不计入上面的 23 类 115 项。</p>
     </div>
     </div>
     
@@ -1472,8 +1530,8 @@
 
 <footer>
   <div class="wrap">
-    <p>iOS 部分取自 iOS 18 及以上版本的专注模式设置；One UI 部分取自 Galaxy S25 Ultra（Android 16）「模式和日常程序」真机实测。</p>
-    <p class="ref">参考：Gloria Mark 等，被打断后回到原任务的恢复时长研究（2006）；Sophie Leroy，注意力残留（2009）；Beattie &amp; Daubs，数字健康项目与责任转移（2020）；Apple WWDC 2021 Platforms State of the Union。</p>
+    <p data-eid="e409">iOS 部分取自 iOS 18 及以上版本的专注模式设置；One UI 部分取自 Galaxy S25 Ultra（Android 16）「模式和日常程序」真机实测。</p>
+    <p data-eid="e410" class="ref">参考：Gloria Mark 等，被打断后回到原任务的恢复时长研究（2006）；Sophie Leroy，注意力残留（2009）；Beattie &amp; Daubs，数字健康项目与责任转移（2020）；Apple WWDC 2021 Platforms State of the Union。</p>
   </div>
 </footer>
 
@@ -1481,8 +1539,8 @@
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="截图放大">
   <button class="lb-x" id="lbClose" aria-label="关闭">✕</button>
   <img class="lb-img" id="lbImg" alt="">
-  <p class="lb-cap" id="lbCap"></p>
-  <p class="lb-tip">点击空白处或按 Esc 关闭</p>
+  <p data-eid="e411" class="lb-cap" id="lbCap"></p>
+  <p data-eid="e412" class="lb-tip">点击空白处或按 Esc 关闭</p>
 </div>
 
 <script>
@@ -1503,6 +1561,771 @@
   lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
   document.getElementById('lbClose').addEventListener('click',close);
   document.addEventListener('keydown',function(e){ if(e.key==='Escape') close(); });
+})();
+</script>
+<script>
+/* ══════════════════════════════════════════════════════════════════════
+   编辑模式
+   双击任意文案就地编辑 · 列表内回车新增条目 · 悬停条目右侧 × 删除
+   保存时只把「被改动元素的内容段」替换回源码，文件其余部分逐字节不动
+     （整页序列化会把 JS 注入的 style 等一起写进文件，所以不能用）
+   锚点 data-eid（元素）/ data-sid（列表容器）
+   写回依赖 scripts/serve.py 的 POST /__save；python -m http.server 不支持
+   ══════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  var FILE = decodeURIComponent(location.pathname.split('/').pop() || '');
+  var editing = false, baseSrc = '', baseHash = 0, active = null, nextEid = 1;
+  var orig = {}, origOl = {}, blankRemoved = [];
+
+  /* ── 小工具 ── */
+  function eidOf(el) { return el && el.getAttribute ? el.getAttribute('data-eid') : null; }
+  function allEditable() { return [].slice.call(document.querySelectorAll('[data-eid]')); }
+  function allLists() { return [].slice.call(document.querySelectorAll('[data-sid]')); }
+
+  function editableFrom(node) {
+    var start = node;
+    while (node && node.nodeType && node !== document.body) {
+      if (node.nodeType === 1 && node.hasAttribute('data-eid')) return node;
+      node = node.parentNode;
+    }
+    var li = (start && start.nodeType === 1 && start.closest) ? start.closest('li') : null;
+    if (li && li.parentNode && li.parentNode.getAttribute && li.parentNode.getAttribute('data-sid')) {
+      if (!li.hasAttribute('data-eid')) {
+        if (!(nextEid > 0)) nextEid = 1;
+        li.setAttribute('data-eid', 'e' + (nextEid++));
+      }
+      return li;
+    }
+    return null;
+  }
+
+  function stripUI(node) {
+    [].slice.call(node.querySelectorAll('.ed-del')).forEach(function (n) { n.remove(); });
+    [].slice.call(node.querySelectorAll('[contenteditable]')).forEach(function (n) { n.removeAttribute('contenteditable'); });
+    /* 粘贴可能塞进 text-wrap-mode / white-space，写回会把某段永久压成一行 */
+    [].slice.call(node.querySelectorAll('[style]')).forEach(function (n) {
+      n.style.removeProperty('text-wrap-mode');
+      n.style.removeProperty('text-wrap');
+      n.style.removeProperty('white-space');
+      var rest = n.getAttribute('style');
+      if (!rest || !rest.replace(/[\s;]/g, '')) n.removeAttribute('style');
+    });
+    return node;
+  }
+  function cleanInner(el) { return stripUI(el.cloneNode(true)).innerHTML; }
+  function cleanOuter(el) { var c = el.cloneNode(true); c.removeAttribute('contenteditable'); return stripUI(c).outerHTML; }
+
+  function holderOf(li) {
+    for (var n = li.firstChild; n; n = n.nextSibling) {
+      if (n.nodeType === 1 && !n.classList.contains('ed-del')) return n;
+    }
+    return null;
+  }
+  function isEmpty(el) { return !el.textContent.replace(/[\s\u00a0\u200b]/g, ''); }
+
+  /* 光标落到条目正文末尾。不能 selectNodeContents(li)+collapse：
+     末尾的删除按钮之后不是合法文本位，浏览器会把光标规整到条目外面。 */
+  function caretEnd(el) {
+    var li = (el.tagName === 'LI') ? el : null;
+    var holder = li ? holderOf(li) : null;
+    var r = document.createRange();
+    if (holder) { r.selectNodeContents(holder); r.collapse(false); return r; }
+    var n = el.childNodes.length;
+    while (n > 0) {
+      var last = el.childNodes[n - 1];
+      if (last.nodeType === 1 && last.classList && last.classList.contains('ed-del')) n--;
+      else break;
+    }
+    r.setStart(el, n); r.collapse(true);
+    return r;
+  }
+  function focusEnd(el) {
+    el.focus();
+    try {
+      var s = window.getSelection();
+      s.removeAllRanges(); s.addRange(caretEnd(el));
+    } catch (e) {}
+  }
+  function caretFromPoint(x, y) {
+    try {
+      if (document.caretRangeFromPoint) return document.caretRangeFromPoint(x, y);
+      if (document.caretPositionFromPoint) {
+        var p = document.caretPositionFromPoint(x, y); if (!p) return null;
+        var r = document.createRange(); r.setStart(p.offsetNode, p.offset); r.collapse(true); return r;
+      }
+    } catch (e) {}
+    return null;
+  }
+  function toast(msg, bad) {
+    var t = document.getElementById('ed-toast'); if (!t) return;
+    t.textContent = msg;
+    t.className = 'on' + (bad ? ' bad' : '');
+    clearTimeout(t._h);
+    t._h = setTimeout(function () { t.className = bad ? 'bad' : ''; }, bad ? 6000 : 3600);
+  }
+
+  /* ── 在源码里按锚点定位元素的内容段 ── */
+  function spanOf(src, key) {
+    var i = src.indexOf(key);
+    if (i < 0) return null;
+    var lt = src.lastIndexOf('<', i);
+    if (lt < 0) return null;
+    var mt = /^<([a-zA-Z][\w-]*)/.exec(src.slice(lt, lt + 40));
+    if (!mt) return null;
+    var tag = mt[1];
+    var gt = src.indexOf('>', i);
+    if (gt < 0) return null;
+    if (src.charAt(gt - 1) === '/') return { start: lt, cs: gt + 1, ce: gt + 1, end: gt + 1 };
+    var re = new RegExp('<(/?)' + tag + '(?=[\\s/>])', 'gi');
+    re.lastIndex = gt + 1;
+    var depth = 1, m;
+    while ((m = re.exec(src))) {
+      if (m[1] === '/') {
+        depth--;
+        if (depth === 0) {
+          var ce = src.indexOf('>', m.index);
+          if (ce < 0) return null;
+          return { start: lt, cs: gt + 1, ce: m.index, end: ce + 1 };
+        }
+      } else { depth++; }
+    }
+    return null;
+  }
+
+  /* 与 scripts/serve.py 的 fnv1a_bytes 一致：按 UTF-8 字节算 FNV-1a 32 位。
+     进编辑时记下源文件指纹，保存时带回比对；这期间文件被外部改过就拒绝写入。 */
+  function fnv1a(str) {
+    var bytes = new TextEncoder().encode(str), h = 0x811c9dc5;
+    for (var i = 0; i < bytes.length; i++) h = Math.imul(h ^ bytes[i], 0x01000193) >>> 0;
+    return h >>> 0;
+  }
+  function loadSource(tries) {
+    tries = tries || 3;
+    return fetch(location.href.split('#')[0], { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+      .then(function (t) {
+        baseSrc = t; baseHash = fnv1a(t);
+        if (!/data-eid=/.test(t)) throw new Error('取到的不是本报告的源文件');
+        return t;
+      })
+      .catch(function (err) {
+        if (tries <= 1) throw err;
+        return new Promise(function (res) { setTimeout(res, 350); }).then(function () { return loadSource(tries - 1); });
+      });
+  }
+
+  function hintSource() {
+    return '请用 http://127.0.0.1:5192/index.html 打开（由 scripts/serve.py 提供）。'
+      + '如果是预览面板里的快照页面，保存不会写回原文件，请改用上面的地址。';
+  }
+
+  function snapshot() {
+    orig = {}; origOl = {}; blankRemoved = []; nextEid = 1;
+    allEditable().forEach(function (el) {
+      var id = eidOf(el); if (!id) return;
+      orig[id] = el.innerHTML;
+      var n = parseInt(id.slice(1), 10);
+      if (!isNaN(n) && n >= nextEid) nextEid = n + 1;
+    });
+    allLists().forEach(function (ol) {
+      origOl[ol.getAttribute('data-sid')] = itemsOf(ol).map(eidOf).join(',');
+    });
+  }
+
+  /* 空白文本块：文字删光后只剩空白 / <br> 的段落、图注、引文。
+     它们渲染成一片空白，保存在文件里也是垃圾。 */
+  function isBlankBlock(el) {
+    if (!el || !el.tagName || !el.hasAttribute || !el.hasAttribute('data-eid')) return false;
+    /* 带 id 的元素通常是 JS 的挂点（灯箱标题、图表容器），空着也不能删 */
+    if (el.id) return false;
+    if (el.closest('#lightbox')) return false;
+    var t = el.tagName;
+    var ok = (t === 'P' || t === 'FIGCAPTION') ||
+             (t === 'DIV' && (el.classList.contains('pq') || el.classList.contains('tip')));
+    if (!ok) return false;
+    if (el.querySelector('img,video,svg,picture,iframe,table')) return false;
+    return !el.textContent.replace(/[\s\u00a0\u200b]+/g, '');
+  }
+  function purgeBlankBlocks() {
+    var n = 0;
+    [].slice.call(document.querySelectorAll('[data-eid]')).forEach(function (el) {
+      if (!isBlankBlock(el)) return;
+      var id = eidOf(el);
+      if (id && blankRemoved.indexOf(id) < 0) blankRemoved.push(id);
+      el.remove(); n++;
+    });
+    return n;
+  }
+
+  function itemsOf(ol) {
+    return [].slice.call(ol.children).filter(function (n) { return n.tagName === 'LI'; });
+  }
+
+  function repairListAnchors() {
+    var max = 0, all = document.querySelectorAll('[data-eid]');
+    for (var i = 0; i < all.length; i++) {
+      var m = /^e(\d+)$/.exec(all[i].getAttribute('data-eid') || '');
+      if (m && +m[1] > max) max = +m[1];
+    }
+    nextEid = max + 1;
+    var fixed = 0;
+    allLists().forEach(function (ol) {
+      itemsOf(ol).forEach(function (li) {
+        if (!li.hasAttribute('data-eid')) { li.setAttribute('data-eid', 'e' + (nextEid++)); fixed++; }
+      });
+    });
+    return fixed;
+  }
+
+  /* 锚点体检：列表以外的正文元素漏了锚点，双击会毫无反应。
+     只提示不自动补 —— 运行期补的编号在源文件里不存在，改了也存不进去。 */
+  function auditAnchors() {
+    var miss = 0;
+    var sel = 'p, figcaption, h3, h4, h2, li, summary';
+    [].slice.call(document.querySelectorAll(sel)).forEach(function (el) {
+      if (el.closest('#ed-ui, .chart, .chartbox')) return;
+      if (!el.hasAttribute('data-eid')) miss++;
+    });
+    if (miss > 0) {
+      setTimeout(function () {
+        toast('提示：本页有 ' + miss + ' 处文字缺少编辑锚点，双击会没反应。', true);
+      }, 900);
+    }
+    return miss;
+  }
+
+  function addDelBtn(li) {
+    var ol = li.parentNode;
+    if (!ol || ol.getAttribute('data-sid') === null) return;
+    var id = eidOf(li);
+    if (ol.querySelector(':scope > .ed-del[data-for="' + id + '"]')) return;
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'ed-del';
+    b.setAttribute('data-for', id);
+    b.setAttribute('aria-label', '删除这一条'); b.title = '删除这一条';
+    b.innerHTML = '<svg viewBox="0 0 20 20" width="9" height="9" aria-hidden="true">' +
+      '<path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>';
+    b.addEventListener('mousedown', function (e) { e.preventDefault(); e.stopPropagation(); });
+    b.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); removeItem(li); });
+    /* 统一挂在列表容器末尾：插在 li 之间会破坏 li:last-child 这类选择器 */
+    ol.appendChild(b);
+    return b;
+  }
+  /* 删除按钮挂在 <ul>/<ol> 上绝对定位，top 按 rect 实时比对，ResizeObserver 兜底 */
+  var delRO = null;
+  function layoutDel() {
+    [].slice.call(document.querySelectorAll('.ed-del')).forEach(function (b) {
+      var ol = b.parentNode, id = b.getAttribute('data-for');
+      var li = ol && ol.querySelector(':scope > li[data-eid="' + id + '"]');
+      if (!li) { b.remove(); return; }
+      var lr = li.getBoundingClientRect();
+      var dy = lr.top - ol.getBoundingClientRect().top;
+      var top = dy + (lr.height - 20) / 2;
+      b.style.top = Math.round(top) + 'px';
+    });
+  }
+  function watchDel() {
+    if (!window.ResizeObserver) return;
+    if (delRO) delRO.disconnect();
+    delRO = new ResizeObserver(function () { layoutDel(); });
+    allLists().forEach(function (ol) {
+      [].slice.call(ol.children).forEach(function (node) {
+        if (node.tagName === 'LI') delRO.observe(node);
+      });
+    });
+  }
+  function clearDelBtn() {
+    [].slice.call(document.querySelectorAll('.ed-del')).forEach(function (n) { n.remove(); });
+  }
+
+  /* 内容指纹：判断到底有没有真的改过（序列化差异会误报） */
+  var startSig = null;
+  function contentSig() {
+    try {
+      return allEditable().map(cleanInner).join('\u0001') + '\u0002' +
+             allLists().map(function (ol) { return itemsOf(ol).map(eidOf).join(','); }).join('\u0003');
+    } catch (e) { return null; }
+  }
+
+  function enter() {
+    if (editing) return;
+    toast('正在读取源文件…');
+    return loadSource().then(function () {
+      editing = true;
+      document.documentElement.classList.add('editing');
+      [].slice.call(document.querySelectorAll('video')).forEach(function (v) { if (!v.paused) v.pause(); });
+      /* 折叠起来的内容看不见也改不了，进编辑态先全部展开 */
+      [].slice.call(document.querySelectorAll('details')).forEach(function (d) {
+        if (!d.open) { d.open = true; d._wasClosed = true; }
+      });
+      snapshot();
+      repairListAnchors();
+      auditAnchors();
+      allLists().forEach(function (ol) { itemsOf(ol).forEach(addDelBtn); });
+      layoutDel();
+      watchDel();
+      requestAnimationFrame(layoutDel);
+      setTimeout(layoutDel, 260);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutDel);
+      window.addEventListener('resize', layoutDel);
+      document.addEventListener('input', layoutDel, true);
+      setUI(true);
+      startSig = contentSig();
+      var hp = document.getElementById('ed-hint');
+      if (hp) {
+        hp.hidden = false;
+        clearTimeout(hp._h);
+        hp._h = setTimeout(function () { hp.hidden = true; }, 9000);
+      }
+      toast('编辑已开启，点任意文字即可改');
+    }).catch(function () {
+      toast('读不到源文件，编辑模式没打开。' + hintSource(), true);
+    });
+  }
+
+  function exitEdit() {
+    stopEdit(active);
+    [].slice.call(document.querySelectorAll('details')).forEach(function (d) {
+      if (d._wasClosed) { d.open = false; delete d._wasClosed; }
+    });
+    [].slice.call(document.querySelectorAll('li[data-eid]')).forEach(dropIfEmpty);
+    purgeBlankBlocks();
+    editing = false;
+    document.documentElement.classList.remove('editing');
+    clearDelBtn();
+    if (delRO) { delRO.disconnect(); delRO = null; }
+    setUI(false);
+  }
+
+  function setUI(on) {
+    var ids = { 'ed-toggle': !on, 'ed-save': on, 'ed-bold': on, 'ed-hint': on };
+    Object.keys(ids).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.hidden = !ids[id];
+    });
+  }
+
+  /* ── 单块编辑 ── */
+  function startEdit(el, x, y) {
+    if (active && active !== el) stopEdit(active);
+    el.setAttribute('contenteditable', 'true');
+    active = el;
+    el.focus();
+    var r = (x == null) ? null : caretFromPoint(x, y);
+    if (r) { var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+  }
+  function stopEdit(el) {
+    if (!el) return;
+    el.removeAttribute('contenteditable');
+    if (active === el) active = null;
+    dropIfEmpty(el);
+  }
+  function dropIfEmpty(el) {
+    if (!el || el.tagName !== 'LI' || !editing) return;
+    if (el.getAttribute('contenteditable') === 'true') return;
+    if (!isEmpty(el)) return;
+    var box = el.parentNode;
+    if (!box || itemsOf(box).length <= 1) return;
+    el.remove(); layoutDel();
+  }
+
+  /* ── 列表：新增 / 删除条目 ── */
+  function addItem(li) {
+    var nu = li.cloneNode(true);
+    nu.removeAttribute('contenteditable');
+    [].slice.call(nu.querySelectorAll('.ed-del')).forEach(function (n) { n.remove(); });
+    var h = holderOf(nu);
+    if (h) h.innerHTML = '';
+    nu.textContent = '';
+    /* 空壳行内元素里光标落不进去，去掉后文字直接进条目 */
+    if (h && h.parentNode && !h.children.length && !h.textContent.trim()) h.remove();
+    nu.setAttribute('data-eid', 'e' + (nextEid++));
+    li.parentNode.insertBefore(nu, li.nextSibling);
+    addDelBtn(nu);
+    layoutDel();
+    startEdit(nu);
+    focusEnd(nu);
+    return nu;
+  }
+  function removeItem(li) {
+    var box = li.parentNode;
+    var list = itemsOf(box);
+    if (list.length <= 1) { toast('这是列表里最后一条，删掉就没有条目了', true); return; }
+    var i = list.indexOf(li), prev = list[Math.max(0, i - 1)];
+    stopEdit(li);
+    var btn = box.querySelector(':scope > .ed-del[data-for="' + eidOf(li) + '"]');
+    if (btn) btn.remove();
+    li.remove();
+    if (prev) { startEdit(prev); focusEnd(prev); }
+    layoutDel();
+  }
+
+  /* ── 输入键位 ── */
+  document.addEventListener('keydown', function (e) {
+    if (!editing || !active) return;
+    if (/^(TD|TH)$/.test(active.tagName)) return;
+    var li = (active.tagName === 'LI') ? active : null;
+    if (e.key === 'Enter' && !e.shiftKey && !e.metaKey && !e.ctrlKey && !e.altKey) {
+      e.preventDefault();
+      if (li) addItem(li); else insertBreak();
+      return;
+    }
+    if (e.key === 'Backspace' && li && isEmpty(li)) { e.preventDefault(); removeItem(li); return; }
+    if (e.key === 'Escape') { e.preventDefault(); stopEdit(active); }
+  }, true);
+
+  /* 粘贴净化：只保留 <b>/<strong>/<br>，其余标签拆开、属性丢弃。
+     否则从文档里粘进来会带一堆 inline font-family / 嵌套 span，把排版结构改掉 */
+  var KEEP = /^(B|STRONG|BR)$/;
+  var BLOCKY = /^(P|DIV|LI|UL|OL|TR|TD|TH|H[1-6]|BLOCKQUOTE|PRE|SECTION|ARTICLE|TABLE)$/;
+  function sanitizeHTML(html) {
+    var box = document.createElement('div');
+    box.innerHTML = String(html).replace(/<!--[\s\S]*?-->/g, '');
+    [].slice.call(box.querySelectorAll('script,style,meta,link,iframe,object,embed')).forEach(function (n) { n.remove(); });
+    [].slice.call(box.querySelectorAll('*')).forEach(function (n) {
+      if (!n.parentNode) return;
+      if (KEEP.test(n.tagName)) {
+        while (n.attributes.length) n.removeAttribute(n.attributes[0].name);
+        return;
+      }
+      var block = BLOCKY.test(n.tagName);
+      var par = n.parentNode;
+      while (n.firstChild) par.insertBefore(n.firstChild, n);
+      if (block) par.insertBefore(document.createElement('br'), n);
+      par.removeChild(n);
+    });
+    return box.innerHTML.replace(/^(\s|<br\s*\/?>)+/i, '').replace(/(\s|<br\s*\/?>)+$/i, '');
+  }
+  function escapeText(t) {
+    return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\r\n?/g, '\n').split('\n').join('<br>');
+  }
+  function insertHTML(html) {
+    var sel = window.getSelection();
+    if (!sel.rangeCount) return;
+    var r = sel.getRangeAt(0);
+    r.deleteContents();
+    var tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    var frag = document.createDocumentFragment(), tail = null;
+    while (tmp.firstChild) tail = frag.appendChild(tmp.firstChild);
+    if (!tail) return;
+    r.insertNode(frag);
+    r.setStartAfter(tail); r.collapse(true);
+    sel.removeAllRanges(); sel.addRange(r);
+  }
+  document.addEventListener('paste', function (e) {
+    if (!editing || !active || !e.clipboardData) return;
+    var cd = e.clipboardData;
+    var html = cd.getData('text/html');
+    var out = html ? sanitizeHTML(html) : '';
+    if (!out) {
+      var plain = cd.getData('text/plain');
+      if (plain == null) return;
+      out = escapeText(plain);
+    }
+    e.preventDefault();
+    insertHTML(out);
+  }, true);
+
+  /* 加粗：粘贴进来的内容多为普通字重，靠这个补回「标签：」的加粗 */
+  function updateBoldState() {
+    var btn = document.getElementById('ed-bold');
+    if (!btn) return;
+    var on = false;
+    try { on = document.queryCommandState('bold'); } catch (e) {}
+    btn.classList.toggle('on', !!on);
+  }
+  function applyBold() {
+    if (!active) { toast('先点选一段文字，再点 B', true); return; }
+    try { document.execCommand('styleWithCSS', false, false); } catch (err) {}
+    document.execCommand('bold');
+    setTimeout(updateBoldState, 0);
+  }
+
+  function insertBreak() {
+    var s = window.getSelection();
+    if (!s.rangeCount) return;
+    var r = s.getRangeAt(0);
+    r.deleteContents();
+    var br = document.createElement('br');
+    r.insertNode(br);
+    r.setStartAfter(br); r.collapse(true);
+    s.removeAllRanges(); s.addRange(r);
+  }
+
+  /* 编辑模式下单击即编辑：mousedown 阶段就把目标块切成 contenteditable，
+     浏览器随后自己落光标（比自己算 caret 位置稳）。 */
+  function blockFrom(node) {
+    var n = node;
+    while (n && n.nodeType && n !== document.body) {
+      if (n.nodeType === 1 && n.hasAttribute && n.hasAttribute('data-eid') &&
+          /^(P|LI|TD|TH|H1|H2|H3|H4|H5|H6|SUMMARY|FIGCAPTION|BLOCKQUOTE|SPAN|DIV)$/.test(n.tagName)) {
+        if (n.tagName === 'DIV' && n.querySelector('p,li,td,figure,ul,ol')) { n = n.parentNode; continue; }
+        return n;
+      }
+      n = n.parentNode;
+    }
+    return null;
+  }
+
+  document.addEventListener('mousedown', function (e) {
+    if (!editing || e.button !== 0) return;
+    if (e.target.closest && e.target.closest('#ed-ui, #ed-toast, .ed-del, #lightbox')) return;
+    if (e.target.tagName === 'IMG') return;
+    var el = blockFrom(e.target);
+    if (!el || el === active) return;
+    startEdit(el, null, null);
+    if (/^(TD|TH)$/.test(el.tagName)) {
+      setTimeout(function () {
+        if (!document.body.contains(el)) return;
+        el.focus();
+        var r = document.createRange();
+        r.selectNodeContents(el); r.collapse(false);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      }, 0);
+    }
+  }, true);
+
+  /* 编辑态下链接不跳转，<summary> 不折叠，免得点正文被带走或把内容收起来 */
+  document.addEventListener('click', function (e) {
+    if (!editing || !e.target.closest) return;
+    if (e.target.closest('a')) e.preventDefault();
+    if (e.target.closest('summary') && e.detail > 0) {
+      e.preventDefault();
+    }
+  }, true);
+
+  document.addEventListener('dblclick', function (e) {
+    if (!editing) return;
+    if (e.target.closest && e.target.closest('#ed-ui, #ed-toast')) return;
+    if (e.target.tagName === 'IMG') return;
+    var el = editableFrom(e.target);
+    if (!el) return;
+    e.preventDefault();
+    startEdit(el, e.clientX, e.clientY);
+  }, true);
+
+  document.addEventListener('focusout', function (e) {
+    if (editing && e.target === active) stopEdit(active);
+  }, true);
+
+  document.addEventListener('selectionchange', function () {
+    if (editing) updateBoldState();
+  });
+
+  document.addEventListener('mouseover', function (e) {
+    if (!editing || !e.target.closest) return;
+    var li = e.target.closest('li[data-eid]');
+    if (!li) return;
+    var id = eidOf(li);
+    [].slice.call(document.querySelectorAll('.ed-del.on')).forEach(function (b) {
+      if (b.getAttribute('data-for') !== id) b.classList.remove('on');
+    });
+    var mine = li.parentNode.querySelector(':scope > .ed-del[data-for="' + id + '"]');
+    if (mine) mine.classList.add('on');
+  }, true);
+  document.addEventListener('mouseout', function (e) {
+    if (!editing || !e.target.closest) return;
+    var ol = e.target.closest('ul[data-sid],ol[data-sid]');
+    if (!ol) return;
+    if (e.relatedTarget && ol.contains(e.relatedTarget)) return;
+    [].slice.call(ol.querySelectorAll(':scope > .ed-del')).forEach(function (b) { b.classList.remove('on'); });
+  }, true);
+
+  /* 列表整段重写时保留源码里的换行与缩进：否则所有条目被压成一行，
+     git diff 会把整段标成改动，改一条也看不出改了哪一条。 */
+  function rebuildList(src, g, ol) {
+    var seg = src.slice(g.cs, g.ce);
+    var m = /\n([ \t]*)<li/i.exec(seg);
+    var outer = itemsOf(ol).map(cleanOuter);
+    if (!m) return outer.join('');
+    var liInd = m[1];
+    /* 闭合标签的缩进 = <li> 缩进去掉两个空格（源码里子元素比父元素多缩两格） */
+    var closeInd = liInd.length > 2 ? liInd.slice(0, -2) : '';
+    return '\n' + outer.map(function (h) { return liInd + h; }).join('\n')
+         + '\n' + closeInd;
+  }
+
+  /* ── 收集改动 → 生成新源码 ── */
+  function collect() {
+    var ops = [];
+    if (!baseSrc) return ops;
+    var rebuilt = [];
+    allLists().forEach(function (ol) {
+      var sid = ol.getAttribute('data-sid');
+      var now = itemsOf(ol).map(eidOf).join(',');
+      if (now === origOl[sid]) return;
+      var g = spanOf(baseSrc, 'data-sid="' + sid + '"');
+      if (!g) return;
+      ops.push({ s: g.cs, e: g.ce, text: rebuildList(baseSrc, g, ol) });
+      rebuilt.push(ol);
+    });
+    blankRemoved.forEach(function (id) {
+      var g = spanOf(baseSrc, 'data-eid="' + id + '"');
+      if (!g) return;
+      var st = g.start;
+      var k = st;
+      while (k > 0 && (baseSrc.charAt(k - 1) === ' ' || baseSrc.charAt(k - 1) === '\t')) k--;
+      if (k > 0 && baseSrc.charAt(k - 1) === '\n') st = k - 1;
+      ops.push({ s: st, e: g.end, text: '' });
+    });
+    allEditable().forEach(function (el) {
+      var id = eidOf(el);
+      for (var i = 0; i < rebuilt.length; i++) { if (rebuilt[i].contains(el)) return; }
+      var html = cleanInner(el);
+      if (html === orig[id]) return;
+      var g = spanOf(baseSrc, 'data-eid="' + id + '"');
+      if (!g) return;
+      ops.push({ s: g.cs, e: g.ce, text: html });
+    });
+    return ops;
+  }
+
+  function applyOps(src, ops) {
+    ops.sort(function (a, b) { return b.s - a.s; });
+    ops.forEach(function (op) {
+      if (op.s < 0 || op.e < op.s || op.e > src.length) throw new Error('内容定位越界，已中止以免写坏文件');
+      src = src.slice(0, op.s) + op.text + src.slice(op.e);
+    });
+    return src;
+  }
+
+  /* 保存目标按顺序尝试：先用同源（从 serve.py 打开就是它），
+     若是从别处打开的快照副本，再回头找本机服务端口。 */
+  var SAVE_URLS = ['__save',
+                   'http://127.0.0.1:5192/__save',
+                   'http://127.0.0.1:5191/__save',
+                   'http://127.0.0.1:5190/__save'];
+
+  function postSave(i, body) {
+    if (i >= SAVE_URLS.length) return Promise.reject(new Error('连不上本地服务（serve.py 未启动）'));
+    return fetch(SAVE_URLS[i], {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      if (r.status === 404 || r.status === 405 || r.status === 501) return postSave(i + 1, body);
+      return r.json().catch(function () { return {}; }).then(function (j) { return { status: r.status, j: j }; });
+    }).catch(function (err) {
+      if (err instanceof TypeError) return postSave(i + 1, body);
+      throw err;
+    });
+  }
+
+  function save(retried) {
+    if (!editing) return;
+    purgeBlankBlocks();
+    if (!baseSrc) {
+      toast('正在重新读取源文件…');
+      return loadSource().then(function () { save(retried); })
+        .catch(function () { toast('读不到源文件，无法写回。' + hintSource(), true); });
+    }
+    var ops = collect();
+    if (!ops.length) { toast('没有改动，已退出编辑'); exitEdit(); return; }
+    var out;
+    try { out = applyOps(baseSrc, ops); }
+    catch (err) { toast('保存中止：' + err.message, true); return; }
+    if (out === baseSrc) { toast('没有改动，已退出编辑'); exitEdit(); return; }
+
+    toast('正在写入 ' + FILE + ' …');
+    postSave(0, { file: FILE, content: out, baseHash: baseHash }).then(function (res) {
+      if (res.status === 409 && !retried) {
+        /* 磁盘版本变了：重新取源，把改动重新套到新版本上再存一次。
+           collect() 用进入编辑时的 orig 快照做差异判断、用新的 baseSrc 定位，
+           所以只覆盖真正改过的位置，不牵连外部改动。 */
+        toast('检测到文件已被外部改动，正在把你的修改合并到新版本…');
+        return loadSource().then(function () { return save(true); });
+      }
+      if (res.status === 409) throw new Error('文件仍在被外部改动，请刷新页面后再编辑');
+      if (res.status !== 200 || !res.j.ok) throw new Error(res.j.error || ('HTTP ' + res.status));
+      return loadSource().then(function () {
+        snapshot();
+        toast('已保存 ' + res.j.bytes + ' 字节到 ' + FILE + '（备份 ' + (res.j.backup || '已生成') + '）');
+        exitEdit();
+      });
+    }).catch(function (err) {
+      toast('保存失败：' + err.message + '。请在报告目录运行 python3 scripts/serve.py 5192 后，用 http://127.0.0.1:5192/ 打开本页', true);
+    });
+  }
+
+  /* ── 浮标 ── */
+  function buildUI() {
+    var ui = document.createElement('div');
+    ui.id = 'ed-ui';
+    ui.innerHTML = '<button id="ed-bold" type="button" title="加粗选中文字" hidden>B</button>' +
+      '<button id="ed-toggle" type="button" hidden>编辑文案</button>' +
+      '<button id="ed-save" type="button" class="primary" hidden>保存</button>';
+    document.body.appendChild(ui);
+
+    var hint = document.createElement('div');
+    hint.id = 'ed-hint';
+    hint.innerHTML = '点任意文字即可修改。<b>Enter</b> 换行 · 列表里 <b>Enter</b> 新增一条 · '
+      + '条目右侧 <b>×</b> 删除 · <b>⌘S</b> 保存 · <b>Esc</b> 退出';
+    hint.title = '点击收起';
+    /* 提示条固定在左下角，会长期压住正文卡片。除了可点关闭，再给一个自动收起。 */
+    hint.addEventListener('click', function () { hint.hidden = true; clearTimeout(hint._h); });
+    document.body.appendChild(hint);
+
+    var t = document.createElement('div'); t.id = 'ed-toast';
+    document.body.appendChild(t);
+
+
+    var uiBox = document.getElementById('ed-ui'), rollT = null;
+    window.addEventListener('scroll', function () {
+      uiBox.classList.add('scrolling');
+      clearTimeout(rollT);
+      rollT = setTimeout(function () { uiBox.classList.remove('scrolling'); }, 1100);
+    }, { passive: true });
+
+    document.getElementById('ed-toggle').addEventListener('click', function () { enter(); });
+    /* mousedown 必须 preventDefault：否则点按钮会把焦点从正在编辑的元素上抢走，
+       focusout 先一步触发 stopEdit，applyBold 拿不到 active。 */
+    document.getElementById('ed-bold').addEventListener('mousedown', function (e) { e.preventDefault(); });
+    document.getElementById('ed-bold').addEventListener('click', applyBold);
+    /* 不能写成 addEventListener('click', save)：click 事件会被当成 save(retried) 的参数 */
+    document.getElementById('ed-save').addEventListener('click', function () { save(false); });
+
+    document.addEventListener('keydown', function (e) {
+      if (!editing || !(e.metaKey || e.ctrlKey)) return;
+      if (e.key.toLowerCase() === 's') { e.preventDefault(); save(false); }
+    }, true);
+
+    /* Esc 两级：第一次退出当前输入（上面的 keydown），再按一次退出编辑模式 */
+    document.addEventListener('keydown', function (e) {
+      if (!editing || active || e.key !== 'Escape') return;
+      e.preventDefault();
+      var sig = contentSig();
+      if (sig !== null && startSig !== null && sig !== startSig &&
+          !window.confirm('有未保存的修改，退出会丢弃。确定退出？')) return;
+      exitEdit();
+      toast('已退出编辑，点右下角「编辑文案」可以继续改');
+    }, true);
+  }
+
+  /* 只有写回服务在（本地 scripts/serve.py）才露出编辑入口。
+     GitHub Pages 这类静态托管下探测不到 __save，页面就是一份纯净的阅读版，读者看不到编辑按钮。 */
+  function probe() {
+    return fetch('__save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: '{}'
+    }).then(function (r) { return r.ok || r.status === 400 || r.status === 409; })
+      .catch(function () { return false; });
+  }
+
+  function boot() {
+    buildUI();
+    var btn = document.getElementById('ed-toggle');
+    if (btn) btn.hidden = true;
+    probe().then(function (ok) {
+      if (ok && btn) btn.hidden = false;
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
 })();
 </script>
 </body>
