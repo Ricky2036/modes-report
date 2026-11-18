@@ -102,7 +102,8 @@
   .chap{display:flex;gap:22px;align-items:flex-start;padding-bottom:6px}
   .chap-n{flex:0 0 auto;font-size:50px;font-weight:700;letter-spacing:-.05em;line-height:.96;
     color:#e8e7f1;margin-top:-2px;font-variant-numeric:tabular-nums}
-  .chap h2{font-size:clamp(24px,2.6vw,31px);font-weight:690;letter-spacing:-.03em;line-height:1.2}
+  .chap h2{font-size:clamp(24px,2.6vw,31px);font-weight:690;letter-spacing:-.03em;line-height:1.2;
+    word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
   .chap p{font-size:14.5px;color:var(--sub);margin-top:7px}
 
   /* subsection */
@@ -244,7 +245,7 @@
   .dir-table .dt-say{font-size:12.8px;color:var(--sub);line-height:1.75}
   .dir-table ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 30px}
   .dir-table li{position:relative;padding-left:15px;font-size:13px;line-height:1.75;
-    color:#3a3a44;margin-bottom:6px}
+    color:#3a3a44;margin-bottom:6px;text-wrap:pretty}
   .dir-table li:last-child{margin-bottom:0}
   .dir-table li::before{content:"";position:absolute;left:1px;top:.88em;width:6px;height:1px;background:#c0c0cb}
 
@@ -280,7 +281,12 @@
   .sec-h{display:block}
   .sec-tag{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.06em;
     padding:5px 11px;border-radius:8px;margin-bottom:13px}
-  .sec-h h3{font-size:clamp(21px,2.05vw,25px);line-height:1.3;letter-spacing:-.022em;font-weight:670;text-wrap:balance}
+  /* 标题断行：keep-all 禁掉汉字之间自动断，只认 <wbr> 标出的断点。
+     <wbr> 由页尾脚本按词边界（Intl.Segmenter）自动注入，文案改了会自动重算；
+     text-wrap:balance 在有多个候选断点时取最均衡的那个，不会出现首行半空。
+     overflow-wrap 兜底，长串仍比一行宽时还能断，不会横向溢出。 */
+  .sec-h h3{font-size:clamp(21px,2.05vw,25px);line-height:1.3;letter-spacing:-.022em;font-weight:670;
+    word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
   .sec-h p{font-size:14.5px;color:var(--sub);margin-top:7px}
 
   .t-entry{background:var(--entry-s);color:var(--entry)}
@@ -369,7 +375,8 @@
   .cap-h{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
   .cap-h .idx{font-size:12px;font-weight:700;color:var(--config);background:var(--config-s);
     border-radius:8px;padding:4px 9px}
-  .cap-h h3{font-size:21px;font-weight:670;letter-spacing:-.02em}
+  .cap-h h3{font-size:21px;font-weight:670;letter-spacing:-.02em;
+    word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
   .cap-h p{font-size:13.5px;color:var(--sub);flex-basis:100%;margin-top:2px}
   .cap-body{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;margin-top:18px}
   .cap-body.rev{grid-template-columns:.85fr 1.15fr}
@@ -431,6 +438,9 @@
     .nav-links{display:none}
     .chap-n{font-size:38px}
     .chap{gap:16px}
+    /* 窄屏放宽断行：一行只放得下 16 字，硬撑词边界会让每行只剩几个字。
+       word-break:normal 允许行内任意处断，balance 仍负责把各行拉匀。 */
+    .chap h2,.sec-h h3,.cap-h h3{word-break:normal;text-wrap:balance}
     .advice > div{grid-template-columns:1fr;gap:6px}
     .chips.three{grid-template-columns:repeat(2,1fr)}
     .epigraph .quote-line{padding:22px 34px 22px 42px;border-radius:18px}
@@ -518,6 +528,32 @@ html.editing details.apx-fold>summary{cursor:text}
 }
 @media print{#ed-ui,#ed-hint,#ed-toast,.ed-del{display:none!important}}
 
+
+  /* 落地样例：六步对照表 */
+  .plan{width:100%;border-collapse:collapse;font-size:13.2px;margin-top:26px}
+  .plan th{font-size:11.5px;letter-spacing:.06em;color:var(--faint);font-weight:650;
+    text-align:left;padding:0 22px 13px 0;border-bottom:1px solid var(--line);vertical-align:bottom}
+  .plan th:last-child,.plan td:last-child{padding-right:0}
+  .plan td{padding:22px 22px 22px 0;border-bottom:1px solid var(--line);
+    vertical-align:top;line-height:1.75}
+  .plan tr:last-child td{border-bottom:none;padding-bottom:6px}
+  .plan .st-n{display:inline-block;font-style:normal;font-size:10.5px;font-weight:700;
+    letter-spacing:.08em;color:var(--config);background:var(--config-s);
+    border-radius:6px;padding:2px 7px;margin-bottom:9px}
+  .plan .st-t{display:block;font-size:14px;font-weight:665;letter-spacing:-.012em;color:var(--ink)}
+  .plan .st-c{font-size:12px;color:var(--sub);line-height:1.7;margin-top:6px;text-wrap:pretty}
+  .plan .rf{font-size:12.2px;color:var(--sub);line-height:1.72;text-wrap:pretty}
+  .plan .cm b{display:flex;align-items:center;gap:7px;font-size:12.8px;font-weight:665;
+    color:var(--ink);letter-spacing:-.005em}
+  .plan .cm b::before{content:"";width:5px;height:5px;border-radius:50%;
+    background:var(--config);flex:0 0 auto}
+  .plan .cm:nth-of-type(2) b::before{background:var(--trigger)}
+  .plan .cm p{font-size:12.2px;color:var(--sub);line-height:1.74;margin-top:4px;text-wrap:pretty}
+  .plan .cm + .cm{margin-top:14px;padding-top:13px;border-top:1px solid #f1f1f6}
+  /* 四列在窄容器里会被挤成每行四五个字，给个下限让 .tbl 横向滚动 */
+  @media (max-width:1000px){
+    .plan{min-width:960px}
+  }
 </style>
 </head>
 <body>
@@ -547,7 +583,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <span data-eid="e5" class="chap-n">01</span>
     <div>
       <h2 data-eid="e6">背景</h2>
-      <p data-eid="e7">我们已经有四个模式了。在研究第五个之前，先弄清这一堆东西到底是什么。</p>
+      <p data-eid="e7">我们已经有好多个模式了，在继续叠加第五个之前，我们需要先弄清行业上模式这一堆东西到底是干什么的。</p>
     </div>
   </div>
 
@@ -572,7 +608,7 @@ html.editing details.apx-fold>summary{cursor:text}
     </div>
     <div class="arg k2">
       <span data-eid="e14" class="arg-k">旧解法</span>
-      <b data-eid="e15">场景驱动，一次一个</b>
+      <b data-eid="e15">场景驱动，按需开发</b>
       <p data-eid="e16">每来一个新场景就做一个新模式，设计、开发、上线都得重走一遍。场景越多，要维护的版本越多，用户还得记住每个模式藏在哪。</p>
     </div>
     <div class="arg k3">
@@ -602,7 +638,7 @@ html.editing details.apx-fold>summary{cursor:text}
       </svg>
       核心洞察
     </div>
-    <p data-eid="e24" class="tq-main">模式类功能是系统在<em>数字健康</em>方向上的一次能力建设：不要求用户更自律，而是让设备在合适的场景里，主动把干扰拿掉。</p>
+    <p data-eid="e24" class="tq-main">模式类功能是系统在<em>数字健康</em>方向上的能力建设，让设备在合适的场景主动降低干扰，帮用户获得更加健康的数字生活。</p>
 
     <div class="tq-sub">
       <div data-eid="e25" class="tq-sub-h">
@@ -649,27 +685,27 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e33" class="sec-tag t-config">3.1 · 总览</span>
       <div>
-        <h3 data-eid="e34">九个设置项，分三组</h3>
+        <h3 data-eid="e34">iOS专注模式配置大致分为三个大的步骤：</h3>
         <p data-eid="e35">一个模式，就是这三组设置的一次组合。每组三项，彼此独立；刚开始用，每组做一项就能跑起来。</p>
       </div>
     </div>
     <div class="matrix">
     <div class="mcol">
-      <div data-eid="e36" class="mcol-h"><b>入口</b><span>在哪找到，怎么建一个</span></div>
+      <div data-eid="e36" class="mcol-h"><b>配置入口</b><span>在哪找到，怎么建一个</span></div>
       <div class="mcell"><div class="mnum">01</div><div><b data-eid="e37">进入路径</b><p data-eid="e38">控制中心长按，或从设置进入</p></div></div>
       <div class="mcell"><div class="mnum">02</div><div><b data-eid="e39">新建模式</b><p data-eid="e40">选一个场景，系统先给一套默认设置</p></div></div>
       <div class="mcell"><div class="mnum">03</div><div><b data-eid="e41">起名与配色</b><p data-eid="e42">起名字、选颜色，好在控制中心一眼认出</p></div></div>
     </div>
 
     <div class="mcol t">
-      <div data-eid="e43" class="mcol-h"><b>激活方式</b><span>什么时候自己打开</span></div>
+      <div data-eid="e43" class="mcol-h"><b>配置激活方式</b><span>什么时候自己打开</span></div>
       <div class="mcell"><div class="mnum">04</div><div><b data-eid="e44">手动开关</b><p data-eid="e45">想开就开，想关就关</p></div></div>
       <div class="mcell"><div class="mnum">05</div><div><b data-eid="e46">智能启用</b><p data-eid="e47">按你的作息和位置自己判断</p></div></div>
       <div class="mcell"><div class="mnum">06</div><div><b data-eid="e48">条件触发</b><p data-eid="e49">到点、到某地、或打开某个 App 时开</p></div></div>
     </div>
 
     <div class="mcol c">
-      <div data-eid="e50" class="mcol-h"><b>配置能力</b><span>打开之后改变什么</span></div>
+      <div data-eid="e50" class="mcol-h"><b>配置系统能力</b><span>打开之后改变什么</span></div>
       <div class="mcell"><div class="mnum">07</div><div><b data-eid="e51">通知名单</b><p data-eid="e52">决定谁能把通知送进来</p></div></div>
       <div class="mcell"><div class="mnum">08</div><div><b data-eid="e53">自定义屏幕</b><p data-eid="e54">换一套锁屏和桌面，只留该用的 App</p></div></div>
       <div class="mcell"><div class="mnum">09</div><div><b data-eid="e55">过滤条件</b><p data-eid="e56">顺带改 App 里的内容和几种系统设置</p></div></div>
@@ -682,7 +718,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e57" class="sec-tag t-entry">3.2 · 入口</span>
       <div>
-        <h3 data-eid="e58">建得起来，也找得到</h3>
+        <h3 data-eid="e58">控制中心常驻入口，支持在各种模式间主动切换和差异化配置</h3>
         <p data-eid="e59">切换要快：最好一次点按完成，不用每次都翻设置。</p>
       </div>
     </div>
@@ -727,7 +763,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e71" class="sec-tag t-trigger">3.3 · 激活方式</span>
       <div>
-        <h3 data-eid="e72">在对的时候自己打开</h3>
+        <h3 data-eid="e72">配置自动激活的调节，让模式在对的时候自己打开，无需每次都手动开启</h3>
         <p data-eid="e73">三种方式可以同时设，满足任意一个就打开。只有一种是手动，其余交给系统。</p>
       </div>
     </div>
@@ -828,7 +864,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e85" class="sec-tag t-config">3.4 · 配置能力</span>
       <div>
-        <h3 data-eid="e86">开了之后，真的不一样</h3>
+        <h3 data-eid="e86">配置模式激活后的系统能力变化，确保专注模式能够真的有效</h3>
         <p data-eid="e87">三件事依次收紧：谁能打扰你、屏幕上能看见什么、手机本身要不要跟着变。</p>
       </div>
     </div>
@@ -935,28 +971,28 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e116" class="sec-tag t-config">4.1 · 总览</span>
       <div>
-        <h3 data-eid="e117">同样是九项，重心偏后</h3>
+        <h3 data-eid="e117">与iOS高度相似，也是支持三个大的配置步骤，但是支持的系统能力更多配置也更复杂</h3>
         <p data-eid="e118">入口和激活的结构与 iOS 接近，差别集中在配置这一段能走多深。</p>
       </div>
     </div>
 
     <div class="matrix">
       <div class="mcol">
-        <div data-eid="e119" class="mcol-h"><b>入口</b><span>在哪找到，怎么建一个</span></div>
+        <div data-eid="e119" class="mcol-h"><b>配置入口</b><span>在哪找到，怎么建一个</span></div>
         <div class="mcell"><div class="mnum">01</div><div><b data-eid="e120">进入路径</b><p data-eid="e121">控制中心磁贴长按，或设置首页</p></div></div>
         <div class="mcell"><div class="mnum">02</div><div><b data-eid="e122">预设模式</b><p data-eid="e123">睡眠、影院、驾驶、运动、放松、工作</p></div></div>
         <div class="mcell"><div class="mnum">03</div><div><b data-eid="e124">新建与恢复</b><p data-eid="e125">自定义名称图标，误删可找回</p></div></div>
       </div>
 
       <div class="mcol t">
-        <div data-eid="e126" class="mcol-h"><b>激活方式</b><span>什么时候自己打开</span></div>
+        <div data-eid="e126" class="mcol-h"><b>配置自动激活方式</b><span>什么时候自己打开</span></div>
         <div class="mcell"><div class="mnum">04</div><div><b data-eid="e127">手动开关</b><p data-eid="e128">磁贴点一下，详情页也有大按钮</p></div></div>
         <div class="mcell"><div class="mnum">05</div><div><b data-eid="e129">条件触发</b><p data-eid="e130">8 类 28 个条件，含情境与设备</p></div></div>
         <div class="mcell"><div class="mnum">06</div><div><b data-eid="e131">自动退出</b><p data-eid="e132">手动开启可设时长，到点自己关</p></div></div>
       </div>
 
       <div class="mcol c">
-        <div data-eid="e133" class="mcol-h"><b>配置能力</b><span>打开之后改变什么</span></div>
+        <div data-eid="e133" class="mcol-h"><b>配置模式生效后系统能力/状态的改变</b><span>打开之后改变什么</span></div>
         <div class="mcell"><div class="mnum">07</div><div><b data-eid="e134">保持专注</b><p data-eid="e135">免打扰 + 限制应用程序两张名单</p></div></div>
         <div class="mcell"><div class="mnum">08</div><div><b data-eid="e136">更改外观</b><p data-eid="e137">锁屏与主屏各换一套，退出还原</p></div></div>
         <div class="mcell"><div class="mnum">09</div><div><b data-eid="e138">其他动作</b><p data-eid="e139">23 类 115 项系统设置批量调节</p></div></div>
@@ -968,7 +1004,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e140" class="sec-tag t-entry">4.2 · 入口</span>
       <div>
-        <h3 data-eid="e141">磁贴直达，预设开箱能用</h3>
+        <h3 data-eid="e141">控制中心常驻入口，配置生效的模式可以在这里主动切换状态，但预设仅睡眠模式，上手门槛高</h3>
         <p data-eid="e142">入口只比 iOS 多一步「详细信息」。七个预设按场景排好，点开先问用「基本」还是「自定义」。</p>
       </div>
     </div>
@@ -1012,7 +1048,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e154" class="sec-tag t-trigger">4.3 · 激活方式</span>
       <div>
-        <h3 data-eid="e155">按条件开，也能到点自己关</h3>
+        <h3 data-eid="e155">配置自动激活条件，支持更加丰富的自动激活条件</h3>
         <p data-eid="e156">每个模式的详情页顶部都有「自动开启 / 何时启动此模式」，这是条件入口。iOS 那边叫「智能启用」的那一层，三星做成了可逐条挑选的清单。</p>
       </div>
     </div>
@@ -1062,7 +1098,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e178" class="sec-tag t-config">4.4 · 配置能力</span>
       <div>
-        <h3 data-eid="e179">三张卡，逐块收紧</h3>
+        <h3 data-eid="e179">One UI系统能力配置分为专注，外观和其他操作配置，能实现更场景化和个性化的系统快速配置</h3>
         <p data-eid="e180">iOS 把配置摊成三个页面，三星压成三张卡：先管注意力，再管氛围，最后才动系统设置。</p>
       </div>
     </div>
@@ -1192,7 +1228,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e209" class="sec-tag t-config">5.1 · 逐项对照</span>
       <div>
-        <h3 data-eid="e210">六个维度上的差异</h3>
+        <h3 data-eid="e210">iOS与One&nbsp;UI模式设计横向对比分析</h3>
         <p data-eid="e211">前三行是做法，后三行是代价。</p>
       </div>
     </div>
@@ -1208,7 +1244,7 @@ html.editing details.apx-fold>summary{cursor:text}
         </thead>
         <tbody>
           <tr>
-            <td data-eid="e215">核心模型</td>
+            <td data-eid="e215">预设模式</td>
             <td data-eid="e216">选一个场景，系统配好一套参数</td>
             <td data-eid="e217">定一个条件，逐项勾选要执行的动作</td>
           </tr>
@@ -1218,7 +1254,7 @@ html.editing details.apx-fold>summary{cursor:text}
             <td data-eid="e220">控制中心磁贴长按进「详细信息」，或从设置进入</td>
           </tr>
           <tr>
-            <td data-eid="e221">激活</td>
+            <td data-eid="e221">自动激活方式</td>
             <td data-eid="e222">智能启用 + 时间、位置、打开 App；手动开关</td>
             <td data-eid="e223">8 类 28 个条件（含情境、设备、事件）；支持倒计时自动退出</td>
           </tr>
@@ -1271,59 +1307,214 @@ html.editing details.apx-fold>summary{cursor:text}
     <span data-eid="e242" class="chap-n">06</span>
     <div>
       <h2 data-eid="e243">实施建议</h2>
-      <p data-eid="e244">两个样本给了两套解法，落到我们身上，还是这三个方向。</p>
+      <p data-eid="e244">两个样本给了两套解法，落到我们身上是三个方向；再拿手上这两个模式走一遍，看每一步要建什么。</p>
     </div>
   </div>
 
-  <div class="tbl dir-tbl">
-    <table class="dir-table">
-      <thead>
-        <tr>
-          <th data-eid="e245" style="width:1%">方向</th>
-          <th data-eid="e246" style="width:22%">一句话判断</th>
-          <th data-eid="e247">重点要做的</th>
-        </tr>
-      </thead>
-      <tbody>
+  <div class="sub">
+    <div class="sec-h">
+      <span data-eid="e413" class="sec-tag t-config">6.1 · 三个方向</span>
+      <div>
+        <h3 data-eid="e414">入口、<wbr>激活、<wbr>系统控制，<wbr>缺一件都用不起来</h3>
+        <p data-eid="e415">入口决定有没有人用，激活决定用不用得上，系统控制决定开了和没开有没有区别。</p>
+      </div>
+    </div>
+
+    <div class="tbl dir-tbl">
+      <table class="dir-table">
+        <thead>
           <tr>
-            <td data-eid="e248">构建入口</td>
-            <td data-eid="e249" class="dt-say">让模式出现在手边，而不是藏在设置里</td>
+            <th data-eid="e245" style="width:1%">方向</th>
+            <th data-eid="e246" style="width:22%">一句话判断</th>
+            <th data-eid="e247">重点要做的</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td data-eid="e248">构建入口</td>
+              <td data-eid="e249" class="dt-say">让模式出现在手边，而不是藏在设置里</td>
+              <td>
+                <ul data-sid="s1">
+                  <li data-eid="e250">切换入口放进控制中心，一次点按完成，不进设置</li>
+                  <li data-eid="e251">新建压到三步：选场景、起名字、选通知名单</li>
+                  <li data-eid="e252">预置几套场景模板，第一次用不必从零配</li>
+                  <li data-eid="e253">删掉的模式要能找回</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td data-eid="e254">激活能力</td>
+              <td data-eid="e255" class="dt-say">从「记得开」变成「帮你开」</td>
+              <td>
+                <ul data-sid="s2">
+                  <li data-eid="e256">优先做智能启用：按位置和使用习惯判断，减少配置负担</li>
+                  <li data-eid="e257">时间、位置、打开某个 App 三类条件齐备，可叠加也可单条关</li>
+                  <li data-eid="e258">补上蓝牙、网络这类设备条件，上车连上车载就开</li>
+                  <li data-eid="e259">手动开启时给个时长，到点自动退出</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td data-eid="e260">系统控制</td>
+              <td data-eid="e261" class="dt-say">不只是静音通知，设备行为要真的变</td>
+              <td>
+                <ul data-sid="s3">
+                  <li data-eid="e262">通知名单给默认模板，别让用户面对一张空白名单</li>
+                  <li data-eid="e263">支持更换锁屏与主屏幕页面，把场景外的 App 移出视线</li>
+                  <li data-eid="e264">App 联动：日历、邮件、信息只显示该场景需要的那部分</li>
+                  <li data-eid="e265">系统联动：深色、静音、低电量、屏幕常亮</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="sub">
+    <div class="sec-h">
+      <span data-eid="e416" class="sec-tag t-config">6.2 · 落地样例</span>
+      <div>
+        <h3 data-eid="e417">六步走一遍，<wbr>真正要新建的只有两块</h3>
+        <p data-eid="e418">一个要把干扰挡在外面，一个要把设备能力顶上去。户外增强有雏形，一个总开关、一段定时、三个子项；游戏勿扰还没有。两者场景完全不同，拆到步骤上，差别只在条件源和配置项。</p>
+      </div>
+    </div>
+
+    <div class="tbl">
+      <table class="plan">
+        <thead>
+          <tr>
+            <th data-eid="e419" style="width:23%">步骤 · 要建的能力</th>
+            <th data-eid="e420" style="width:16%">iOS 的对应做法</th>
+            <th data-eid="e421" style="width:16%">One UI 的对应做法</th>
+            <th data-eid="e422" style="width:45%">落到这两个模式</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
             <td>
-              <ul data-sid="s1">
-                <li data-eid="e250">切换入口放进控制中心，一次点按完成，不进设置</li>
-                <li data-eid="e251">新建压到三步：选场景、起名字、选通知名单</li>
-                <li data-eid="e252">预置几套场景模板，第一次用不必从零配</li>
-                <li data-eid="e253">删掉的模式要能找回</li>
-              </ul>
+              <i data-eid="e423" class="st-n">01</i>
+              <b data-eid="e424" class="st-t">定场景与互斥</b>
+              <p data-eid="e425" class="st-c">一句话说清开了它设备变成什么样；与既有模式谁让谁，要定死</p>
+            </td>
+            <td data-eid="e426" class="rf">五套预设各带一套参数，同一时间只生效一套</td>
+            <td data-eid="e427" class="rf">可自建、可叠加，冲突的动作后开的覆盖先开的</td>
+            <td>
+              <div class="cm">
+                <b data-eid="e428">游戏勿扰</b>
+                <p data-eid="e429">与勿扰、睡眠互斥；对局结束即退，不留残状态</p>
+              </div>
+              <div class="cm">
+                <b data-eid="e430">户外增强</b>
+                <p data-eid="e431">与省电互斥，省电模式一开就自动关掉</p>
+              </div>
             </td>
           </tr>
           <tr>
-            <td data-eid="e254">激活能力</td>
-            <td data-eid="e255" class="dt-say">从「记得开」变成「帮你开」</td>
             <td>
-              <ul data-sid="s2">
-                <li data-eid="e256">优先做智能启用：按位置和使用习惯判断，减少配置负担</li>
-                <li data-eid="e257">时间、位置、打开某个 App 三类条件齐备，可叠加也可单条关</li>
-                <li data-eid="e258">补上蓝牙、网络这类设备条件，上车连上车载就开</li>
-                <li data-eid="e259">手动开启时给个时长，到点自动退出</li>
-              </ul>
+              <i data-eid="e432" class="st-n">02</i>
+              <b data-eid="e433" class="st-t">放入口</b>
+              <p data-eid="e434" class="st-c">磁贴加长按展开，设置页只做二级入口，首次进入给一步引导</p>
+            </td>
+            <td data-eid="e435" class="rf">控制中心长按月亮图标展开全部模式，底部新建</td>
+            <td data-eid="e436" class="rf">磁贴长按进「详细信息」，设置里也能直接进</td>
+            <td>
+              <div class="cm">
+                <b data-eid="e437">游戏勿扰</b>
+                <p data-eid="e438">游戏助手内一键开，另配一个控制中心磁贴</p>
+              </div>
+              <div class="cm">
+                <b data-eid="e439">户外增强</b>
+                <p data-eid="e440">只有设置里一个开关，站在太阳底下要现翻菜单</p>
+              </div>
             </td>
           </tr>
           <tr>
-            <td data-eid="e260">系统控制</td>
-            <td data-eid="e261" class="dt-say">不只是静音通知，设备行为要真的变</td>
             <td>
-              <ul data-sid="s3">
-                <li data-eid="e262">通知名单给默认模板，别让用户面对一张空白名单</li>
-                <li data-eid="e263">支持更换锁屏与主屏幕页面，把场景外的 App 移出视线</li>
-                <li data-eid="e264">App 联动：日历、邮件、信息只显示该场景需要的那部分</li>
-                <li data-eid="e265">系统联动：深色、静音、低电量、屏幕常亮</li>
-              </ul>
+              <i data-eid="e441" class="st-n">03</i>
+              <b data-eid="e442" class="st-t">接条件源</b>
+              <p data-eid="e443" class="st-c">条件可接入、可叠加、单条可关，手动开启给时长</p>
+            </td>
+            <td data-eid="e444" class="rf">智能启用，加时间、位置、打开某个 App 三个显式条件</td>
+            <td data-eid="e445" class="rf">8 类 28 个条件逐条勾，事件类里就有「正在玩游戏」</td>
+            <td>
+              <div class="cm">
+                <b data-eid="e446">游戏勿扰</b>
+                <p data-eid="e447">正在玩游戏。前台游戏识别已有，条件不用从头建</p>
+              </div>
+              <div class="cm">
+                <b data-eid="e448">户外增强</b>
+                <p data-eid="e449">要的是环境光强度加位置。现在只接了定时一条，还落在 23:43 到 07:43 的深夜段，而亮度增强最需要的正是白天强光；环境光这类条件两家的清单里都没有，得自己接</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i data-eid="e450" class="st-n">04</i>
+              <b data-eid="e451" class="st-t">拆子能力</b>
+              <p data-eid="e452" class="st-c">一个场景拆成可勾选的子项，单独开关、单独还原，另给一套默认组合</p>
+            </td>
+            <td data-eid="e453" class="rf">通知名单、三个系统页面、10 项过滤条件</td>
+            <td data-eid="e454" class="rf">专注、外观、其他动作三张卡，23 类 115 项</td>
+            <td>
+              <div class="cm">
+                <b data-eid="e455">游戏勿扰</b>
+                <p data-eid="e456">免打扰放行队友语音、性能与散热、锁定亮度、防误触、屏蔽来电</p>
+              </div>
+              <div class="cm">
+                <b data-eid="e457">户外增强</b>
+                <p data-eid="e458">亮度增强、通话免提与降噪、息屏延时到 20 分钟</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i data-eid="e459" class="st-n">05</i>
+              <b data-eid="e460" class="st-t">退出与还原</b>
+              <p data-eid="e461" class="st-c">开启前存快照，退出逐项还原；条件消失、手动关闭、进程被清三条路径都要走通</p>
+            </td>
+            <td data-eid="e462" class="rf">退出还原通知与壁纸，再进靠条件或手动</td>
+            <td data-eid="e463" class="rf">手动可设 1 小时、2 小时或自定义，到点自动退出并还原</td>
+            <td>
+              <div class="cm">
+                <b data-eid="e464">游戏勿扰</b>
+                <p data-eid="e465">对局结束还原音量、亮度和勿扰；进程被清掉也要还原</p>
+              </div>
+              <div class="cm">
+                <b data-eid="e466">户外增强</b>
+                <p data-eid="e467">离开强光或进室内逐项还原，别让高亮度一直挂着耗电</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <i data-eid="e468" class="st-n">06</i>
+              <b data-eid="e469" class="st-t">沉淀模板</b>
+              <p data-eid="e470" class="st-c">预置模板、推荐条件、推荐动作，第一次用不必从零配</p>
+            </td>
+            <td data-eid="e471" class="rf">五套预设本身就是模板，选一个就能跑</td>
+            <td data-eid="e472" class="rf">每个模式自带两三条推荐条件和一串建议操作</td>
+            <td>
+              <div class="cm">
+                <b data-eid="e473">游戏勿扰</b>
+                <p data-eid="e474">只放行队友语音、锁定亮度，其余默认不勾</p>
+              </div>
+              <div class="cm">
+                <b data-eid="e475">户外增强</b>
+                <p data-eid="e476">三项全开，默认只走白天时段</p>
+              </div>
             </td>
           </tr>
         </tbody>
-    </table>
+      </table>
+    </div>
+
+    <p data-eid="e477" class="note-line">真正要新建的只有两块。一是条件源，环境光强度，两家的条件清单里都没有现成的，得自己接。二是子项之间的依赖校验：亮度增强只在自动调节亮度开着时生效，免提是未连耳机时的默认行为、在公共场合等于外放，总开关承诺的网络质量在三个子项里没有对应项。这类「子项互相喊话」的问题只有多子项模式才会碰到，配置页把它显式写出来，总开关开了才不是白开。</p>
+
+    <p data-eid="e478" class="bridge">框架是现成的，所以再加一个模式，成本不主要在开发工作量，在于把场景判断从用户手里接过来多少。</p>
   </div>
+
 </section>
 
 <section id="appendix" class="wrap">
@@ -1603,6 +1794,9 @@ html.editing details.apx-fold>summary{cursor:text}
   function stripUI(node) {
     [].slice.call(node.querySelectorAll('.ed-del')).forEach(function (n) { n.remove(); });
     [].slice.call(node.querySelectorAll('[contenteditable]')).forEach(function (n) { n.removeAttribute('contenteditable'); });
+    /* 运行时按词边界自动插的断点不能落盘：它们是按当前容器宽度算出来的，
+       写回文件后换到别的宽度会变成硬断点，排版反而更乱。 */
+    [].slice.call(node.querySelectorAll('wbr[data-wbr]')).forEach(function (n) { n.remove(); });
     /* 粘贴可能塞进 text-wrap-mode / white-space，写回会把某段永久压成一行 */
     [].slice.call(node.querySelectorAll('[style]')).forEach(function (n) {
       n.style.removeProperty('text-wrap-mode');
@@ -1613,8 +1807,8 @@ html.editing details.apx-fold>summary{cursor:text}
     });
     return node;
   }
-  function cleanInner(el) { return stripUI(el.cloneNode(true)).innerHTML; }
-  function cleanOuter(el) { var c = el.cloneNode(true); c.removeAttribute('contenteditable'); return stripUI(c).outerHTML; }
+  function cleanInner(el) { var c = el.cloneNode(true); stripUI(c); if (c.normalize) c.normalize(); return c.innerHTML; }
+  function cleanOuter(el) { var c = el.cloneNode(true); c.removeAttribute('contenteditable'); stripUI(c); if (c.normalize) c.normalize(); return c.outerHTML; }
 
   function holderOf(li) {
     for (var n = li.firstChild; n; n = n.nextSibling) {
@@ -2322,6 +2516,280 @@ html.editing details.apx-fold>summary{cursor:text}
     probe().then(function (ok) {
       if (ok && btn) btn.hidden = false;
     });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+</script>
+<script data-fitcurtail>
+
+/* ══════════════════════════════════════════════════════════════════════
+   标题断行：按词边界注入 <wbr>，再让「差一点点」的长标题收字距压成一行
+   ──────────────────────────────────────────────────────────────────────
+   keep-all 的正确用法是「同时给出足够多的合法断点」，而不是「一个断点都
+   不给」——后者会让长块整体被推走，首行只填到六成，右边空一大截。
+   所以这里按 Intl.Segmenter 的中文分词结果，在词与词之间补 <wbr>：
+   汉字之间照样不会断，但每行都能满，不会再出现半行空白。
+
+   压一行：只在超出 ≤ 6% 时试，靠收字距（最多 -0.06em）塞进一行，
+   这种「差几十像素」的情况折行反而更丑。
+   ══════════════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+  var SEL = '.sec-h h3, .cap-h h3, .chap h2, h3.ghead';
+  var MAX_OVERFLOW = 0.06;   /* 超出 6% 以上就不试：说明是真长句，该折行 */
+  var MIN_LS = -0.06;        /* 最多收到 -0.06em（25px 字号约 -1.5px），再紧就糊了 */
+
+  /* ── 词边界断点注入 ──────────────────────────────────────────────
+     用浏览器自带的中文分词（Intl.Segmenter）拿词边界，把它变成 <wbr>。
+     没有 Segmenter 的旧内核退化成「只在标点后断」的老行为。
+     幂等：先摘掉自己上一轮插的 <wbr>（带 data-wbr），再重新插。 */
+  var seg = null;
+  try {
+    if (window.Intl && Intl.Segmenter) seg = new Intl.Segmenter('zh-Hans', { granularity: 'word' });
+  } catch (e) { seg = null; }
+
+  function stripWbr(el) {
+    [].slice.call(el.querySelectorAll('wbr[data-wbr]')).forEach(function (w) {
+      var p = w.parentNode;
+      if (p) p.removeChild(w);
+      if (p && p.normalize) p.normalize();
+    });
+  }
+
+  /* 只在纯文本 + <wbr> 的标题上动：里面有 <b>/<span>/<a> 时切词会拆坏标签 */
+  function plainEnough(el) {
+    for (var n = el.firstChild; n; n = n.nextSibling) {
+      if (n.nodeType === 1 && n.tagName !== 'WBR') return false;
+    }
+    return true;
+  }
+
+  function injectWbr(el) {
+    stripWbr(el);
+    if (!seg || !plainEnough(el)) return;
+    var text = el.textContent || '';
+    if (text.length < 12) return;                 /* 短标题本来就一行，不必插 */
+    var parts = [];
+    var it = seg.segment(text);
+    var buf = '';
+    for (var s of it) {
+      buf += s.segment;
+      if (s.segment.trim() === '') continue;      /* 空白先并进上一个词 */
+      parts.push(buf);
+      buf = '';
+    }
+    if (buf) parts.push(buf);
+    if (parts.length < 3) return;
+    /* 重新拼：词之间插 <wbr>。末尾那个词后面不插，免得留一个没用的断点。 */
+    while (el.firstChild) el.removeChild(el.firstChild);
+    for (var i = 0; i < parts.length; i++) {
+      el.appendChild(document.createTextNode(parts[i]));
+      if (i < parts.length - 1) {
+        var w = document.createElement('wbr');
+        w.setAttribute('data-wbr', '1');
+        el.appendChild(w);
+      }
+    }
+  }
+
+  /* 基准字距：必须先清掉内联 letter-spacing 再读，否则读到的是上一次自己写的值，
+     越算越偏（踩过：字距被算成正的 7.3px）。不缓存，每次都读干净的。 */
+  function baseLS(el) {
+    var had = el.style.letterSpacing;
+    el.style.letterSpacing = '';
+    var v = parseFloat(getComputedStyle(el).letterSpacing) || 0;
+    el.style.letterSpacing = had;
+    return v;
+  }
+
+  /* 量出「排成一行时需要的宽度」。用 white-space:nowrap 强制不断行，
+     并且显式沿用当前元素的字体与字距。注意别用 font:inherit 简写——
+     它会把 letter-spacing 一起重置，量出来的宽度就不是当前字距下的了。
+     lsOverride 传了就用它（用来预估「收字距之后」的宽度），
+     这样不必真的把元素改成 nowrap 去量——含 <wbr> 的标题在 nowrap 下
+     Range 量出来的宽度会偏（实测 586px vs 实际 1126px），不可靠。 */
+  function needWidth(el, lsOverride) {
+    var cs = getComputedStyle(el);
+    var clone = el.cloneNode(true);
+    clone.style.position = 'absolute';
+    clone.style.visibility = 'hidden';
+    clone.style.whiteSpace = 'nowrap';
+    clone.style.width = 'auto';
+    clone.style.maxWidth = 'none';
+    clone.style.left = '-99999px';
+    clone.style.top = '0';
+    clone.style.fontFamily = cs.fontFamily;
+    clone.style.fontSize = cs.fontSize;
+    clone.style.fontWeight = cs.fontWeight;
+    clone.style.fontStyle = cs.fontStyle;
+    clone.style.letterSpacing = (lsOverride != null) ? lsOverride : cs.letterSpacing;
+    document.body.appendChild(clone);
+    var w = clone.getBoundingClientRect().width;
+    clone.remove();
+    return w;
+  }
+
+  function lineCount(el) {
+    /* 元素里文字实际占了几行：按 top 归并 */
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    var rects = [].slice.call(range.getClientRects()).filter(function (r) { return r.width > 2; });
+    var tops = [];
+    rects.forEach(function (r) {
+      var t = Math.round(r.top);
+      if (tops.indexOf(t) < 0) tops.push(t);
+    });
+    return tops.length || 1;
+  }
+
+  /* nowrap 下这段文字的实际宽度。不能用 el.scrollWidth 判断：
+     块级元素在 nowrap 溢出时 scrollWidth 仍等于 clientWidth（实测），
+     必须用 Range 直接量文字盒。 */
+  function textWidth(el) {
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    var rects = [].slice.call(r.getClientRects()).filter(function (x) { return x.width > 1; });
+    if (!rects.length) return 0;
+    var left = Infinity, right = -Infinity;
+    rects.forEach(function (x) { left = Math.min(left, x.left); right = Math.max(right, x.right); });
+    return right - left;
+  }
+
+  function fit(el) {
+    var avail = el.getBoundingClientRect().width;
+    if (!avail) return;
+
+    /* 先彻底还原成 CSS 定义的排版，再量基准。顺序很重要：
+       如果先读 letterSpacing 再清内联，读到的是上一次自己写进去的值，
+       会把 need 量成溢出 12%，直接越过阈值不处理（踩过）。 */
+    el.style.letterSpacing = '';
+    el.style.whiteSpace = '';
+    el.removeAttribute('data-fit');
+
+    if (lineCount(el) <= 1) return;
+
+    var ls0 = parseFloat(getComputedStyle(el).letterSpacing) || 0;  /* 干净态的基准 */
+    var need = needWidth(el);
+    if (!need) return;
+
+    /* 只处理「差一点点」：超出超过 MAX_OVERFLOW 说明是真长句，折行是对的 */
+    if ((need - avail) / avail > MAX_OVERFLOW) return;
+
+    /* 要收多少字距才能进一行；留 1% 余量 */
+    var chars = Math.max(1, (el.textContent || '').length);
+    var fs = parseFloat(getComputedStyle(el).fontSize) || 16;
+    var perChar = (need - avail) * 1.01 / chars;
+    var floorPx = fs * MIN_LS;
+    var ls = Math.max(floorPx, ls0 - perChar);
+
+    /* 关键：收完之后必须重新量「一行宽度」，不能假定它一定进得去。
+       收到下限还不够时 ls 被 floorPx 夹住，此时硬上 nowrap 会横向溢出，
+       比折行更难看——直接放弃，交给 balance 折行。 */
+    if (needWidth(el, ls.toFixed(3) + 'px') > avail + 1) {
+      el.style.letterSpacing = '';
+      return;
+    }
+
+    el.style.letterSpacing = ls.toFixed(3) + 'px';
+    el.style.whiteSpace = 'nowrap';
+    el.setAttribute('data-fit', '1');
+  }
+
+  /* 光标在 el 内的绝对字符偏移。<wbr> 不占字，所以按文本节点累加即可。 */
+  function caretOffset(el) {
+    var sel = window.getSelection();
+    if (!sel || !sel.rangeCount) return -1;
+    var r = sel.getRangeAt(0);
+    if (!el.contains(r.startContainer)) return -1;
+    var off = 0, done = false;
+    (function walk(n) {
+      if (done) return;
+      if (n === r.startContainer) {
+        off += (n.nodeType === 3) ? r.startOffset : 0;
+        done = true;
+        return;
+      }
+      if (n.nodeType === 3) { off += n.nodeValue.length; return; }
+      for (var c = n.firstChild; c && !done; c = c.nextSibling) walk(c);
+    })(el);
+    return done ? off : -1;
+  }
+
+  function restoreCaret(el, off) {
+    if (off < 0) return;
+    var acc = 0, hit = null;
+    (function walk(n) {
+      if (hit) return;
+      if (n.nodeType === 3) {
+        if (acc + n.nodeValue.length >= off) { hit = { node: n, at: off - acc }; return; }
+        acc += n.nodeValue.length;
+        return;
+      }
+      for (var c = n.firstChild; c && !hit; c = c.nextSibling) walk(c);
+    })(el);
+    try {
+      var r = document.createRange();
+      if (hit) r.setStart(hit.node, Math.min(hit.at, hit.node.nodeValue.length));
+      else { r.selectNodeContents(el); r.collapse(false); }
+      r.collapse(true);
+      var s = window.getSelection();
+      s.removeAllRanges(); s.addRange(r);
+    } catch (e) {}
+  }
+
+  /* 重排一条标题：先按词边界补断点，再决定要不要收紧字距压成一行。
+     editing 为真时保留光标——编辑态每敲一个字都会走这里。 */
+  function relayout(el, editing) {
+    var off = editing ? caretOffset(el) : -1;
+    injectWbr(el);
+    fit(el);
+    if (off >= 0 && document.activeElement === el) restoreCaret(el, off);
+  }
+
+  function run() {
+    var els = [].slice.call(document.querySelectorAll(SEL));
+    els.forEach(function (el) { relayout(el, false); });
+  }
+
+  function boot() {
+    run();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(run);
+
+    /* 容器宽度变了要重算，否则缩放窗口后会留下错误的紧排 */
+    var t = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(run, 120);
+    }, { passive: true });
+
+    /* 编辑态：文字一改，断点就失效（contenteditable 会把 <wbr> 一起吃掉），
+       所以要重新切词。用 300ms 防抖，且输入法组字过程中不动 DOM——
+       组字时改子节点会把候选框打断。 */
+    var timer = null;
+    var composing = false;
+    document.addEventListener('compositionstart', function () { composing = true; }, true);
+    document.addEventListener('compositionend', function (e) {
+      composing = false;
+      var el = e.target && e.target.closest ? e.target.closest(SEL) : null;
+      if (el) { clearTimeout(timer); timer = setTimeout(function () { relayout(el, true); }, 40); }
+    }, true);
+
+    document.addEventListener('input', function (e) {
+      if (composing) return;
+      if (!e.target || !e.target.closest) return;
+      var el = e.target.closest(SEL);
+      if (!el) return;
+      clearTimeout(timer);
+      timer = setTimeout(function () { relayout(el, true); }, 300);
+    }, true);
+
+    /* 退出编辑再兜一次，确保落定后的排版是带断点的 */
+    document.addEventListener('focusout', function (e) {
+      var el = e.target && e.target.closest ? e.target.closest(SEL) : null;
+      if (el) setTimeout(function () { relayout(el, false); }, 60);
+    }, true);
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
