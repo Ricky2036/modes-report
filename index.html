@@ -558,10 +558,10 @@ html.editing details.apx-fold>summary{cursor:text}
     <div data-eid="e2" class="nav-links">
       <a href="#background">背景</a>
       <a href="#insight">分析结论</a>
-      <a href="#design">iOS 思路</a>
-      <a href="#oneui">One UI 思路</a>
+      <a href="#design">iOS 分析</a>
+      <a href="#oneui">One UI 分析</a>
       <a href="#compare">横向对比</a>
-      <a href="#action">实施建议</a>
+      <a href="#action">落地方案</a>
       <a href="#appendix">附表</a>
     </div>
   </div>
@@ -1301,7 +1301,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <span data-eid="e242" class="chap-n">06</span>
     <div>
       <h2 data-eid="e243">落地方案</h2>
-      <p data-eid="e244">通过构建系统模式配置的底层能力，支撑后续各种场景模式的自定义配置</p>
+      <p data-eid="e244">通过构建系统模式配置的通用底层能力，支撑后续各种场景模式的自定义配置</p>
     </div>
   </div>
 
@@ -1331,7 +1331,7 @@ html.editing details.apx-fold>summary{cursor:text}
                   <li data-eid="e252">控制中心入口升级，从单一勿扰升级为支持多模式切换</li>
                   <li data-eid="e253">支持自定义模式：根据场景定义模式名称，图标等</li>
                   <li data-eid="e254">设置入口升级，整合各种模式菜单</li>
-                  <li data-eid="e255">预置几套场景模板，第一次用不必从零配</li>
+                  <li data-eid="e255">预置常用场景模式，上手即用</li>
                 </ul>
               </td>
             </tr>
@@ -1340,22 +1340,21 @@ html.editing details.apx-fold>summary{cursor:text}
               <td data-eid="e257" class="dt-say">在设定的条件下自动开启，不用每次都手动设置</td>
               <td>
                 <ul data-sid="s2">
-                  <li data-eid="e258">支持智能启用：按位置和使用习惯判断，减少配置负担</li>
-                  <li data-eid="e259">时间、位置、打开某个 App 三类条件齐备，可叠加也可单条关</li>
-                  <li data-eid="e260">补上蓝牙、网络这类设备条件，上车连上车载就开</li>
-                  <li data-eid="e261">手动开启时给个时长，到点自动退出</li>
+                  <li data-eid="e258">支持智能启用：按位置和用户使用习惯等智能启用</li>
+                  <li data-eid="e259">支持按照时间、位置、条件（如打开某个 App ）自动激活</li>
+                  <li data-eid="e260">支持更多条件模式如设备连接，网络连接等</li>
                 </ul>
               </td>
             </tr>
             <tr>
-              <td data-eid="e262">系统控制</td>
-              <td data-eid="e263" class="dt-say">设置模式生效后系统行为的改变，让模式真的有效</td>
+              <td data-eid="e261">系统控制</td>
+              <td data-eid="e262" class="dt-say">支持配置特定模式下系统行为的改变，让模式适应各种用户场景</td>
               <td>
                 <ul data-sid="s3">
-                  <li data-eid="e264">通知名单给默认模板，别让用户面对一张空白名单</li>
-                  <li data-eid="e265">支持更换锁屏与主屏幕页面，把场景外的 App 移出视线</li>
-                  <li data-eid="e266">附表 · One UI 系统动作全表</li>
-                  <li data-eid="e267">系统联动：深色、静音、低电量、屏幕常亮</li>
+                  <li data-eid="e263">支持防打扰设置及例外设置，让用户可以选择可透传人或信息</li>
+                  <li data-eid="e264">支持更换锁屏与主屏幕页面，把场景外的 App 移出视线</li>
+                  <li data-eid="e265">支持系统状态联动：如切换深色、静音、低电量、屏幕常亮等</li>
+                  <li data-eid="e266">支持更多系统能力联动，如灵动岛提醒，系统设置改变等</li>
                 </ul>
               </td>
             </tr>
@@ -1367,9 +1366,9 @@ html.editing details.apx-fold>summary{cursor:text}
 
   <div class="sub">
     <div class="sec-h">
-      <span data-eid="e268" class="sec-tag t-config">6.2 案例说明</span>
+      <span data-eid="e267" class="sec-tag t-config">6.2 案例说明</span>
       <div>
-        <h3 data-eid="e269">以礼拜模式、游戏模式为例看模式配置需要构建哪些系统能力</h3>
+        <h3 data-eid="e268">以礼拜模式、游戏模式为例看模式配置需要构建哪些系统能力</h3>
       </div>
     </div>
 
@@ -1377,68 +1376,60 @@ html.editing details.apx-fold>summary{cursor:text}
       <table class="plan">
         <thead>
           <tr>
-            <th data-eid="e270" style="width:19%">步骤</th>
-            <th data-eid="e271" style="width:40.5%">户外增强</th>
-            <th data-eid="e272">游戏勿扰</th>
+            <th data-eid="e269" style="width:19%">步骤</th>
+            <th data-eid="e270" style="width:40.5%">礼拜模式</th>
+            <th data-eid="e271">游戏勿扰</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>
-              <b data-eid="e273" class="st-t">入口</b>
+              <b data-eid="e272" class="st-t">入口</b>
             </td>
             <td>
               <ul data-sid="s4">
-                <li data-eid="e274">已有：设置 → 户外增强，二级页有总开关、定时、三个子项</li>
-                <li data-eid="e275">要建：控制中心磁贴，站在太阳底下不用翻两层菜单</li>
+                <li data-eid="e273">现状：设置 → 声音与振动&nbsp;→ 礼拜模式；智慧建议推荐</li>
+                <li data-eid="e274">要建：设置&nbsp;→&nbsp; 模式&nbsp;→&nbsp; 增加礼拜预设；控制中心增加模式切换；智慧建议支持模式推荐</li>
               </ul>
             </td>
             <td>
               <ul data-sid="s5">
-                <li data-eid="e276">已有：游戏助手能识别到正在跑的游戏</li>
-                <li data-eid="e277">要建：助手内的一键开关，开局时浮在游戏画面上</li>
-                <li data-eid="e278">要建：控制中心磁贴，平时也能手开</li>
+                <li data-eid="e275">现状：通过游戏助手面板让用户主动设置</li>
+                <li data-eid="e276">要建：支持通过设置和控制中心进行模式的个性化预设</li>
               </ul>
             </td>
           </tr>
           <tr>
             <td>
-              <b data-eid="e279" class="st-t">激活方式</b>
+              <b data-eid="e277" class="st-t">激活方式</b>
             </td>
             <td>
               <ul data-sid="s6">
-                <li data-eid="e280">已有：定时开关，当前设成 23:43 – 07:43</li>
-                <li data-eid="e281">要建：环境光强度：亮度过线才开，这才是亮度增强该有的触发</li>
-                <li data-eid="e282">要建：位置：出了户外常见场所自动退</li>
+                <li data-eid="e278">现状：多时段定时自动开关</li>
+                <li data-eid="e279">要建：将多时段设置开启能力作为通用能力</li>
               </ul>
             </td>
             <td>
               <ul data-sid="s7">
-                <li data-eid="e283">已有：前台游戏识别，游戏助手本来就在用</li>
-                <li data-eid="e284">要建：接成模式的条件源：进游戏即开，退游戏即关</li>
-                <li data-eid="e285">要建：手动开启给时长，避免开在半局中</li>
+                <li data-eid="e280">现状：通过游戏助手手动控制</li>
+                <li data-eid="e281">要建：新增按照条件自动激活的能力，比如打开特定游戏</li>
               </ul>
             </td>
           </tr>
           <tr>
             <td>
-              <b data-eid="e286" class="st-t">配置能力</b>
+              <b data-eid="e282" class="st-t">配置能力</b>
             </td>
             <td>
               <ul data-sid="s8">
-                <li data-eid="e287">已有：屏幕亮度增强，只在「自动调节亮度」开着时生效</li>
-                <li data-eid="e288">已有：通话增强：未连耳机时默认免提并降噪</li>
-                <li data-eid="e289">已有：延长息屏：20 分钟内无操作才灭屏</li>
-                <li data-eid="e290">要建：依赖提示：前置条件没开就在子项上标出来，别让总开关空转</li>
-                <li data-eid="e291">要建：网络质量：总开关说明里承诺了，三个子项里没有对应项</li>
+                <li data-eid="e283">现状：设定时间自动启用勿扰模式；跟随勿扰模式的穿透设置；启用后联动灵动岛提醒；可选择联动AI自动接听</li>
+                <li data-eid="e284">要建：免打扰设置作为模式的通用能力（含穿透设置）；将灵动岛提醒，AI自动接听等系统能力作为通用的系统能力支持主动配置</li>
               </ul>
             </td>
             <td>
               <ul data-sid="s9">
-                <li data-eid="e292">要建：免打扰放行：队友语音和指定联系人不拦，其余静音</li>
-                <li data-eid="e293">要建：性能与温控：锁性能模式，不因温度掉帧</li>
-                <li data-eid="e294">要建：显示：锁高刷、锁亮度，关掉自动调节</li>
-                <li data-eid="e295">要建：防误触：屏蔽边缘手势，退出时整组还原</li>
+                <li data-eid="e285">现状：游戏下的系统快捷设置能力仅游戏模式可用，无法复用到其他场景</li>
+                <li data-eid="e286">要建：防打扰策略，性能与温控策略，显示策略如锁高刷、锁亮度，防误触策略如屏蔽边缘手势等做成通用能力支持按场景调用</li>
               </ul>
             </td>
           </tr>
@@ -1451,199 +1442,201 @@ html.editing details.apx-fold>summary{cursor:text}
 
 <section id="appendix" class="wrap">
   <div class="chap">
-    <span data-eid="e296" class="chap-n">A</span>
+    <span data-eid="e287" class="chap-n">A</span>
     <div>
-      <h2 data-eid="e297">附表 · One UI 系统动作全表</h2>
-      <p data-eid="e298">模式能调用的全部系统能力，115 项，按 23 类归档。这也是它与 iOS 差距最实在的一段。</p>
+      <h2 data-eid="e288">附表 · One UI 系统动作全表</h2>
+      <p data-eid="e289">模式能调用的全部系统能力，115 项，按 23 类归档。这也是它与 iOS 差距最实在的一段。</p>
     </div>
   </div>
 
   <div class="acts">
       <div class="act-card">
-        <h5 data-eid="e299">连接<span>13 项</span></h5>
-          <div data-eid="e300" class="act-i">WLAN</div>
-          <div data-eid="e301" class="act-i">显示 WLAN 二维码</div>
-          <div data-eid="e302" class="act-i">蓝牙</div>
-          <div data-eid="e303" class="act-i">连接至蓝牙设备</div>
-          <div data-eid="e304" class="act-i">断开与蓝牙设备的连接</div>
-          <div data-eid="e305" class="act-i">音乐分享</div>
-          <div data-eid="e306" class="act-i">NFC</div>
-          <div data-eid="e307" class="act-i">飞行模式</div>
-          <div data-eid="e308" class="act-i">移动数据</div>
-          <div data-eid="e309" class="act-i">流量节省</div>
-          <div data-eid="e310" class="act-i">移动热点</div>
-          <div data-eid="e311" class="act-i">连接至 VPN</div>
-          <div data-eid="e312" class="act-i">断开与 VPN 的连接</div>
+        <h5 data-eid="e290">连接<span>13 项</span></h5>
+          <div data-eid="e291" class="act-i">WLAN</div>
+          <div data-eid="e292" class="act-i">显示 WLAN 二维码</div>
+          <div data-eid="e293" class="act-i">蓝牙</div>
+          <div data-eid="e294" class="act-i">连接至蓝牙设备</div>
+          <div data-eid="e295" class="act-i">断开与蓝牙设备的连接</div>
+          <div data-eid="e296" class="act-i">音乐分享</div>
+          <div data-eid="e297" class="act-i">NFC</div>
+          <div data-eid="e298" class="act-i">飞行模式</div>
+          <div data-eid="e299" class="act-i">移动数据</div>
+          <div data-eid="e300" class="act-i">流量节省</div>
+          <div data-eid="e301" class="act-i">移动热点</div>
+          <div data-eid="e302" class="act-i">连接至 VPN</div>
+          <div data-eid="e303" class="act-i">断开与 VPN 的连接</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e313">已连接的设备<span>5 项</span></h5>
-          <div data-eid="e314" class="act-i">多重控制</div>
-          <div data-eid="e315" class="act-i">Samsung DeX (无线显示器)</div>
-          <div data-eid="e316" class="act-i">跨设备接打电话和收发短信</div>
-          <div data-eid="e317" class="act-i">连接至 Windows</div>
-          <div data-eid="e318" class="act-i">S 互传</div>
+        <h5 data-eid="e304">已连接的设备<span>5 项</span></h5>
+          <div data-eid="e305" class="act-i">多重控制</div>
+          <div data-eid="e306" class="act-i">Samsung DeX (无线显示器)</div>
+          <div data-eid="e307" class="act-i">跨设备接打电话和收发短信</div>
+          <div data-eid="e308" class="act-i">连接至 Windows</div>
+          <div data-eid="e309" class="act-i">S 互传</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e319">声音和振动<span>11 项</span></h5>
-          <div data-eid="e320" class="act-i">拨号按键音</div>
-          <div data-eid="e321" class="act-i">三星键盘声音</div>
-          <div data-eid="e322" class="act-i">三星键盘振动</div>
-          <div data-eid="e323" class="act-i">杜比全景声</div>
-          <div data-eid="e324" class="act-i">单独播放应用程序声音</div>
-          <div data-eid="e325" class="act-i">均衡器</div>
-          <div data-eid="e326" class="act-i">音量标准化</div>
-          <div data-eid="e327" class="act-i">铃响时振动</div>
-          <div data-eid="e328" class="act-i">人工智能语音助手音量</div>
-          <div data-eid="e329" class="act-i">通话音量</div>
-          <div data-eid="e330" class="act-i">铃声</div>
+        <h5 data-eid="e310">声音和振动<span>11 项</span></h5>
+          <div data-eid="e311" class="act-i">拨号按键音</div>
+          <div data-eid="e312" class="act-i">三星键盘声音</div>
+          <div data-eid="e313" class="act-i">三星键盘振动</div>
+          <div data-eid="e314" class="act-i">杜比全景声</div>
+          <div data-eid="e315" class="act-i">单独播放应用程序声音</div>
+          <div data-eid="e316" class="act-i">均衡器</div>
+          <div data-eid="e317" class="act-i">音量标准化</div>
+          <div data-eid="e318" class="act-i">铃响时振动</div>
+          <div data-eid="e319" class="act-i">人工智能语音助手音量</div>
+          <div data-eid="e320" class="act-i">通话音量</div>
+          <div data-eid="e321" class="act-i">铃声</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e331">通知<span>1 项</span></h5>
-          <div data-eid="e332" class="act-i">显示自定义通知</div>
+        <h5 data-eid="e322">通知<span>1 项</span></h5>
+          <div data-eid="e323" class="act-i">显示自定义通知</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e333">显示<span>14 项</span></h5>
-          <div data-eid="e334" class="act-i">亮度</div>
-          <div data-eid="e335" class="act-i">屏幕刷新率</div>
-          <div data-eid="e336" class="act-i">黑暗模式开启时壁纸变暗</div>
-          <div data-eid="e337" class="act-i">字体风格</div>
-          <div data-eid="e338" class="act-i">字体大小</div>
-          <div data-eid="e339" class="act-i">屏幕缩放</div>
-          <div data-eid="e340" class="act-i">屏幕分辨率</div>
-          <div data-eid="e341" class="act-i">自动息屏</div>
-          <div data-eid="e342" class="act-i">屏幕方向</div>
-          <div data-eid="e343" class="act-i">侧屏幕面板</div>
-          <div data-eid="e344" class="act-i">自动调节亮度</div>
-          <div data-eid="e345" class="act-i">触摸灵敏度</div>
-          <div data-eid="e346" class="act-i">自适应色调</div>
-          <div data-eid="e347" class="act-i">防误触保护</div>
+        <h5 data-eid="e324">显示<span>14 项</span></h5>
+          <div data-eid="e325" class="act-i">亮度</div>
+          <div data-eid="e326" class="act-i">屏幕刷新率</div>
+          <div data-eid="e327" class="act-i">黑暗模式开启时壁纸变暗</div>
+          <div data-eid="e328" class="act-i">字体风格</div>
+          <div data-eid="e329" class="act-i">字体大小</div>
+          <div data-eid="e330" class="act-i">屏幕缩放</div>
+          <div data-eid="e331" class="act-i">屏幕分辨率</div>
+          <div data-eid="e332" class="act-i">自动息屏</div>
+          <div data-eid="e333" class="act-i">屏幕方向</div>
+          <div data-eid="e334" class="act-i">侧屏幕面板</div>
+          <div data-eid="e335" class="act-i">自动调节亮度</div>
+          <div data-eid="e336" class="act-i">触摸灵敏度</div>
+          <div data-eid="e337" class="act-i">自适应色调</div>
+          <div data-eid="e338" class="act-i">防误触保护</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e348">壁纸<span>1 项</span></h5>
-          <div data-eid="e349" class="act-i">黑暗模式开启时壁纸变暗</div>
+        <h5 data-eid="e339">壁纸<span>1 项</span></h5>
+          <div data-eid="e340" class="act-i">黑暗模式开启时壁纸变暗</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e350">锁定屏幕和息屏提醒<span>3 项</span></h5>
-          <div data-eid="e351" class="act-i">息屏提醒</div>
-          <div data-eid="e352" class="act-i">保持手机解锁</div>
-          <div data-eid="e353" class="act-i">使用生物识别解锁</div>
+        <h5 data-eid="e341">锁定屏幕和息屏提醒<span>3 项</span></h5>
+          <div data-eid="e342" class="act-i">息屏提醒</div>
+          <div data-eid="e343" class="act-i">保持手机解锁</div>
+          <div data-eid="e344" class="act-i">使用生物识别解锁</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e354">位置<span>1 项</span></h5>
-          <div data-eid="e355" class="act-i">位置</div>
+        <h5 data-eid="e345">位置<span>1 项</span></h5>
+          <div data-eid="e346" class="act-i">位置</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e356">账号与备份<span>1 项</span></h5>
-          <div data-eid="e357" class="act-i">自动同步数据</div>
+        <h5 data-eid="e347">账号与备份<span>1 项</span></h5>
+          <div data-eid="e348" class="act-i">自动同步数据</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e358">电池<span>4 项</span></h5>
-          <div data-eid="e359" class="act-i">省电模式</div>
-          <div data-eid="e360" class="act-i">加速充电</div>
-          <div data-eid="e361" class="act-i">无线加速充电</div>
-          <div data-eid="e362" class="act-i">电池保护</div>
+        <h5 data-eid="e349">电池<span>4 项</span></h5>
+          <div data-eid="e350" class="act-i">省电模式</div>
+          <div data-eid="e351" class="act-i">加速充电</div>
+          <div data-eid="e352" class="act-i">无线加速充电</div>
+          <div data-eid="e353" class="act-i">电池保护</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e363">智能管理器<span>2 项</span></h5>
-          <div data-eid="e364" class="act-i">性能配置</div>
-          <div data-eid="e365" class="act-i">优化手机</div>
+        <h5 data-eid="e354">智能管理器<span>2 项</span></h5>
+          <div data-eid="e355" class="act-i">性能配置</div>
+          <div data-eid="e356" class="act-i">优化手机</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e366">三星键盘<span>5 项</span></h5>
-          <div data-eid="e367" class="act-i">三星键盘语音输入</div>
-          <div data-eid="e368" class="act-i">语言和类型</div>
-          <div data-eid="e369" class="act-i">模式</div>
-          <div data-eid="e370" class="act-i">高对比度键盘</div>
-          <div data-eid="e371" class="act-i">清除剪贴板</div>
+        <h5 data-eid="e357">三星键盘<span>5 项</span></h5>
+          <div data-eid="e358" class="act-i">三星键盘语音输入</div>
+          <div data-eid="e359" class="act-i">语言和类型</div>
+          <div data-eid="e360" class="act-i">模式</div>
+          <div data-eid="e361" class="act-i">高对比度键盘</div>
+          <div data-eid="e362" class="act-i">清除剪贴板</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e372">辅助功能<span>11 项</span></h5>
-          <div data-eid="e373" class="act-i">放大环境音</div>
-          <div data-eid="e374" class="act-i">悬浮菜单</div>
-          <div data-eid="e375" class="act-i">静音所有声音</div>
-          <div data-eid="e376" class="act-i">单声道音频</div>
-          <div data-eid="e377" class="act-i">6.1 · 需求拆解</div>
-          <div data-eid="e378" class="act-i">系统模式统一构建的需求拆解</div>
-          <div data-eid="e379" class="act-i">极暗</div>
-          <div data-eid="e380" class="act-i">以已有模式为例，未来构建一个新的模式，我们需要做什么</div>
-          <div data-eid="e381" class="act-i">颜色过滤器</div>
+        <h5 data-eid="e363">辅助功能<span>11 项</span></h5>
+          <div data-eid="e364" class="act-i">放大环境音</div>
+          <div data-eid="e365" class="act-i">悬浮菜单</div>
+          <div data-eid="e366" class="act-i">静音所有声音</div>
+          <div data-eid="e367" class="act-i">单声道音频</div>
+          <div data-eid="e368" class="act-i">相机闪光灯通知</div>
+          <div data-eid="e369" class="act-i">屏幕闪光灯通知</div>
+          <div data-eid="e370" class="act-i">极暗</div>
+          <div data-eid="e371" class="act-i">左/右声音平衡</div>
+          <div data-eid="e372" class="act-i">颜色反转</div>
+          <div data-eid="e373" class="act-i">颜色修正</div>
+          <div data-eid="e374" class="act-i">颜色过滤器</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e382">效果<span>3 项</span></h5>
-          <div data-eid="e383" class="act-i">蜂鸣一次</div>
-          <div data-eid="e384" class="act-i">振动一次</div>
-          <div data-eid="e385" class="act-i">侧屏闪光效果一次</div>
+        <h5 data-eid="e375">效果<span>3 项</span></h5>
+          <div data-eid="e376" class="act-i">蜂鸣一次</div>
+          <div data-eid="e377" class="act-i">振动一次</div>
+          <div data-eid="e378" class="act-i">侧屏闪光效果一次</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e386">功能<span>10 项</span></h5>
-          <div data-eid="e387" class="act-i">进入网站</div>
-          <div data-eid="e388" class="act-i">手电筒</div>
-          <div data-eid="e389" class="act-i">导航按钮操作</div>
-          <div data-eid="e390" class="act-i">视频亮度</div>
-          <div data-eid="e391" class="act-i">使用画笔按钮打开浮窗指令</div>
-          <div data-eid="e392" class="act-i">读出文本</div>
-          <div data-eid="e393" class="act-i">使用扬声器接听</div>
-          <div data-eid="e394" class="act-i">截屏</div>
-          <div data-eid="e395" class="act-i">录制屏幕</div>
-          <div data-eid="e396" class="act-i">拒绝来电并发送快速信息</div>
+        <h5 data-eid="e379">功能<span>10 项</span></h5>
+          <div data-eid="e380" class="act-i">进入网站</div>
+          <div data-eid="e381" class="act-i">手电筒</div>
+          <div data-eid="e382" class="act-i">导航按钮操作</div>
+          <div data-eid="e383" class="act-i">视频亮度</div>
+          <div data-eid="e384" class="act-i">使用画笔按钮打开浮窗指令</div>
+          <div data-eid="e385" class="act-i">读出文本</div>
+          <div data-eid="e386" class="act-i">使用扬声器接听</div>
+          <div data-eid="e387" class="act-i">截屏</div>
+          <div data-eid="e388" class="act-i">录制屏幕</div>
+          <div data-eid="e389" class="act-i">拒绝来电并发送快速信息</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e397">应用程序<span>2 项</span></h5>
-          <div data-eid="e398" class="act-i">关闭应用程序</div>
-          <div data-eid="e399" class="act-i">打开一键分屏</div>
+        <h5 data-eid="e390">应用程序<span>2 项</span></h5>
+          <div data-eid="e391" class="act-i">关闭应用程序</div>
+          <div data-eid="e392" class="act-i">打开一键分屏</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e400">Bixby<span>1 项</span></h5>
-          <div data-eid="e401" class="act-i">问 Bixby</div>
+        <h5 data-eid="e393">Bixby<span>1 项</span></h5>
+          <div data-eid="e394" class="act-i">问 Bixby</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e402">日历<span>3 项</span></h5>
-          <div data-eid="e403" class="act-i">打开日历</div>
-          <div data-eid="e404" class="act-i">添加事件</div>
-          <div data-eid="e405" class="act-i">搜索日历</div>
+        <h5 data-eid="e395">日历<span>3 项</span></h5>
+          <div data-eid="e396" class="act-i">打开日历</div>
+          <div data-eid="e397" class="act-i">添加事件</div>
+          <div data-eid="e398" class="act-i">搜索日历</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e406">时钟<span>7 项</span></h5>
-          <div data-eid="e407" class="act-i">开启闹钟</div>
-          <div data-eid="e408" class="act-i">关闭闹钟</div>
-          <div data-eid="e409" class="act-i">启动定时器</div>
-          <div data-eid="e410" class="act-i">打开时钟</div>
-          <div data-eid="e411" class="act-i">添加闹钟</div>
-          <div data-eid="e412" class="act-i">设置定时器</div>
-          <div data-eid="e413" class="act-i">启动秒表</div>
+        <h5 data-eid="e399">时钟<span>7 项</span></h5>
+          <div data-eid="e400" class="act-i">开启闹钟</div>
+          <div data-eid="e401" class="act-i">关闭闹钟</div>
+          <div data-eid="e402" class="act-i">启动定时器</div>
+          <div data-eid="e403" class="act-i">打开时钟</div>
+          <div data-eid="e404" class="act-i">添加闹钟</div>
+          <div data-eid="e405" class="act-i">设置定时器</div>
+          <div data-eid="e406" class="act-i">启动秒表</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e414">相册<span>5 项</span></h5>
-          <div data-eid="e415" class="act-i">显示图片</div>
-          <div data-eid="e416" class="act-i">打开相册</div>
-          <div data-eid="e417" class="act-i">搜索相册</div>
-          <div data-eid="e418" class="act-i">最近</div>
-          <div data-eid="e419" class="act-i">收藏</div>
+        <h5 data-eid="e407">相册<span>5 项</span></h5>
+          <div data-eid="e408" class="act-i">显示图片</div>
+          <div data-eid="e409" class="act-i">打开相册</div>
+          <div data-eid="e410" class="act-i">搜索相册</div>
+          <div data-eid="e411" class="act-i">最近</div>
+          <div data-eid="e412" class="act-i">收藏</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e420">游戏助推器<span>3 项</span></h5>
-          <div data-eid="e421" class="act-i">游戏期间禁用侧屏幕面板</div>
-          <div data-eid="e422" class="act-i">游戏期间禁用 Bixby</div>
-          <div data-eid="e423" class="act-i">游戏期间禁用自动调节亮度</div>
+        <h5 data-eid="e413">游戏助推器<span>3 项</span></h5>
+          <div data-eid="e414" class="act-i">游戏期间禁用侧屏幕面板</div>
+          <div data-eid="e415" class="act-i">游戏期间禁用 Bixby</div>
+          <div data-eid="e416" class="act-i">游戏期间禁用自动调节亮度</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e424">即时简报<span>2 项</span></h5>
-          <div data-eid="e425" class="act-i">打开即时简报</div>
-          <div data-eid="e426" class="act-i">播放语音简报</div>
+        <h5 data-eid="e417">即时简报<span>2 项</span></h5>
+          <div data-eid="e418" class="act-i">打开即时简报</div>
+          <div data-eid="e419" class="act-i">播放语音简报</div>
       </div>
       <div class="act-card">
-        <h5 data-eid="e427">电话<span>7 项</span></h5>
-          <div data-eid="e428" class="act-i">拒绝来电并发送快速信息</div>
-          <div data-eid="e429" class="act-i">使用扬声器接听</div>
-          <div data-eid="e430" class="act-i">来电筛选</div>
-          <div data-eid="e431" class="act-i">打开电话</div>
-          <div data-eid="e432" class="act-i">未接来电</div>
-          <div data-eid="e433" class="act-i">搜索</div>
-          <div data-eid="e434" class="act-i">新建联系人</div>
+        <h5 data-eid="e420">电话<span>7 项</span></h5>
+          <div data-eid="e421" class="act-i">拒绝来电并发送快速信息</div>
+          <div data-eid="e422" class="act-i">使用扬声器接听</div>
+          <div data-eid="e423" class="act-i">来电筛选</div>
+          <div data-eid="e424" class="act-i">打开电话</div>
+          <div data-eid="e425" class="act-i">未接来电</div>
+          <div data-eid="e426" class="act-i">搜索</div>
+          <div data-eid="e427" class="act-i">新建联系人</div>
       </div>
       <div class="extra-card">
-      <div data-eid="e435" class="extra-h"><b>打开应用/快捷操作</b><span>实测 44 项</span></div>
-      <p data-eid="e436">按手机已安装的应用展开：打开相册、QQ 音乐、哔哩哔哩、小红书、三星钱包……每一类的二级动作也跟着应用走（比如 QQ 音乐还带「最近播放」「听歌识曲」）。数量随安装变化，不计入上面的 23 类 115 项。</p>
+      <div data-eid="e428" class="extra-h"><b>打开应用/快捷操作</b><span>实测 44 项</span></div>
+      <p data-eid="e429">按手机已安装的应用展开：打开相册、QQ 音乐、哔哩哔哩、小红书、三星钱包……每一类的二级动作也跟着应用走（比如 QQ 音乐还带「最近播放」「听歌识曲」）。数量随安装变化，不计入上面的 23 类 115 项。</p>
     </div>
     </div>
     
@@ -1651,8 +1644,8 @@ html.editing details.apx-fold>summary{cursor:text}
 
 <footer>
   <div class="wrap">
-    <p data-eid="e437">iOS 部分取自 iOS 18 及以上版本的专注模式设置；One UI 部分取自 Galaxy S25 Ultra（Android 16）「模式和日常程序」真机实测。</p>
-    <p data-eid="e438" class="ref">参考：Gloria Mark 等，被打断后回到原任务的恢复时长研究（2006）；Sophie Leroy，注意力残留（2009）；Beattie &amp; Daubs，数字健康项目与责任转移（2020）；Apple WWDC 2021 Platforms State of the Union。</p>
+    <p data-eid="e430">iOS 部分取自 iOS 18 及以上版本的专注模式设置；One UI 部分取自 Galaxy S25 Ultra（Android 16）「模式和日常程序」真机实测。</p>
+    <p data-eid="e431" class="ref">参考：Gloria Mark 等，被打断后回到原任务的恢复时长研究（2006）；Sophie Leroy，注意力残留（2009）；Beattie &amp; Daubs，数字健康项目与责任转移（2020）；Apple WWDC 2021 Platforms State of the Union。</p>
   </div>
 </footer>
 
@@ -1660,8 +1653,8 @@ html.editing details.apx-fold>summary{cursor:text}
 <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="截图放大">
   <button class="lb-x" id="lbClose" aria-label="关闭">✕</button>
   <img class="lb-img" id="lbImg" alt="">
-  <p data-eid="e439" class="lb-cap" id="lbCap"></p>
-  <p data-eid="e440" class="lb-tip">点击空白处或按 Esc 关闭</p>
+  <p data-eid="e432" class="lb-cap" id="lbCap"></p>
+  <p data-eid="e433" class="lb-tip">点击空白处或按 Esc 关闭</p>
 </div>
 
 <script>
