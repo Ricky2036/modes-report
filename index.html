@@ -462,7 +462,6 @@
     .sug{grid-template-columns:1fr}
     .acts{column-count:1}
     .dir{grid-template-columns:1fr;gap:14px;padding:24px 0}
-    .dir-table{min-width:760px}
     .args{grid-template-columns:1fr;gap:22px}
     .thesis-quote{padding:28px 24px;border-radius:20px}
     .caveat{padding:22px 22px}
@@ -557,9 +556,9 @@ html.editing details.apx-fold>summary{cursor:text}
     font-weight:700;letter-spacing:.04em;border-radius:5px;padding:1.5px 5px;line-height:1.5}
   .plan li i.have{color:#8b8b97;background:#f2f2f6}
   .plan li i.need{color:var(--config);background:var(--config-s)}
-  /* 三列在窄容器里会被挤碎，给下限让 .tbl 横向滚动 */
+  /* 两张三列表在同一断点下统一最小宽度：窄屏同步横滚，列宽不分叉 */
   @media (max-width:900px){
-    .plan{min-width:880px}
+    .dir-table,.plan{min-width:780px}
   }
 </style>
 </head>
@@ -1322,7 +1321,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e245" class="sec-tag t-config">6.1 需求拆解</span>
       <div>
-        <h3 data-eid="e246">构建系统模式能力的需求拆解</h3>
+        <h3 data-eid="e246">构建系统模式能力的相关需求拆解</h3>
       </div>
     </div>
 
@@ -1330,15 +1329,15 @@ html.editing details.apx-fold>summary{cursor:text}
       <table class="dir-table">
         <thead>
           <tr>
-            <th data-eid="e248" style="width:16%">需求分类</th>
-            <th data-eid="e249" style="width:24%">需求目的</th>
+            <th data-eid="e248" style="width:19%">需求分类</th>
+            <th data-eid="e249" style="width:40.5%">需求目的</th>
             <th data-eid="e250">需求概述</th>
           </tr>
         </thead>
         <tbody>
             <tr>
               <td data-eid="e251">构建入口</td>
-              <td data-eid="e252" class="dt-say">提供预设场景模式，支持开箱即用<br></td>
+              <td data-eid="e252" class="dt-say">提供统一的便捷入口方便用户设置<br></td>
               <td>
                 <ul data-sid="s1">
                   <li data-eid="e253">控制中心入口升级，从单一勿扰升级为支持多模式切换</li>
@@ -1349,8 +1348,8 @@ html.editing details.apx-fold>summary{cursor:text}
               </td>
             </tr>
             <tr>
-              <td data-eid="e257">激活能力</td>
-              <td data-eid="e258" class="dt-say">支持按时间，地点，事件自动启用</td>
+              <td data-eid="e257">自动激活</td>
+              <td data-eid="e258" class="dt-say">在设定的条件下自动开启，不用每次都手动设置</td>
               <td>
                 <ul data-sid="s2">
                   <li data-eid="e259">支持智能启用：按位置和使用习惯判断，减少配置负担</li>
@@ -1362,7 +1361,7 @@ html.editing details.apx-fold>summary{cursor:text}
             </tr>
             <tr>
               <td data-eid="e263">系统控制</td>
-              <td data-eid="e264" class="dt-say">不只是静音通知，设备行为要真的变</td>
+              <td data-eid="e264" class="dt-say">设置模式生效后系统行为的改变，让模式真的有效</td>
               <td>
                 <ul data-sid="s3">
                   <li data-eid="e265">通知名单给默认模板，别让用户面对一张空白名单</li>
@@ -1382,7 +1381,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e269" class="sec-tag t-config">6.2 案例说明</span>
       <div>
-        <h3 data-eid="e270">以游戏模式、礼拜模式、户外增强模式为例看模式配置需要构建哪些系统能力</h3>
+        <h3 data-eid="e270">以礼拜模式、游戏模式为例看模式配置需要构建哪些系统能力</h3>
       </div>
     </div>
 
