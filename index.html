@@ -249,10 +249,9 @@
   .dir-table td:first-child{font-size:15px;font-weight:670;letter-spacing:-.01em;
     padding-right:34px;line-height:1.55;text-wrap:pretty;min-width:112px}
   .dir-table .dt-say{font-size:12.8px;color:var(--sub);line-height:1.75}
-  .dir-table ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 30px}
+  .dir-table ul{list-style:none;display:flex;flex-direction:column;gap:7px}
   .dir-table li{position:relative;padding-left:15px;font-size:13px;line-height:1.75;
-    color:#3a3a44;margin-bottom:6px;text-wrap:pretty}
-  .dir-table li:last-child{margin-bottom:0}
+    color:#3a3a44;text-wrap:pretty}
   .dir-table li::before{content:"";position:absolute;left:1px;top:.88em;width:6px;height:1px;background:#c0c0cb}
 
   /* 三个建设方向 */
@@ -464,7 +463,6 @@
     .acts{column-count:1}
     .dir{grid-template-columns:1fr;gap:14px;padding:24px 0}
     .dir-table{min-width:760px}
-    .dir-table ul{grid-template-columns:1fr}
     .args{grid-template-columns:1fr;gap:22px}
     .thesis-quote{padding:28px 24px;border-radius:20px}
     .caveat{padding:22px 22px}
@@ -727,7 +725,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e57" class="sec-tag t-entry">3.2 · 入口</span>
       <div>
-        <h3 data-eid="e58">控制中心常驻入口，<wbr>支持在各种模式间主动切换</h3>
+        <h3 data-eid="e58">控制中心常驻入口，支持在各种模式间主动切换</h3>
         <p data-eid="e59">切换要快：最好一次点按完成，不用每次都翻设置。</p>
       </div>
     </div>
@@ -772,7 +770,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e71" class="sec-tag t-trigger">3.3 · 激活方式</span>
       <div>
-        <h3 data-eid="e72">支持智能和根据指定条件（时间、<wbr>地点、<wbr>条件）<wbr>自动开启，<wbr>无需每次都手动开启</h3>
+        <h3 data-eid="e72">支持智能和根据指定条件（时间、地点、条件）自动开启，无需每次都手动开启</h3>
         <p data-eid="e73">三种方式可以同时设，满足任意一个就打开。只有一种是手动，其余交给系统。</p>
       </div>
     </div>
@@ -873,7 +871,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e85" class="sec-tag t-config">3.4 · 配置系统行为&amp;外观</span>
       <div>
-        <h3 data-eid="e86">配置模式激活后的系统行为变化，<wbr>确保专注模式能够真的有效</h3>
+        <h3 data-eid="e86">配置模式激活后的系统行为变化，确保专注模式能够真的有效</h3>
         <p data-eid="e87">三件事依次收紧：谁能打扰你、屏幕上能看见什么、手机本身要不要跟着变。</p>
       </div>
     </div>
@@ -980,7 +978,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e116" class="sec-tag t-config">4.1 · 总览</span>
       <div>
-        <h3 data-eid="e117">与iOS高度相似，<wbr>但是支持的系统行为配置更加多样化，<wbr>但也更佳复杂体验不佳</h3>
+        <h3 data-eid="e117">与iOS高度相似，但是支持的系统行为配置更加多样化，但也更佳复杂体验不佳</h3>
         <p data-eid="e118">入口和激活的结构与 iOS 接近，差别集中在配置这一段能走多深。</p>
       </div>
     </div>
@@ -1013,7 +1011,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e140" class="sec-tag t-entry">4.2 · 入口</span>
       <div>
-        <h3 data-eid="e141">控制中心常驻入口，<wbr>配置生效的模式可以在这里主动切换状态，<wbr>但预设仅睡眠模式，<wbr>上手门槛高</h3>
+        <h3 data-eid="e141">控制中心常驻入口，配置生效的模式可以在这里主动切换状态，但预设仅睡眠模式，上手门槛高</h3>
         <p data-eid="e142">入口只比 iOS 多一步「详细信息」。七个预设按场景排好，点开先问用「基本」还是「自定义」。</p>
       </div>
     </div>
@@ -1057,7 +1055,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e154" class="sec-tag t-trigger">4.3 · 激活方式</span>
       <div>
-        <h3 data-eid="e155">支持更加丰富的自动激活条件，<wbr>除了时间地点外支持丰富的事件出发点比如连接的网络/<wbr>设备等</h3>
+        <h3 data-eid="e155">支持更加丰富的自动激活条件，除了时间地点外支持丰富的事件出发点比如连接的网络/设备等</h3>
         <p data-eid="e156">每个模式的详情页顶部都有「自动开启 / 何时启动此模式」，这是条件入口。iOS 那边叫「智能启用」的那一层，三星做成了可逐条挑选的清单。</p>
       </div>
     </div>
@@ -1107,7 +1105,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e178" class="sec-tag t-config">4.4 · 配置能力</span>
       <div>
-        <h3 data-eid="e179">One UI系统能力配置分为专注，<wbr>外观和其他操作配置，<wbr>能实现更场景化和个性化的系统快速配置</h3>
+        <h3 data-eid="e179">One UI系统能力配置分为专注，外观和其他操作配置，能实现更场景化和个性化的系统快速配置</h3>
         <p data-eid="e180">iOS 把配置摊成三个页面，三星压成三张卡：先管注意力，再管氛围，最后才动系统设置。</p>
       </div>
     </div>
@@ -1291,7 +1289,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e233" class="sec-tag t-config">5.2 · 结论</span>
       <div>
-        <h3 data-eid="e234">不是功能多少，<wbr>是复杂度放在谁那边</h3>
+        <h3 data-eid="e234">不是功能多少，是复杂度放在谁那边</h3>
         <p data-eid="e235">一个把复杂度收进系统，一个把复杂度摊给用户。</p>
       </div>
     </div>
@@ -1322,10 +1320,9 @@ html.editing details.apx-fold>summary{cursor:text}
 
   <div class="sub">
     <div class="sec-h">
-      <span data-eid="e245" class="sec-tag t-config">6.1 需求概要</span>
+      <span data-eid="e245" class="sec-tag t-config">6.1 需求拆解</span>
       <div>
-        <h3 data-eid="e246">需求目的</h3>
-        <p data-eid="e247">需求描述</p>
+        <h3 data-eid="e246">构建系统模式能力的需求拆解</h3>
       </div>
     </div>
 
@@ -1333,21 +1330,21 @@ html.editing details.apx-fold>summary{cursor:text}
       <table class="dir-table">
         <thead>
           <tr>
-            <th data-eid="e248" style="width:16%">方向</th>
-            <th data-eid="e249" style="width:24%">一句话判断</th>
-            <th data-eid="e250">控制中心入口升级，从单一勿扰升级为支持多模式切换</th>
+            <th data-eid="e248" style="width:16%">需求分类</th>
+            <th data-eid="e249" style="width:24%">需求目的</th>
+            <th data-eid="e250">需求概述</th>
           </tr>
         </thead>
         <tbody>
             <tr>
-              <td data-eid="e251">提供预设场景模式，支持开箱即用</td>
-              <td data-eid="e252" class="dt-say">设置入口升级，整合各种模式菜单</td>
+              <td data-eid="e251">构建入口</td>
+              <td data-eid="e252" class="dt-say">提供预设场景模式，支持开箱即用<br></td>
               <td>
                 <ul data-sid="s1">
-                  <li data-eid="e253">支持自定义模式：选场景、起名字、选通知名单</li>
-                  <li data-eid="e254">新建压到三步：选场景、起名字、选通知名单</li>
-                  <li data-eid="e255">预置几套场景模板，第一次用不必从零配</li>
-                  <li data-eid="e256">支持智能启用：按位置和使用习惯判断，减少配置负担</li>
+                  <li data-eid="e253">控制中心入口升级，从单一勿扰升级为支持多模式切换</li>
+                  <li data-eid="e254">支持自定义模式：根据场景定义模式名称，图标等</li>
+                  <li data-eid="e255">设置入口升级，整合各种模式菜单</li>
+                  <li data-eid="e256">预置几套场景模板，第一次用不必从零配</li>
                 </ul>
               </td>
             </tr>
@@ -1356,7 +1353,7 @@ html.editing details.apx-fold>summary{cursor:text}
               <td data-eid="e258" class="dt-say">支持按时间，地点，事件自动启用</td>
               <td>
                 <ul data-sid="s2">
-                  <li data-eid="e259">优先做智能启用：按位置和使用习惯判断，减少配置负担</li>
+                  <li data-eid="e259">支持智能启用：按位置和使用习惯判断，减少配置负担</li>
                   <li data-eid="e260">时间、位置、打开某个 App 三类条件齐备，可叠加也可单条关</li>
                   <li data-eid="e261">补上蓝牙、网络这类设备条件，上车连上车载就开</li>
                   <li data-eid="e262">手动开启时给个时长，到点自动退出</li>
@@ -1385,7 +1382,7 @@ html.editing details.apx-fold>summary{cursor:text}
     <div class="sec-h">
       <span data-eid="e269" class="sec-tag t-config">6.2 案例说明</span>
       <div>
-        <h3 data-eid="e270">以游戏模式、<wbr>礼拜模式、<wbr>户外增强模式为例看模式配置需要构建哪些系统能力</h3>
+        <h3 data-eid="e270">以游戏模式、礼拜模式、户外增强模式为例看模式配置需要构建哪些系统能力</h3>
       </div>
     </div>
 
