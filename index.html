@@ -108,7 +108,8 @@
   .chap p{font-size:14.5px;color:var(--sub);margin-top:7px}
 
   /* subsection */
-  .sub{border-top:1px dashed var(--dash);margin-top:48px;padding-top:48px}
+  /* 子章节之间不加分隔线，靠留白区分 */
+  .sub{margin-top:56px}
   .chap + .sub,.epigraph + .sub{border-top:0;margin-top:32px;padding-top:0}
 
   /* epigraph */
@@ -221,6 +222,8 @@
   .cmp td:first-child{font-weight:650;color:var(--ink);white-space:nowrap}
   .cmp td:nth-child(2),.cmp td:nth-child(3){color:var(--sub);font-size:13px}
   .cmp th:last-child,.cmp td:last-child{padding-right:0}
+  /* 表格末行不收线，避免被当成章节分隔 */
+  .cmp tbody tr:last-child td,.dir-table tbody tr:last-child td{border-bottom:none}
 
   /* 两种模型 */
   .models{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
